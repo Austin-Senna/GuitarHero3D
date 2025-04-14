@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://csqmeeud62ylf"]
+[gd_scene load_steps=3 format=3 uid="uid://1xmjiayxw76g"]
 
-[ext_resource type="PackedScene" uid="uid://dmi2jcb65qxrd" path="res://NotePicker.tscn" id="1_x0d2t"]
+[ext_resource type="PackedScene" path="res://NotePicker.tscn" id="1_x0d2t"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
 

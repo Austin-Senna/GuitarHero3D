@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy1xg746ttg2w"]
+
+[ext_resource type="Script" uid="uid://dh6smklpqbk5j" path="res://Intro_Title_Menu/titlescreen.gd" id="1_d0bdc"]
+[ext_resource type="Texture2D" uid="uid://bxwyijsl6ej4f" path="res://Intro_Title_Menu/Images/Start buttons.png" id="2_wmaus"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d0bdc")
+
+[node name="StartButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.272569
+anchor_top = 0.251543
+anchor_right = 0.756944
+anchor_bottom = 0.442901
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StartButton"]
+position = Vector2(281.001, 127)
+texture = ExtResource("2_wmaus")
+vframes = 2
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.436632
+anchor_top = 0.626543
+anchor_right = 0.591146
+anchor_bottom = 0.733025
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="focus_entered" from="StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="ExitButton" to="." method="_on_exit_button_focus_entered"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
