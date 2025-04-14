@@ -11,8 +11,28 @@ config_version=5
 [application]
 
 config/name="GuitarHero3D"
+run/main_scene="uid://er3tfkl6fj2j"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[input]
+
+q={
+"deadzone": 0.2,
+"events": []
+}
+w={
+"deadzone": 0.2,
+"events": []
+}
+e={
+"deadzone": 0.2,
+"events": []
+}
+r={
+"deadzone": 0.2,
+"events": []
+}
 
 [rendering]
 

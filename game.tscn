@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://er3tfkl6fj2j"]
+
+[ext_resource type="PackedScene" uid="uid://csqmeeud62ylf" path="res://road.tscn" id="1_80nbo"]
+
+[node name="Game" type="Node3D"]
+
+[node name="road" parent="." instance=ExtResource("1_80nbo")]
+transform = Transform3D(1.6, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.937428, 0.34818, 0, -0.34818, 0.937428, -0.0450394, 2.58726, 12.2079)
+fov = 70.0
+far = 100.0
+
+[node name="Camera3D_Debug" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.13372, 14.4014, 0.203007)
+current = true
+fov = 70.0
+far = 100.0

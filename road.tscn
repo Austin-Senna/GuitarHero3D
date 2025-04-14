@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://1xmjiayxw76g"]
+[gd_scene load_steps=3 format=3 uid="uid://csqmeeud62ylf"]
+
+[ext_resource type="PackedScene" uid="uid://dmi2jcb65qxrd" path="res://NotePicker.tscn" id="1_x0d2t"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
 
 [node name="road" type="Node3D"]
+transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 8, 0, 0, 0)
 mesh = SubResource("PlaneMesh_g686u")
+
+[node name="NotePicker" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45603, 0, 8)
+line = 1
+
+[node name="NotePicker2" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477248, 0, 8)
+line = 2
+
+[node name="NotePicker3" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491181, 0, 8)
+line = 3
+
+[node name="NotePicker4" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47437, 0, 8)
