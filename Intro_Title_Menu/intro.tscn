@@ -8,7 +8,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("Fade:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,15 +20,14 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_78db4"]
 resource_name = "black_in"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("Fade:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -36,15 +35,14 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1wcii"]
 resource_name = "black_out"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("Fade:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0666667, 1.93333),
+"times": PackedFloat32Array(0.0666667, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
@@ -70,12 +68,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_10ara")
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Fade" type="ColorRect" parent="."]
 offset_right = 1155.0
 offset_bottom = 655.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="BlackBG" type="ColorRect" parent="."]
 z_index = -2
 offset_right = 1161.0
 offset_bottom = 658.0

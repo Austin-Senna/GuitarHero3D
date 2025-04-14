@@ -1,10 +1,16 @@
 extends Control
 
-var buttons: Array[Button] = []
+var buttons: Array[TextureButton] = []
 var focused_index: int = -1
+@onready var animation_intro = $AnimationPlayer
 
 func _ready() -> void:
-	buttons = [$StartButton, $ExitButton]  # Add your button nodes here
+	animation_intro.play("black_in")
+	buttons = [
+		$%StartButton,
+		$%ExitButton
+	]
+	$Fade.show()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):

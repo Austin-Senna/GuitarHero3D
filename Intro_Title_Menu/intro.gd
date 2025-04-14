@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var animation_intro = $AnimationPlayer
+var title = preload("res://Intro_Title_Menu/title.tscn")
 
 func _ready():
 	animation_intro.play("black_in")
@@ -12,4 +13,4 @@ func blackout():
 	
 	
 func startmenu():
-	get_tree().change_scene_to_file("res://Intro_Title_Menu/title.tscn")
+	get_tree().change_scene_to_packed(title)
