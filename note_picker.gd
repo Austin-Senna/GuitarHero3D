@@ -10,10 +10,10 @@ var blue_mat
 
 func _ready():
 	# Load materials
-	green_mat = load("res://green_mat.tres")
-	orange_mat = load("res://orange_mat.tres")
-	pink_mat = load("res://pink_mat.tres")
-	blue_mat = load("res://blue_mat.tres")
+	green_mat = load("res://green_picker_mat.tres")
+	orange_mat = load("res://orange_picker_mat.tres")
+	pink_mat = load("res://pink_picker_mat.tres")
+	blue_mat = load("res://blue_picker_mat.tres")
 	
 	set_material()
 	set_process_input(true)

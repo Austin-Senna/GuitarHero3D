@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("ui_up"):
 		focused_index = (focused_index - 1 + buttons.size()) % buttons.size()
 		buttons[focused_index].grab_focus()
+		
 
 func _on_start_button_focus_entered() -> void:
 	print("Start button focused")

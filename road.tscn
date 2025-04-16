@@ -1,27 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://1xmjiayxw76g"]
+[gd_scene load_steps=5 format=3 uid="uid://1xmjiayxw76g"]
 
 [ext_resource type="PackedScene" uid="uid://bdqlu18v7gjx6" path="res://NotePicker.tscn" id="1_x0d2t"]
+[ext_resource type="Script" uid="uid://c6l7bnqqytrgw" path="res://bars_node.gd" id="2_3veuu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0d2t"]
+emission_enabled = true
+emission = Color(0.819336, 0.839215, 0.562651, 1)
+emission_energy_multiplier = 7.83
+backlight_enabled = true
+backlight = Color(0.932614, 0.676727, 0.695527, 1)
+
 [node name="road" type="Node3D"]
 transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+script = ExtResource("2_3veuu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 8, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = SubResource("StandardMaterial3D_x0d2t")
 
 [node name="NotePicker" parent="." instance=ExtResource("1_x0d2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45603, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 8)
 line = 1
 
 [node name="NotePicker2" parent="." instance=ExtResource("1_x0d2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477248, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 8)
 line = 2
 
 [node name="NotePicker3" parent="." instance=ExtResource("1_x0d2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491181, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 8)
 line = 3
 
 [node name="NotePicker4" parent="." instance=ExtResource("1_x0d2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47437, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 8)
+
+[node name="BarsNode" type="Node3D" parent="."]
