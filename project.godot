@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="GuitarHero3D"
-run/main_scene="uid://er3tfkl6fj2j"
+run/main_scene="uid://c2c81eofyw8ei"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<Updatedupstreamrun/main_scene="uid://er3tfkl6fj2j"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
