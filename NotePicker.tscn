@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdqlu18v7gjx6"]
+[gd_scene load_steps=5 format=3 uid="uid://bdqlu18v7gjx6"]
 
 [ext_resource type="Script" uid="uid://l0mgmj4rpbf7" path="res://note_picker.gd" id="1_qsfoh"]
 [ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://blue_note_mat.tres" id="2_8d6fk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3vs3x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8d6fk"]
+size = Vector3(0.876831, 1, 0.271423)
 
 [node name="NotePicker" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
@@ -14,3 +17,9 @@ line = 4
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.01, 0)
 mesh = SubResource("PlaneMesh_3vs3x")
 surface_material_override/0 = ExtResource("2_8d6fk")
+
+[node name="Area3D" type="Area3D" parent="." groups=["picker"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0615845, 0, -0.0418396)
+shape = SubResource("BoxShape3D_8d6fk")

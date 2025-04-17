@@ -7,6 +7,7 @@ var green_mat
 var orange_mat
 var pink_mat
 var blue_mat
+var is_collecting = false
 
 func _ready():
 	# Load materials
@@ -35,15 +36,19 @@ func _input(event):
 			1:
 				if event.keycode == KEY_Q:
 					is_pressed = event.pressed
+					is_collecting = event.pressed
 			2:
 				if event.keycode == KEY_W:
 					is_pressed = event.pressed
+					is_collecting = event.pressed
 			3:
 				if event.keycode == KEY_E:
 					is_pressed = event.pressed
+					is_collecting = event.pressed
 			4:
 				if event.keycode == KEY_R:
 					is_pressed = event.pressed
+					is_collecting = event.pressed
 
 func _process(_delta):
 	if is_pressed:
