@@ -17,7 +17,7 @@ var note_scale
 var start_time
 
 func _ready():
-	audio = load(audio_file2)
+	audio = load(audio_file1)
 	calc_params()
 	music_node.setup(self)
 	road_node.setup(self)
@@ -29,4 +29,4 @@ func calc_params():
 	quarter_time = 60/float(tempo)
 	speed = bar_length/float(4*quarter_time)
 	note_scale = bar_length/float(4*400)
-	start_time = 0.1
+	start_time = 0

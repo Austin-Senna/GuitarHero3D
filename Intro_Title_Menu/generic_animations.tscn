@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://byflxvnbatogh"]
+[gd_scene load_steps=9 format=3 uid="uid://byflxvnbatogh"]
 
-[ext_resource type="Script" uid="uid://3nwnonuh7s6o" path="res://Intro_Title_Menu/generic_animations.gd" id="1_geloo"]
+[ext_resource type="Script" uid="uid://3nwnonuh7s6o" path="res://Intro_Title_Menu/Scripts/generic_animations.gd" id="1_geloo"]
+[ext_resource type="AudioStream" uid="uid://djmgg00mqugbv" path="res://Intro_Title_Menu/Audio/game_start.mp3" id="2_e1a0d"]
 
 [sub_resource type="Animation" id="Animation_10ara"]
 length = 0.001
@@ -19,14 +20,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WhiteBlinks:visible")
+tracks/1/path = NodePath("WhiteBlinks:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_78db4"]
@@ -60,20 +61,36 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_6lcll"]
-resource_name = "white_blinds"
+resource_name = "white_fade_out"
 length = 0.8805
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WhiteBlinks:visible")
+tracks/0/path = NodePath("WhiteBlinks:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0317, 0.0572, 0.0928, 0.263),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, false]
+"times": PackedFloat32Array(0, 0.0551696, 0.149283),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e1a0d"]
+resource_name = "white_fade_in"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteBlinks:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.499231),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_10ara"]
@@ -81,7 +98,8 @@ _data = {
 &"RESET": SubResource("Animation_10ara"),
 &"black_in": SubResource("Animation_78db4"),
 &"black_out": SubResource("Animation_1wcii"),
-&"white_blinds": SubResource("Animation_6lcll")
+&"white_fade_in": SubResource("Animation_e1a0d"),
+&"white_fade_out": SubResource("Animation_6lcll")
 }
 
 [node name="genericAnimation" type="Control"]
@@ -101,6 +119,7 @@ offset_bottom = 658.0
 color = Color(0, 0, 0, 1)
 
 [node name="Fade" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 655.0
@@ -115,8 +134,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_10ara")
 }
+
+[node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e1a0d")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e1a0d")
