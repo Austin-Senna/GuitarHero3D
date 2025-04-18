@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://1xmjiayxw76g"]
 
 [ext_resource type="PackedScene" uid="uid://bdqlu18v7gjx6" path="res://NotePicker.tscn" id="1_x0d2t"]
-[ext_resource type="Script" path="res://bars_node.gd" id="2_3veuu"]
+[ext_resource type="Script" uid="uid://c6l7bnqqytrgw" path="res://road.gd" id="2_3veuu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
 

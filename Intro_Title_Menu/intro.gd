@@ -1,14 +1,14 @@
-extends Node2D
+extends Control
 
-@onready var animation_intro = $AnimationPlayer
+@onready var generic_anim_player: Control = $genericAnimation
 var title = preload("res://Intro_Title_Menu/title.tscn")
 
 func _ready():
-	animation_intro.play("black_in")
+	generic_anim_player.play_fade_in()
 	get_tree().create_timer(2).timeout.connect(blackout)
 	
 func blackout():
-	animation_intro.play("black_out")
+	generic_anim_player.play_fade_out()
 	get_tree().create_timer(2).timeout.connect(startmenu)
 	
 	

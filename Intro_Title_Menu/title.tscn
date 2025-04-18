@@ -1,64 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy1xg746ttg2w"]
+[gd_scene load_steps=9 format=3 uid="uid://cy1xg746ttg2w"]
 
 [ext_resource type="Script" uid="uid://dh6smklpqbk5j" path="res://Intro_Title_Menu/titlescreen.gd" id="1_d0bdc"]
+[ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="2_2k0cv"]
 [ext_resource type="Texture2D" uid="uid://iwyel12kshnm" path="res://Intro_Title_Menu/Images/titleicon2.png" id="2_ln4oq"]
 [ext_resource type="Texture2D" uid="uid://cix2hhigxwi1y" path="res://Intro_Title_Menu/Images/Start_button.png" id="2_yvvhr"]
 [ext_resource type="Texture2D" uid="uid://bsbbm6q77ypep" path="res://Intro_Title_Menu/Images/Start_button_pressed.png" id="3_34mbs"]
 [ext_resource type="Texture2D" uid="uid://cacvckoo1t7t7" path="res://Intro_Title_Menu/Images/exit_button.png" id="4_34mbs"]
 [ext_resource type="Texture2D" uid="uid://bo33ce7s8jkmg" path="res://Intro_Title_Menu/Images/exit_button_pressed.png" id="5_c6qcs"]
 [ext_resource type="Texture2D" uid="uid://jyum46lfybhc" path="res://Intro_Title_Menu/Images/optimus_prime_rockstar_no_bg.png" id="6_c6qcs"]
-
-[sub_resource type="Animation" id="Animation_10ara"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_78db4"]
-resource_name = "black_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1wcii"]
-resource_name = "black_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0666667, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_10ara"]
-_data = {
-&"RESET": SubResource("Animation_10ara"),
-&"black_in": SubResource("Animation_78db4"),
-&"black_out": SubResource("Animation_1wcii")
-}
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -68,6 +17,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d0bdc")
+
+[node name="genericAnimation" parent="." instance=ExtResource("2_2k0cv")]
+layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -152,31 +104,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 texture = ExtResource("6_c6qcs")
 stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_10ara")
-}
-
-[node name="Fade" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="BackgroundBlack" type="ColorRect" parent="."]
-z_index = -2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
 [connection signal="focus_entered" from="VBoxContainer/PanelContainer/HBox/Menu/MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/HBox/Menu/MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

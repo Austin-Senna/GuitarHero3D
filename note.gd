@@ -39,7 +39,7 @@ func set_material():
 		4:
 			$MeshInstance3D.material_override = blue_mat
 
-func _process(delta):
+func _process(_delta):
 	collect()
 	
 func collect():
