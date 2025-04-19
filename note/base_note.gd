@@ -7,6 +7,10 @@ var orange_mat = preload("res://orange_note_mat.tres")
 var pink_mat = preload("res://pink_note_mat.tres")
 var blue_mat = preload("res://blue_note_mat.tres")
 var xPosition
+var length
+var length_scale
+var speed 
+
 var is_colliding = false
 var picker
 var is_collected = false
@@ -28,7 +32,7 @@ func on_ready():
 		4:
 			xPosition = 1.5
 		
-	self.set_position(Vector3(xPosition, 0, -startingPosition))
+	self.set_position(Vector3(xPosition, 0, -startingPosition*length_scale))
 	
 func set_material():
 	match line:
@@ -45,7 +49,7 @@ func _process(delta):
 	on_process(delta)
 
 func on_process(delta):
-	collect()
+	pass
 
 func add_listeners():
 	$Area3D.add_to_group("note")
@@ -54,7 +58,9 @@ func add_listeners():
 	$Area3D.area_exited.connect(_on_area_exited)
 	
 func collect():
-	pass
+	is_collected = true  # Changed collected to is_collected
+	picker.is_collecting = false
+	hide()
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("picker"):

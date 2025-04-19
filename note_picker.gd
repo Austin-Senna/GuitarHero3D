@@ -37,18 +37,22 @@ func _input(event):
 				if event.keycode == KEY_Q:
 					is_pressed = event.pressed
 					is_collecting = event.pressed
+					get_viewport().set_input_as_handled()  # Add this line
 			2:
 				if event.keycode == KEY_W:
 					is_pressed = event.pressed
 					is_collecting = event.pressed
+					get_viewport().set_input_as_handled()  # Add this line
 			3:
 				if event.keycode == KEY_E:
 					is_pressed = event.pressed
 					is_collecting = event.pressed
+					get_viewport().set_input_as_handled()  # Add this line
 			4:
 				if event.keycode == KEY_R:
 					is_pressed = event.pressed
 					is_collecting = event.pressed
+					get_viewport().set_input_as_handled()  # Add this line
 
 func _process(_delta):
 	if is_pressed:

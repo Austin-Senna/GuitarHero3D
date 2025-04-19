@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://lj5msx2g6j64"]
+[gd_scene load_steps=0 format=3 uid="uid://lj5msx2g6j64"]
 
 [node name="UI" type="Control"]
 layout_mode = 3

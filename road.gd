@@ -51,6 +51,7 @@ func add_bar():
 	bar.set_position(Vector3(curr_location.x, curr_location.y, curr_location.z))
 	bar.note_scale = note_scale
 	bar.bar_data = get_bar_data()
+	bar.speed = speed
 	bars.append(bar)
 	bars_node.add_child(bar)
 	curr_location += Vector3(0,0,-bar_length)
