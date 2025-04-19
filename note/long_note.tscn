@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx0vwypf6nqvc"]
+
+[ext_resource type="Script" uid="uid://b2ds5jsusl878" path="res://note/long_note.gd" id="1_fl51j"]
+[ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://blue_note_mat.tres" id="2_x6khw"]
+[ext_resource type="PackedScene" uid="uid://hk17lbnfv51y" path="res://note/beam.tscn" id="3_hd31m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x6khw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hd31m"]
+size = Vector3(0.553955, 0.54422, 0.545761)
+
+[node name="LongNote" type="Node3D"]
+script = ExtResource("1_fl51j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+layers = 513
+mesh = SubResource("BoxMesh_x6khw")
+surface_material_override/0 = ExtResource("2_x6khw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.999884, 0, -0.0152187, 0, 1, 0, 0.0152187, 0, 0.999884, -0.00049157, 0.00242615, -0.0016471)
+shape = SubResource("BoxShape3D_hd31m")
+
+[node name="Beam" parent="." instance=ExtResource("3_hd31m")]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

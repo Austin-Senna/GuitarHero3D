@@ -1,6 +1,6 @@
 extends Node3D
 
-var note_scn = preload("res://note.tscn")
+var note_scn = preload("res://note/short_note.tscn")
 var note_scale 
 
 # max bar.length = 1600 * 0.005 = 8 
