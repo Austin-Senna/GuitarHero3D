@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://85250qst0lew"]
+[gd_scene load_steps=16 format=3 uid="uid://85250qst0lew"]
 
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="1_lh452"]
-[ext_resource type="Script" uid="uid://dlmitsymsj80q" path="res://Intro_Title_Menu/menu.gd" id="1_mx1ny"]
+[ext_resource type="Script" uid="uid://dlmitsymsj80q" path="res://Intro_Title_Menu/Scripts/menu.gd" id="1_mx1ny"]
 [ext_resource type="Texture2D" uid="uid://dgakdmya08ol1" path="res://Intro_Title_Menu/Images/megatron_rockstar_no_bg.png" id="1_qvpu2"]
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="3_x031s"]
 [ext_resource type="Texture2D" uid="uid://c04252ygqqrvs" path="res://Intro_Title_Menu/Images/shootingStars.png" id="4_mistw"]
 [ext_resource type="Shader" uid="uid://dseuoh400jif6" path="res://Intro_Title_Menu/infinitescroll.gdshader" id="4_q3l3k"]
 [ext_resource type="Texture2D" uid="uid://nv4idht4sxk7" path="res://Intro_Title_Menu/Images/decepticonsBGsmall.png" id="5_mistw"]
 [ext_resource type="Texture2D" uid="uid://c77nampf5ra88" path="res://Intro_Title_Menu/Images/moon.png" id="6_mistw"]
+[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/transformers.tres" id="9_emxnm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3l3k"]
 
@@ -21,7 +22,16 @@ shader = ExtResource("4_q3l3k")
 shader_parameter/scroll_speed_x = 1.0
 shader_parameter/scroll_speed_y = -0.5
 
-[sub_resource type="ImageTexture" id="ImageTexture_x031s"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emxnm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emxnm"]
+bg_color = Color(0.592063, 0.46472, 0.743211, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soguy"]
 
@@ -77,15 +87,34 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Select" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("ImageTexture_x031s")
+theme_override_styles/panel = SubResource("StyleBoxTexture_emxnm")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_emxnm")
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+text = "SELECT YOUR SONG"
+label_settings = ExtResource("9_emxnm")
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_soguy")
 
 [node name="Moon" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer"]
@@ -102,6 +131,22 @@ layout_mode = 2
 texture = ExtResource("1_qvpu2")
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer"]
+[node name="Menu" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Song1" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/Song1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Menu/Song1/PanelContainer"]
+layout_mode = 2
+text = "SONG 1"
+label_settings = ExtResource("9_emxnm")
+
+[node name="Song2" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
