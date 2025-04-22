@@ -1,8 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0tyxxtnwlmwi"]
+[gd_scene load_steps=5 format=3 uid="uid://c0tyxxtnwlmwi"]
 
 [ext_resource type="Script" uid="uid://dq6duqe6da24x" path="res://music.gd" id="1_3h6ak"]
+
+[sub_resource type="Animation" id="Animation_5vxup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_3h6ak"]
+resource_name = "sound_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vxup"]
+_data = {
+&"RESET": SubResource("Animation_5vxup"),
+&"sound_on": SubResource("Animation_3h6ak")
+}
 
 [node name="Music" type="Node3D"]
 script = ExtResource("1_3h6ak")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5vxup")
+}

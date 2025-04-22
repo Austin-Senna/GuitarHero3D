@@ -3,9 +3,14 @@ extends Control
 var buttons: Array[TextureButton] = []
 var focused_index: int = -1
 @onready var animPlayer = $genericAnimation
-var original_scale: Vector2 = Vector2.ONE # Default scale (1.0, 1.0)
-var selected_scale: Vector2 = Vector2(1.05,1.05)
-var pressed_scale: Vector2 = Vector2(0.9, 0.9) # Scale when pressed (e.g., 90%)
+
+var active_tweens: Dictionary = {}
+@export var focus_stretch_ratio: float = 2.5
+@export var default_stretch_ratio: float = 1.0
+@export var focus_tween_duration: float = 0.2 # Duration in seconds for the tween
+@export var focus_tween_transition: Tween.TransitionType = Tween.TRANS_QUINT # Smoother transition
+@export var focus_tween_ease: Tween.EaseType = Tween.EASE_OUT # Ease out for entering, ease in for exiting
+
 
 func _ready() -> void:
 	animPlayer.play_fade_in()
@@ -18,34 +23,40 @@ func _ready() -> void:
 	]
 	
 	for i in range(buttons.size()):
-		var button = buttons[i]
-		button.pivot_offset = button.size / 2.0
-		button.scale = original_scale
+		buttons[i].focus_entered.connect(_on_any_button_focus_entered.bind(buttons[i]))
+		buttons[i].focus_exited.connect(_on_any_button_focus_exited.bind(buttons[i]))
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
 		focused_index = (focused_index + 1) % buttons.size()
 		buttons[focused_index].grab_focus()
+		animPlayer.play_select()
 		
 	elif Input.is_action_just_pressed("ui_up"):
 		focused_index = (focused_index - 1 + buttons.size()) % buttons.size()
 		buttons[focused_index].grab_focus()
+		animPlayer.play_select()
 		
+func _on_any_button_focus_entered(button) -> void:
+	var parent_node = button.get_parent()
+	if active_tweens.has(parent_node):
+		active_tweens[parent_node].kill()
+	var tween = create_tween()
+	active_tweens[parent_node] = tween
+	tween.tween_property(parent_node, "size_flags_stretch_ratio", focus_stretch_ratio, focus_tween_duration)\
+		 .set_trans(focus_tween_transition)\
+		 .set_ease(focus_tween_ease) # Use EASE_OUT for expanding
 
-func _on_start_button_focus_entered() -> void:
-	animPlayer.play_select()
-	buttons[0].scale = selected_scale
-
-func _on_start_button_focus_exited() -> void:
-	buttons[0].scale = original_scale
-
-func _on_exit_button_focus_entered() -> void:
-	animPlayer.play_select()
-	buttons[1].scale = selected_scale
-	
-func _on_exit_button_focus_exited() -> void:
-	buttons[1].scale = original_scale
+func _on_any_button_focus_exited(button) -> void:
+	var parent_node = button.get_parent()
+	if active_tweens.has(parent_node):
+		active_tweens[parent_node].kill()
+	var tween = create_tween()
+	active_tweens[parent_node] = tween
+	tween.tween_property(parent_node, "size_flags_stretch_ratio", default_stretch_ratio, focus_tween_duration)\
+		 .set_trans(focus_tween_transition)\
+		 .set_ease(focus_tween_ease)
 
 func _on_start_button_pressed() -> void:
 	animPlayer.play_white_fade_out()

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bler633lbne8y"]
+
+[ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="1_xy830"]
+
+[resource]
+font = ExtResource("1_xy830")
+font_size = 18
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.886275)

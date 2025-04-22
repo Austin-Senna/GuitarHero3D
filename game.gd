@@ -5,11 +5,8 @@ extends Node3D
 
 var audio 
 var map
-var audio_file1 = "res://audiotracks/linkinpark.ogg"
-#bpm = 120
-var audio_file2 = "res://audiotracks/entersandman.mp3"
-#bpm = 123
-var map_file = "res://audiotracks/map.mboy"
+var audio_file = GameManager.audio_file
+var map_file = GameManager.map_file
 
 var tempo 
 var bar_length 
@@ -19,16 +16,17 @@ var note_scale
 var start_time
 
 func _ready():
-	audio = load(audio_file1)
+	audio = load(audio_file)
 	map = load_map()
 	calc_params()
+	print(map)
 	music_node.setup(self)
 	road_node.setup(self)
 	
 #120 bpm
 func calc_params():
 	tempo = int(map.tempo)
-	bar_length = 8 
+	bar_length = 16
 	quarter_time = 60/float(tempo)
 	speed = bar_length/float(4*quarter_time)
 	note_scale = bar_length/float(4*400)

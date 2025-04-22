@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://er3tfkl6fj2j"
 
+[autoload]
+
+GameManager="*res://GameManager.gd"
+
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true

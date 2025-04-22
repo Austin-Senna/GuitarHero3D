@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sljwqdo75ekj"
-path="res://.godot/imported/titleicon_no_bg.png-fd6b85773ade474826c1a485156a83b3.ctex"
+uid="uid://bnkrlhgpj6s84"
+path="res://.godot/imported/LinkinPark.jpg-0e1b81384fc886709a5e7c72550645d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Intro_Title_Menu/Images/titleicon_no_bg.png"
-dest_files=["res://.godot/imported/titleicon_no_bg.png-fd6b85773ade474826c1a485156a83b3.ctex"]
+source_file="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg"
+dest_files=["res://.godot/imported/LinkinPark.jpg-0e1b81384fc886709a5e7c72550645d6.ctex"]
 
 [params]
 

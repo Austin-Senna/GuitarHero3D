@@ -1,6 +1,6 @@
 extends Node3D
 
-
+@onready var anim = $AnimationPlayer
 @onready var player = $AudioStreamPlayer3D
 
 var speed
@@ -13,7 +13,6 @@ func _ready():
 	
 func setup(game):
 	player.stream = game.audio
-	
 	started = false
 	speed = game.speed
 	pre_start_duration = game.bar_length
@@ -22,6 +21,7 @@ func setup(game):
 func start():
 	started = true
 	player.play(start_time)
+	anim.play("sound_on")
 	
 func _process(delta):
 	if not started:

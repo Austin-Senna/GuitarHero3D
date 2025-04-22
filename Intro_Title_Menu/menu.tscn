@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://85250qst0lew"]
+[gd_scene load_steps=25 format=3 uid="uid://85250qst0lew"]
 
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="1_lh452"]
 [ext_resource type="Script" uid="uid://dlmitsymsj80q" path="res://Intro_Title_Menu/Scripts/menu.gd" id="1_mx1ny"]
@@ -8,7 +8,14 @@
 [ext_resource type="Shader" uid="uid://dseuoh400jif6" path="res://Intro_Title_Menu/infinitescroll.gdshader" id="4_q3l3k"]
 [ext_resource type="Texture2D" uid="uid://nv4idht4sxk7" path="res://Intro_Title_Menu/Images/decepticonsBGsmall.png" id="5_mistw"]
 [ext_resource type="Texture2D" uid="uid://c77nampf5ra88" path="res://Intro_Title_Menu/Images/moon.png" id="6_mistw"]
-[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/transformers.tres" id="9_emxnm"]
+[ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="7_emxnm"]
+[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="9_emxnm"]
+[ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="10_2kg56"]
+[ext_resource type="Texture2D" uid="uid://dk2one44dcnhj" path="res://Intro_Title_Menu/Fonts/menutextureunselected.tres" id="10_k8ayi"]
+[ext_resource type="Texture2D" uid="uid://cawnmsme18vp2" path="res://Intro_Title_Menu/Fonts/menutexturenormal.tres" id="10_kd2c0"]
+[ext_resource type="Texture2D" uid="uid://dpxhbdx00obl" path="res://Intro_Title_Menu/Fonts/menutexturefocused.tres" id="11_k8ayi"]
+[ext_resource type="StyleBox" uid="uid://cce8lxiq0f1aj" path="res://Intro_Title_Menu/Fonts/progressbg.tres" id="12_884or"]
+[ext_resource type="StyleBox" uid="uid://bwwlvrw7jjc1u" path="res://Intro_Title_Menu/Fonts/progressfill.tres" id="13_bai8u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3l3k"]
 
@@ -26,14 +33,16 @@ shader_parameter/scroll_speed_y = -0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emxnm"]
 bg_color = Color(0.592063, 0.46472, 0.743211, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-corner_radius_top_right = 50
-corner_radius_bottom_left = 50
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soguy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbpck"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k8ayi"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -94,9 +103,9 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_emxnm")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 0
 
 [node name="Panel" type="Panel" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
@@ -105,7 +114,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_emxnm")
 
 [node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
-text = "SELECT YOUR SONG"
+text = "SELECT A SONG"
 label_settings = ExtResource("9_emxnm")
 horizontal_alignment = 1
 
@@ -135,18 +144,246 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Song1" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu"]
+[node name="Space" type="Panel" parent="PanelContainer/HBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbpck")
+
+[node name="MainSelect" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="LinkinParkE" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/Song1"]
+[node name="Button1" type="TextureButton" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("10_k8ayi")
+texture_pressed = ExtResource("11_k8ayi")
+texture_focused = ExtResource("10_kd2c0")
+stretch_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="SongContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Menu/Song1/PanelContainer"]
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer"]
 layout_mode = 2
-text = "SONG 1"
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/IconContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_2kg56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Title" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+text = "What I've Done"
 label_settings = ExtResource("9_emxnm")
 
-[node name="Song2" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu"]
+[node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(EASY) ~ Linkin Park"
+label_settings = ExtResource("7_emxnm")
+horizontal_alignment = 2
+
+[node name="Description" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Difficulty" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text/Description"]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = ExtResource("7_emxnm")
+
+[node name="Level" type="ProgressBar" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Margin/SongContainer/Text/Description"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = ExtResource("12_884or")
+theme_override_styles/fill = ExtResource("13_bai8u")
+value = 30.0
+show_percentage = false
+
+[node name="LinkinParkH" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button2" type="TextureButton" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("10_k8ayi")
+texture_pressed = ExtResource("11_k8ayi")
+texture_focused = ExtResource("10_kd2c0")
+stretch_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="SongContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin"]
+layout_mode = 2
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/IconContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_2kg56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Title" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+text = "What I've Done"
+label_settings = ExtResource("9_emxnm")
+
+[node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(HARD) ~ Linkin Park"
+label_settings = ExtResource("7_emxnm")
+horizontal_alignment = 2
+
+[node name="Description" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Difficulty" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text/Description"]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = ExtResource("7_emxnm")
+
+[node name="Level" type="ProgressBar" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Margin/SongContainer/Text/Description"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = ExtResource("12_884or")
+theme_override_styles/fill = ExtResource("13_bai8u")
+value = 80.0
+show_percentage = false
+
+[node name="Song3" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button3" type="TextureButton" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("10_k8ayi")
+texture_pressed = ExtResource("11_k8ayi")
+texture_focused = ExtResource("10_kd2c0")
+stretch_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="SongContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin"]
+layout_mode = 2
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/IconContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_2kg56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Title" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+text = "What I've Done"
+label_settings = ExtResource("9_emxnm")
+
+[node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "~ Linkin Park"
+label_settings = ExtResource("7_emxnm")
+horizontal_alignment = 2
+
+[node name="Description" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Difficulty" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text/Description"]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = ExtResource("7_emxnm")
+
+[node name="Level" type="ProgressBar" parent="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Margin/SongContainer/Text/Description"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = ExtResource("12_884or")
+theme_override_styles/fill = ExtResource("13_bai8u")
+value = 60.0
+show_percentage = false
+
+[node name="Space2" type="Panel" parent="PanelContainer/HBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k8ayi")
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkE/Button1" to="." method="_on_button_main_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Button2" to="." method="_on_button_main_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/Song3/Button3" to="." method="_on_button_main_pressed"]

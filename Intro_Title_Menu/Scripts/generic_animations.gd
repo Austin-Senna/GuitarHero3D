@@ -12,7 +12,7 @@ var audio_selected = preload("res://Intro_Title_Menu/Audio/select.ogg")
 var audio_game_start = preload("res://Intro_Title_Menu/Audio/game_start.mp3")
 var audio_victory = preload("res://Intro_Title_Menu/Audio/victory.mp3")
 var audio_title = preload("res://Intro_Title_Menu/Audio/transformers_theme.mp3")
-
+var audio_menu = preload("res://Intro_Title_Menu/Audio/menu_rock.mp3")
 
 func _ready():
 	self.z_index = 10;
@@ -53,4 +53,5 @@ func play_title_screen():
 	bg_player.play()
 
 func play_menu_screen():
-	pass
+	bg_player.stream = audio_menu
+	bg_player.play()
