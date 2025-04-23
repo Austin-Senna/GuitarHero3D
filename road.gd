@@ -43,7 +43,7 @@ func get_bar_data():
 	var key1 = tracks_data[0].bars[curr_bar_index]
 	var key2 = tracks_data[1].bars[curr_bar_index]
 	var key3 = tracks_data[2].bars[curr_bar_index]
-	var key4 = tracks_data[3].bars[curr_bar_index]
+	var key4 = tracks_data[1].bars[curr_bar_index]
 	return [key1, key2, key3, key4]
 
 func add_bar():	 
