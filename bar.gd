@@ -22,7 +22,9 @@ func add_notes():
 				
 func add_note(line_local, data):
 	var note_scn
+	print("Note length: ", data.len)  
 	if int(data.len) >= 400:
+		print("Creating LONG note")
 		note_scn = long_note_scn
 	else: 
 		note_scn = short_note_scn
