@@ -80,5 +80,9 @@ func _on_area_entered(area: Area3D) -> void:
 		
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("picker"):
+		# If we're exiting the picker area and haven't been collected, we missed the note
+		if not is_collected:
+			GameManager.subtract_points_missed_note()
+		
 		is_colliding = false
 		picker = area.get_parent()

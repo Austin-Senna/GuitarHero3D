@@ -33,6 +33,10 @@ func _ready():
 		var score_instance = score_scene.instantiate()
 		canvas_layer.add_child(score_instance)  # Add to canvas_layer, not to self
 	
+	# Connect to music finished signal if it exists
+	if music_node.has_signal("finished"):
+		music_node.finished.connect(_on_song_finished)
+	
 #120 bpm
 func calc_params():
 	tempo = int(map.tempo)
@@ -48,3 +52,20 @@ func load_map():
 	file.close()
 	var json_result = JSON.parse_string(content) 
 	return json_result
+	
+func _on_song_finished():
+	# Call this when the song ends
+	GameManager.end_game()
+	
+# If you want to save score when quitting
+func _notification(what):
+	# Handle only the quit request once
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		if not GameManager.game_ended:  # Check if already saved
+			GameManager.end_game()
+		get_tree().quit()
+		
+# Also add this to handle in-game quit buttons if you have them
+func _on_quit_button_pressed():
+	GameManager.end_game()
+	get_tree().quit()

@@ -5,6 +5,4 @@ func on_process(delta):
 	if not is_collected:
 		if is_colliding and picker:
 			if picker.is_collecting:
-				is_collected = true
-				picker.is_collecting = false
-				hide()
+				collect()
