@@ -17,7 +17,7 @@ transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("2_3veuu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("PlaneMesh_g686u")
 surface_material_override/0 = SubResource("StandardMaterial3D_x0d2t")
 

@@ -2,16 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1xmjiayxw76g" path="res://road.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dsv8lv6hvfwyf" path="res://game.gd" id="1_feb5d"]
-[ext_resource type="PackedScene" path="res://music.tscn" id="3_fc0e3"]
-
-[sub_resource type="Environment" id="Environment_feb5d"]
-ambient_light_color = Color(0.920314, 0.824428, 0.970241, 1)
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.517647, 0.466667, 0.607843, 1)
-fog_density = 1.0
-fog_depth_curve = 0.574349
-fog_depth_begin = 8.0
+[ext_resource type="PackedScene" uid="uid://c0tyxxtnwlmwi" path="res://music.tscn" id="3_fc0e3"]
 
 [sub_resource type="Environment" id="Environment_feb5d"]
 ambient_light_color = Color(0.920314, 0.824428, 0.970241, 1)
@@ -29,15 +20,7 @@ script = ExtResource("1_feb5d")
 transform = Transform3D(1.6, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-transform = Transform3D(1, 0, 0, 0, 0.937428, 0.34818, 0, -0.34818, 0.937428, -0.0450394, 3.84271, 13.1609)
-=======
 transform = Transform3D(1, 0, 0, 0, 0.851544, 0.524284, 0, -0.524284, 0.851544, -0.140144, 2.67589, 11.3855)
->>>>>>> Stashed changes
-=======
-transform = Transform3D(1, 0, 0, 0, 0.851544, 0.524284, 0, -0.524284, 0.851544, -0.140144, 2.67589, 11.3855)
->>>>>>> Stashed changes
 current = true
 fov = 70.0
 far = 100.0
@@ -49,8 +32,6 @@ far = 100.0
 
 [node name="Music" parent="." instance=ExtResource("3_fc0e3")]
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -69,15 +50,9 @@ layout_mode = 2
 
 [node name="LabelCombo" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
-=======
-=======
->>>>>>> Stashed changes
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_feb5d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.99943, -0.0102525, 0.0321675, -0.0317018, 0.0427387, 0.998583, -0.0116128, -0.999034, 0.0423893, 0.74284, 10.0725, -0.368028)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes

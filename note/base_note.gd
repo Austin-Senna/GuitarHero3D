@@ -4,21 +4,13 @@ var startingPosition = 0
 @onready var cover = $AutobotEmblem/Bottom
 @onready var noteShadow = $AutobotEmblem/Shading
 # Declare the material variables
-<<<<<<< Updated upstream
+
 var green_mat = preload("res://note/green_note_mat.tres")
 var orange_mat = preload("res://note/orange_note_mat.tres")
 var pink_mat = preload("res://note/pink_note_mat.tres")
 var blue_mat = preload("res://note/blue_note_mat.tres")
-=======
-var green_mat = preload("res://green_note_mat.tres")
-var orange_mat = preload("res://orange_note_mat.tres")
-var pink_mat = preload("res://pink_note_mat.tres")
-var blue_mat = preload("res://blue_note_mat.tres")
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 var xPosition
 var length
 var length_scale

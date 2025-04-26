@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://bew0hwxu65kvl"]
 
-[ext_resource type="Material" uid="uid://cdm4y5h7vbxs" path="res://pink_note_mat.tres" id="2_ah2ao"]
+[ext_resource type="Material" uid="uid://cdm4y5h7vbxs" path="res://note/pink_note_mat.tres" id="2_ah2ao"]
 
 [sub_resource type="GDScript" id="GDScript_1egx7"]
 script/source = "extends Node3D
