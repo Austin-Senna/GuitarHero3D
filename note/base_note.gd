@@ -1,11 +1,16 @@
 extends Node3D
 @export_range(1, 4) var line = 1
 var startingPosition = 0
+@onready var cover = $AutobotEmblem/Bottom
+@onready var noteShadow = $AutobotEmblem/Shading
 # Declare the material variables
+
 var green_mat = preload("res://note/green_note_mat.tres")
 var orange_mat = preload("res://note/orange_note_mat.tres")
 var pink_mat = preload("res://note/pink_note_mat.tres")
 var blue_mat = preload("res://note/blue_note_mat.tres")
+
+
 var xPosition
 var length
 var length_scale
@@ -37,13 +42,17 @@ func on_ready():
 func set_material():
 	match line:
 		1:
-			$MeshInstance3D.material_override = green_mat
+			cover.material_override = green_mat
+			noteShadow.material_override = green_mat
 		2:
-			$MeshInstance3D.material_override = orange_mat
+			cover.material_override = orange_mat
+			noteShadow.material_override = orange_mat
 		3:
-			$MeshInstance3D.material_override = pink_mat
+			cover.material_override = pink_mat
+			noteShadow.material_override = pink_mat
 		4:
-			$MeshInstance3D.material_override = blue_mat
+			cover.material_override = blue_mat
+			noteShadow.material_override = blue_mat
 
 func _process(delta):
 	on_process(delta)

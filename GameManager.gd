@@ -19,7 +19,7 @@ signal combo_updated(new_combo)
 
 # Audio file paths (keep existing references)
 var audio_file = "res://audiotracks/linkinpark.ogg"
-var map_file = "res://audiotracks/map.mboy"
+var map_file = "res://audiotracks/linkinpark.mboy"
 
 func _ready():
 	current_points = 0

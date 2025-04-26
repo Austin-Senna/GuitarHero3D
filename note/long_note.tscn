@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx0vwypf6nqvc"]
+[gd_scene load_steps=7 format=3 uid="uid://cx0vwypf6nqvc"]
 
 [ext_resource type="Script" uid="uid://b2ds5jsusl878" path="res://note/long_note.gd" id="1_fl51j"]
+[ext_resource type="PackedScene" uid="uid://bew0hwxu65kvl" path="res://3D Models/AutobotEmblem.tscn" id="2_35hpe"]
 [ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://note/blue_note_mat.tres" id="2_x6khw"]
 [ext_resource type="PackedScene" uid="uid://hk17lbnfv51y" path="res://note/beam.tscn" id="3_hd31m"]
 
@@ -12,8 +13,12 @@ size = Vector3(0.553955, 0.54422, 0.545761)
 [node name="LongNote" type="Node3D"]
 script = ExtResource("1_fl51j")
 
+[node name="AutobotEmblem" parent="." instance=ExtResource("2_35hpe")]
+transform = Transform3D(-0.2, -0.000349066, -3.01991e-08, -0.000349065, 0.199999, -0.000349066, 6.39433e-07, -0.000349065, -0.2, 0, 0.352918, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 layers = 513
 mesh = SubResource("BoxMesh_x6khw")
 surface_material_override/0 = ExtResource("2_x6khw")
