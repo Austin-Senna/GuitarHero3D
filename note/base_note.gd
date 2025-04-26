@@ -2,10 +2,10 @@ extends Node3D
 @export_range(1, 4) var line = 1
 var startingPosition = 0
 # Declare the material variables
-var green_mat = preload("res://green_note_mat.tres")
-var orange_mat = preload("res://orange_note_mat.tres")
-var pink_mat = preload("res://pink_note_mat.tres")
-var blue_mat = preload("res://blue_note_mat.tres")
+var green_mat = preload("res://note/green_note_mat.tres")
+var orange_mat = preload("res://note/orange_note_mat.tres")
+var pink_mat = preload("res://note/pink_note_mat.tres")
+var blue_mat = preload("res://note/blue_note_mat.tres")
 var xPosition
 var length
 var length_scale
@@ -48,7 +48,7 @@ func set_material():
 func _process(delta):
 	on_process(delta)
 
-func on_process(delta):
+func on_process(_delta):
 	pass
 
 func add_listeners():
@@ -58,8 +58,10 @@ func add_listeners():
 	$Area3D.area_exited.connect(_on_area_exited)
 	
 func collect():
-	is_collected = true  # Changed collected to is_collected
-	picker.is_collecting = false
+	is_collected = true
+	GameManager.add_points_short_note()  # Update this line
+	if picker:
+		picker.is_collecting = false
 	hide()
 
 func _on_area_entered(area: Area3D) -> void:

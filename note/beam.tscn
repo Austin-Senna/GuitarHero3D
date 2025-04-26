@@ -1,26 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://hk17lbnfv51y"]
+[gd_scene load_steps=4 format=3 uid="uid://hk17lbnfv51y"]
+
+[ext_resource type="Script" uid="uid://dlhd72e0lnn2r" path="res://note/beam.gd" id="1_v4x5k"]
+[ext_resource type="Material" uid="uid://b7dkat6kuuspd" path="res://note/green_beam_mat.tres" id="2_fwqku"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fqi6o"]
 
-[sub_resource type="Gradient" id="Gradient_v4x5k"]
-offsets = PackedFloat32Array(0.0245902, 0.20082, 0.438525, 0.692623, 0.97541)
-colors = PackedColorArray(0.584314, 0.227451, 0, 1, 0.917647, 0, 0, 1, 0.580392, 0, 0, 1, 0.560784, 0, 0, 1, 0.941176, 0.227451, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwqku"]
-gradient = SubResource("Gradient_v4x5k")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e2el"]
-blend_mode = 1
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(0.0705882, 0.105882, 0.886275, 1)
-emission_energy_multiplier = 7.56
-emission_operator = 1
-emission_texture = SubResource("GradientTexture2D_fwqku")
-
 [node name="Beam" type="Node3D"]
+script = ExtResource("1_v4x5k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.064, -0.5)
 mesh = SubResource("QuadMesh_fqi6o")
-surface_material_override/0 = SubResource("StandardMaterial3D_4e2el")
+surface_material_override/0 = ExtResource("2_fwqku")

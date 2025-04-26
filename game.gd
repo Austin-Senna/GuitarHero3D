@@ -22,6 +22,17 @@ func _ready():
 	music_node.setup(self)
 	road_node.setup(self)
 	
+	# Create CanvasLayer for UI
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.name = "UILayer"
+	add_child(canvas_layer)
+	
+	# Create and add the ScoreUI to the CanvasLayer
+	var score_scene = load("res://ScoreUI.tscn")
+	if score_scene:
+		var score_instance = score_scene.instantiate()
+		canvas_layer.add_child(score_instance)  # Add to canvas_layer, not to self
+	
 #120 bpm
 func calc_params():
 	tempo = int(map.tempo)
