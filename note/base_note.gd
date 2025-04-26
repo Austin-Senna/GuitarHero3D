@@ -48,7 +48,7 @@ func set_material():
 func _process(delta):
 	on_process(delta)
 
-func on_process(delta):
+func on_process(_delta):
 	pass
 
 func add_listeners():
@@ -58,9 +58,10 @@ func add_listeners():
 	$Area3D.area_exited.connect(_on_area_exited)
 	
 func collect():
-	is_collected = true  # Changed collected to is_collected
-	GameManager.current_point += 1 
-	picker.is_collecting = false
+	is_collected = true
+	GameManager.add_points_short_note()  # Update this line
+	if picker:
+		picker.is_collecting = false
 	hide()
 
 func _on_area_entered(area: Area3D) -> void:

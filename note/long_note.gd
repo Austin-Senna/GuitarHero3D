@@ -4,6 +4,9 @@ var hold_started = false
 var hold_canceled = false
 var captured = false
 var end_block  # Reference to the end block
+var hold_duration = 0.0  # Track how long the note was held
+
+@onready var bonus_label = Label3D.new()
 
 func on_ready():
 	super.on_ready()
@@ -20,6 +23,13 @@ func on_ready():
 	
 	# Create the end block
 	create_end_block()
+	
+	# Add bonus label for visual feedback
+	bonus_label.position = Vector3(0, 1, 0)  # Above the note
+	bonus_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	bonus_label.text = ""
+	bonus_label.visible = false
+	add_child(bonus_label)
 
 func create_end_block():
 	# Create a copy of the main note's mesh for the end block
@@ -64,8 +74,10 @@ func on_process(delta):
 	if not is_collected:
 		if is_colliding and picker and not hold_canceled:
 			if picker.is_collecting:
-				hold_started = true
-				# Make end block visible when holding starts
+				if not hold_started:
+					hold_started = true
+					hold_duration = 0.0  # Reset hold duration
+				# Only make end block visible when holding starts
 				if end_block:
 					end_block.visible = true
 			elif hold_started:
@@ -73,6 +85,13 @@ func on_process(delta):
 				collect()
 		
 		if hold_started and not hold_canceled:
+			hold_duration += delta  # Track how long we've been holding
+			
+			# Update bonus display (ADD THIS SECTION)
+			var current_bonus = GameManager.points_long_note_per_second * hold_duration
+			bonus_label.text = "+" + str(int(current_bonus))
+			bonus_label.visible = true
+			
 			curr_length_in_m -= speed.z * delta
 			
 			# Check if we've reached the end block
@@ -93,9 +112,12 @@ func hide_with_beam():
 	$Beam.visible = false
 	if end_block:
 		end_block.visible = false
+	bonus_label.visible = false
 
 func collect():
 	is_collected = true
+	# Award points based on how long the note was held
+	GameManager.add_points_long_note(hold_duration)
 	if picker:
 		picker.is_collecting = false
 	hide_with_beam()
