@@ -11,6 +11,7 @@ var points_short_note = 100
 var points_long_note_base = 200  # Base points for starting a long note
 var points_long_note_per_second = 50  # Points per second of holding
 var points_per_miss = -50
+var points_per_missed_note = -10
 
 # Signals for UI updates
 signal score_updated(new_score)
@@ -59,6 +60,15 @@ func subtract_points():
 	combo_multiplier = 1
 	
 	current_points += points_per_miss
+	
+	update_score()
+	
+func subtract_points_missed_note():
+	# Reset combo on missed note
+	combo_count = 0
+	combo_multiplier = 1
+	
+	current_points += points_per_missed_note
 	
 	update_score()
 

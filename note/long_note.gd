@@ -121,3 +121,13 @@ func collect():
 	if picker:
 		picker.is_collecting = false
 	hide_with_beam()
+	
+# Override the _on_area_exited function to handle long notes
+func _on_area_exited(area: Area3D) -> void:
+	if area.is_in_group("picker"):
+		# If we're exiting the picker area and haven't started holding, we missed the note
+		if not is_collected and not hold_started:
+			GameManager.subtract_points_missed_note()
+		
+		is_colliding = false
+		picker = area.get_parent()

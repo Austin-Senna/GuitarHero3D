@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://crwuf7i16fgv5"]
+[gd_scene load_steps=2 format=3 uid="uid://gi4uuf8njvrj"]
 
 [ext_resource type="Script" uid="uid://cw4fed0ciw72d" path="res://ScoreUI.gd" id="1_vs014"]
 
@@ -13,6 +13,7 @@ grow_horizontal = 2
 script = ExtResource("1_vs014")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 alignment = 1
