@@ -2,16 +2,6 @@
 
 [ext_resource type="Material" uid="uid://cdm4y5h7vbxs" path="res://note/pink_note_mat.tres" id="2_ah2ao"]
 
-[sub_resource type="GDScript" id="GDScript_1egx7"]
-script/source = "extends Node3D
-
-@export var material = load(\"res://blue_note_mat.tres\")
-
-func _ready():
-		$Bottom.material_override = material
-		$Shading.material_override = material
-"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5a7i"]
 resource_name = "sy_chrome_matte.004"
 cull_mode = 2
@@ -52,7 +42,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ajsd4")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oxbu"]
-albedo_color = Color(0.33202, 0.334226, 0.364157, 1)
+albedo_color = Color(0.80987, 0.811632, 0.833446, 1)
 emission_enabled = true
 emission = Color(0.0110876, 0.0110876, 0.0110876, 1)
 
@@ -94,6 +84,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_di1qe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1egx7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjyob"]
 resource_name = "Material.002"
@@ -166,7 +158,6 @@ shadow_mesh = SubResource("ArrayMesh_huf1p")
 
 [node name="AutobotEmblem" type="Node3D"]
 transform = Transform3D(-0.998639, 0, -0.0521618, 0, 1, 0, 0.0521618, 0, -0.998639, 0, 0, 0)
-script = SubResource("GDScript_1egx7")
 
 [node name="AutobotEmblem" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.731976, 0, 2.38508e-07, 0, 0.731976, 0, -2.38508e-07, 0, -0.731976, 0, -0.499932, 0)
@@ -178,6 +169,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5oxbu")
 transform = Transform3D(1.88421, 0, 0, 0, 1.88421, 0, 0, 0, 1.88421, -0.0599136, -1.24778, 0.122103)
 mesh = SubResource("ArrayMesh_dc7uq")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_1egx7")
 
 [node name="Bottom" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.88421, 0, 0, 0, 1.88421, 0, 0, 0, 1.88421, -0.0599136, -1.24778, 0.122103)

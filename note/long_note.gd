@@ -37,10 +37,10 @@ func create_end_block():
 	end_block.name = "EndBlock"
 	
 	var end_mesh = MeshInstance3D.new()
-	end_mesh.mesh = $MeshInstance3D.mesh.duplicate()  # Copy the main note's mesh
+	end_mesh.mesh = $AutobotEmblem/AutobotEmblem.mesh.duplicate()  # Copy the main note's mesh
 	
 	# Match the original mesh scale (0.5, 0.5, 0.5)
-	end_mesh.scale = $MeshInstance3D.scale  # Copy the original scale
+	end_mesh.scale = Vector3(0.22,0.22,0.22)  # Copy the original scale
 	
 	# Create a lighter/emissive material for the end block
 	var mat = StandardMaterial3D.new()
