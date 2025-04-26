@@ -15,6 +15,9 @@ var orange_mat = preload("res://orange_note_mat.tres")
 var pink_mat = preload("res://pink_note_mat.tres")
 var blue_mat = preload("res://blue_note_mat.tres")
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 var xPosition
 var length

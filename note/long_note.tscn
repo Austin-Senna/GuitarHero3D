@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b2ds5jsusl878" path="res://note/long_note.gd" id="1_fl51j"]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://note/blue_note_mat.tres" id="2_x6khw"]
 =======
+=======
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://bew0hwxu65kvl" path="res://3D Models/AutobotEmblem.tscn" id="2_35hpe"]
 [ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://blue_note_mat.tres" id="2_x6khw"]
 >>>>>>> Stashed changes
