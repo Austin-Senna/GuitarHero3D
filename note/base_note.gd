@@ -2,10 +2,10 @@ extends Node3D
 @export_range(1, 4) var line = 1
 var startingPosition = 0
 # Declare the material variables
-var green_mat = preload("res://green_note_mat.tres")
-var orange_mat = preload("res://orange_note_mat.tres")
-var pink_mat = preload("res://pink_note_mat.tres")
-var blue_mat = preload("res://blue_note_mat.tres")
+var green_mat = preload("res://note/green_note_mat.tres")
+var orange_mat = preload("res://note/orange_note_mat.tres")
+var pink_mat = preload("res://note/pink_note_mat.tres")
+var blue_mat = preload("res://note/blue_note_mat.tres")
 var xPosition
 var length
 var length_scale
@@ -59,6 +59,7 @@ func add_listeners():
 	
 func collect():
 	is_collected = true  # Changed collected to is_collected
+	GameManager.current_point += 1 
 	picker.is_collecting = false
 	hide()
 

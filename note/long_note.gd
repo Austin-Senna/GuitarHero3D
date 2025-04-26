@@ -3,54 +3,60 @@ var curr_length_in_m
 var hold_started = false
 var hold_canceled = false
 var captured = false
-var beam_node  # New variable to store our beam reference
+var end_block  # Reference to the end block
 
 func on_ready():
 	super.on_ready()
 	
-	# Calculate beam length
-	curr_length_in_m = min(max(100, length - 100) * length_scale, 4.0)
+	# Use the existing Beam node instead of creating a new one
+	curr_length_in_m = (length - 100) * length_scale
 	
-	# Remove the original Beam if it exists
-	if has_node("Beam"):
-		$Beam.queue_free()
+	# Just modify the existing beam's scale
+	$Beam.scale.z = curr_length_in_m
+	$Beam.visible = true
 	
-	# Create a new beam from scratch
-	var new_beam = Node3D.new()
-	new_beam.name = "BeamNode"
-	var beam_mesh = MeshInstance3D.new()
-	var cylinder = CylinderMesh.new()
+	# Set the beam's material
+	$Beam.set_material(line)
 	
-	# Configure the cylinder
-	cylinder.top_radius = 0.4
-	cylinder.bottom_radius = 0.4
-	cylinder.height = curr_length_in_m
-	cylinder.radial_segments = 8
+	# Create the end block
+	create_end_block()
+
+func create_end_block():
+	# Create a copy of the main note's mesh for the end block
+	end_block = Node3D.new()
+	end_block.name = "EndBlock"
 	
-	# Set up mesh instance
-	beam_mesh.mesh = cylinder
+	var end_mesh = MeshInstance3D.new()
+	end_mesh.mesh = $MeshInstance3D.mesh.duplicate()  # Copy the main note's mesh
 	
-	# Create a new material
+	# Match the original mesh scale (0.5, 0.5, 0.5)
+	end_mesh.scale = $MeshInstance3D.scale  # Copy the original scale
+	
+	# Create a lighter/emissive material for the end block
 	var mat = StandardMaterial3D.new()
 	match line:
-		1: mat.albedo_color = Color(0, 1, 0)  # Green
-		2: mat.albedo_color = Color(1, 0.5, 0)  # Orange
-		3: mat.albedo_color = Color(1, 0.4, 0.7)  # Pink
-		4: mat.albedo_color = Color(0, 0, 1)  # Blue
+		1: # Green - #33f928 brightened
+			mat.albedo_color = Color(0.4, 1.0, 0.3)
+		2: # Orange/Red - #df4200 brightened
+			mat.albedo_color = Color(1.0, 0.4, 0.1)
+		3: # Pink - #ac30ac brightened
+			mat.albedo_color = Color(0.8, 0.3, 0.8)
+		4: # Blue - #060aff brightened
+			mat.albedo_color = Color(0.2, 0.2, 1.0)
 	
-	beam_mesh.material_override = mat
+	# Make it slightly emissive for a shiny effect
+	mat.emission_enabled = true
+	mat.emission = mat.albedo_color
+	mat.emission_energy = 0.4
 	
-	# Position correctly
-	beam_mesh.rotation_degrees = Vector3(90, 0, 0)  # Rotate to align with Z axis
-	beam_mesh.position = Vector3(0, 0, -cylinder.height/2)
+	end_mesh.material_override = mat
+	end_block.add_child(end_mesh)
 	
-	# Add to scene
-	new_beam.add_child(beam_mesh)
-	add_child(new_beam)
+	# Position at the end of the beam
+	end_block.position = Vector3(0, 0, -curr_length_in_m)
+	end_block.visible = false  # Start invisible
 	
-	# Store reference and start invisible
-	beam_node = new_beam
-	beam_node.visible = false
+	add_child(end_block) 
 
 func on_process(delta):
 	super.on_process(delta)
@@ -59,9 +65,9 @@ func on_process(delta):
 		if is_colliding and picker and not hold_canceled:
 			if picker.is_collecting:
 				hold_started = true
-				# Only make beam visible when holding starts
-				if beam_node:
-					beam_node.visible = true
+				# Make end block visible when holding starts
+				if end_block:
+					end_block.visible = true
 			elif hold_started:
 				hold_canceled = true
 				collect()
@@ -69,22 +75,24 @@ func on_process(delta):
 		if hold_started and not hold_canceled:
 			curr_length_in_m -= speed.z * delta
 			
-			if curr_length_in_m <= 0:
+			# Check if we've reached the end block
+			if curr_length_in_m <= 0.1:  # Small threshold for reaching the end
 				collect()
 			else:
 				# Update beam length
-				if beam_node:
-					var mesh_instance = beam_node.get_child(0)
-					if mesh_instance and mesh_instance.mesh:
-						mesh_instance.mesh.height = curr_length_in_m
-						mesh_instance.position.z = -curr_length_in_m/2
+				$Beam.scale.z = curr_length_in_m
 				
+				# Move the main note
 				translate(Vector3(0, 0, -speed.z * delta))
+				
+				# Update end block position to stay at the end of the beam
+				end_block.position = Vector3(0, 0, -curr_length_in_m)
 
 func hide_with_beam():
 	visible = false
-	if beam_node:
-		beam_node.visible = false
+	$Beam.visible = false
+	if end_block:
+		end_block.visible = false
 
 func collect():
 	is_collected = true
