@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvia6t7qay6fo"]
+
+[ext_resource type="Shader" uid="uid://bbd4mm0cgqxkj" path="res://world_environment/vfx_scene.tres" id="1_nwg21"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8jhrg"]
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+color = Color(0.5, 2, 2.5, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jhrg"]
+render_priority = 0
+shader = ExtResource("1_nwg21")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8jhrg"]
+material = SubResource("ShaderMaterial_8jhrg")
+top_radius = 2.0
+bottom_radius = 0.6
+height = 8.0
+cap_top = false
+
+[node name="vfx" type="Node3D"]
+
+[node name="GlowBurstVFX" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.57189, 0, 0, 0, 1, 0, 0, 0, 1, 0.101141, 4.06258, 0.153403)
+cast_shadow = 0
+amount = 1
+lifetime = 0.5
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_8jhrg")
+draw_pass_1 = SubResource("CylinderMesh_8jhrg")

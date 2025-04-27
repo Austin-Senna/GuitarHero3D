@@ -6,6 +6,8 @@ extends Node3D
 @onready var road_node = $road
 @onready var world_env = $WorldEnvironment
 @onready var environment = $WorldEnvironment.environment
+@onready var moon_material = load("res://world_environment/moon_material.tres")
+var moon_base_color
 
 var audio 
 var map
@@ -17,7 +19,6 @@ var combo_color
 var normal_lighting = load ("res://world_environment/game.tres")
 var normal_glow
 var normal_color
-var combo_environment = false
 var game_started = false
 
 var paused = false
@@ -42,6 +43,11 @@ func _ready():
 	combo_glow = combo_lighting.glow_intensity
 	normal_color = normal_lighting.fog_light_color
 	normal_glow = normal_lighting.glow_intensity
+	moon_base_color = moon_material.albedo_color
+	moon_material.albedo_color.a = 0.0
+	
+	GameManager.streak_set.connect(_on_streak_set)
+	GameManager.streak_fail.connect(_on_streak_fail)
 	
 	# Create CanvasLayer for UI
 	var canvas_layer = CanvasLayer.new()
@@ -99,20 +105,26 @@ func _process(delta) -> void:
 			if (GameManager.combo_count >= 1):
 				set_normal()
 				game_started = true
-		if GameManager.combo_streak:
-			set_combo()
-		elif (combo_environment):
-			set_normal()
-			
+				
 
-		
+func _on_streak_fail():
+	set_normal()
+
+func _on_streak_set():
+	set_combo()
+
 func set_normal():
-	combo_environment= false
+	
 	if not is_tween_active():
 		var tween = create_tween()
-		if is_instance_valid(environment):
-			tween.tween_property(environment, "glow_intensity", normal_glow, 0.5)
-			tween.tween_property(environment, "fog_light_color", normal_color, 0.5)
+		var target_color = moon_base_color
+		target_color.a = 0.0
+		tween.tween_property(moon_material, "albedo_color", target_color, 0.2)
+		tween.tween_property(environment, "glow_intensity", normal_glow, 0.2)
+		tween.tween_property(environment, "fog_sky_affect", 1, 0.2)
+		tween.tween_property(environment, "fog_light_color", normal_color, 0.2)
+		
+		
 		environment.ambient_light_energy = 1.0 # Or your default value
 		environment.tonemap_exposure = 1.0 # Or your default
 	
@@ -120,14 +132,17 @@ func set_normal():
 func set_combo():
 	if not is_tween_active():
 		var tween = create_tween()
-		var current_env = world_env.environment
-		if is_instance_valid(current_env) and is_instance_valid(combo_lighting):
-			tween.tween_property(current_env, "glow_intensity", combo_glow, 0.5)
-			tween.tween_property(current_env, "fog_light_color", combo_color, 0.5)
-			
+		tween.tween_property(environment, "glow_intensity", combo_glow, 0.2)
+		tween.tween_property(environment, "fog_sky_affect", 0.2, 0.2)
+		tween.tween_property(environment, "fog_light_color", combo_color, 0.2)
+		
+		var target_color = moon_base_color
+		target_color.a = moon_base_color.a # Fade In to original alpha
+		tween.tween_property(moon_material, "albedo_color", target_color, 0.2)
+				
 		environment.ambient_light_energy = 0.5 # Adjust as needed
-		environment.tonemap_exposure = 0.7 # Adjust for darkness
-	combo_environment = true
+		environment.tonemap_exposure = 0.7 # Adjust for 
+		
 		
 func is_tween_active():
 	for node in get_tree().get_nodes_in_group("tweens"):

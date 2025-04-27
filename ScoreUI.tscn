@@ -1,18 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3mm6fyv2wxlk"]
+[gd_scene load_steps=16 format=3 uid="uid://d3mm6fyv2wxlk"]
 
 [ext_resource type="Script" uid="uid://cw4fed0ciw72d" path="res://ScoreUI.gd" id="1_vs014"]
-[ext_resource type="LabelSettings" uid="uid://bi3sdl3uw2lue" path="res://Intro_Title_Menu/Fonts/score.tres" id="2_socno"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="3_kkjwt"]
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_6uj7k"]
 [ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="5_lyrr8"]
 [ext_resource type="StyleBox" uid="uid://cce8lxiq0f1aj" path="res://Intro_Title_Menu/Fonts/progressbg.tres" id="6_hk842"]
 [ext_resource type="StyleBox" uid="uid://bwwlvrw7jjc1u" path="res://Intro_Title_Menu/Fonts/progressfill.tres" id="7_7fl84"]
+[ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="8_6uj7k"]
+[ext_resource type="Shader" uid="uid://deantds8ddmj5" path="res://road/road.gdshader" id="8_7fl84"]
+[ext_resource type="Texture2D" uid="uid://c7mkfd1hkw1ul" path="res://UI/transformers_progress_bar.png" id="8_lyrr8"]
+[ext_resource type="Shader" uid="uid://de5ill4jfdd8o" path="res://ScoreUI.gdshader" id="9_hk842"]
+[ext_resource type="Texture2D" uid="uid://boauxpacpohrr" path="res://UI/transformers_progress_bar_fill.png" id="9_lyrr8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk842"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyrr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jjv1"]
+render_priority = 0
+shader = ExtResource("8_7fl84")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fl84"]
+shader = ExtResource("9_hk842")
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 15.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vs014")
@@ -30,6 +49,7 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hk842")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -42,20 +62,21 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
-alignment = 1
 
 [node name="HighScoreLabel" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 40
 text = "HIGH SCORE:"
-label_settings = ExtResource("2_socno")
 
 [node name="LabelScore" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 40
 text = "SCORE:"
-label_settings = ExtResource("2_socno")
 
 [node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -106,40 +127,87 @@ horizontal_alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Progress" type="Label" parent="PanelContainer/HBoxContainer/Margin/SongContainer/Text/Description"]
+[node name="GameProgress" type="Label" parent="PanelContainer/HBoxContainer/Margin/SongContainer/Text/Description"]
 layout_mode = 2
 label_settings = ExtResource("5_lyrr8")
 
-[node name="Level" type="ProgressBar" parent="PanelContainer/HBoxContainer/Margin/SongContainer/Text/Description"]
+[node name="GameProgressBar" type="ProgressBar" parent="PanelContainer/HBoxContainer/Margin/SongContainer/Text/Description"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/background = ExtResource("6_hk842")
 theme_override_styles/fill = ExtResource("7_7fl84")
-value = 30.0
 show_percentage = false
 
-[node name="Bottom" type="PanelContainer" parent="."]
+[node name="PanelContainer2" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -30.0
+anchor_top = 0.80358
+anchor_right = 0.34
+anchor_bottom = 0.947531
+offset_top = 3.27997
+offset_right = -3.05176e-05
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Bottom"]
+[node name="Panel" type="Panel" parent="PanelContainer2"]
 layout_mode = 2
 
-[node name="LabelCombo" type="Label" parent="Bottom/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelCombo" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 40
 text = "COMBO:"
-label_settings = ExtResource("2_socno")
+horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="Bottom/VBoxContainer"]
+[node name="LabelComboCount" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 40
+text = "combo count:"
+horizontal_alignment = 1
+
+[node name="ProgressTexture" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.34
+anchor_bottom = 0.805556
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lyrr8")
+metadata/_edit_use_anchors_ = true
+
+[node name="ComboProgressBar" type="TextureProgressBar" parent="ProgressTexture"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1jjv1")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+max_value = 120.0
+value = 110.0
+fill_mode = 3
+texture_progress = ExtResource("9_lyrr8")
+
+[node name="TextureRect" type="TextureRect" parent="ProgressTexture"]
+material = SubResource("ShaderMaterial_7fl84")
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("8_lyrr8")
+expand_mode = 1

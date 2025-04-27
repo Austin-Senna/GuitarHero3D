@@ -1,5 +1,15 @@
 extends Node3D
+# In an autoload singleton or main scene script
+var road_shader_material = preload("res://road/road.tres")
+var line_shader_material = preload("res://road/line.tres")
+@onready var road = $RoadNode
 
+func _ready():
+	if road_shader_material.shader.code.length() > 0:
+		pass # Just accessing it might help# Access the material to potentially trigger early loading/compilation
+	GameManager.streak_set.connect(_on_streak_set)
+	GameManager.streak_fail.connect(_on_streak_fail)
+		
 @onready var bars_node = $BarsNode
 var bar_length 
 var bars = []
@@ -8,7 +18,7 @@ var curr_location
 var speed
 var deletion_z_threshold 
 var note_scale
-
+var combo_environment = false
 var curr_bar_index
 var tracks_data
 
@@ -21,6 +31,7 @@ func setup(game):
 	curr_bar_index = 0
 	tracks_data = game.map.tracks
 	add_bars()
+	
 
 func add_bars():
 	for i in range(5):
@@ -34,6 +45,13 @@ func _process(delta):
 		if bar.global_position.z > deletion_z_threshold:
 			remove_bar(bar)
 			add_bar()
+	
+	
+func _on_streak_set():
+	road_shader_material.set_shader_parameter("activation_level", 0.15)
+	
+func _on_streak_fail():
+	road_shader_material.set_shader_parameter("activation_level", 0)
 
 func remove_bar(bar):
 	bar.queue_free()

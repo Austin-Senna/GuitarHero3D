@@ -1,0 +1,15 @@
+[gd_resource type="Sky" load_steps=3 format=3 uid="uid://c4ivcs1e6bife"]
+
+[ext_resource type="Shader" uid="uid://b7hbnv01ex7do" path="res://world_environment/tailwindshader.gdshader" id="1_8s0re"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s0re"]
+shader = ExtResource("1_8s0re")
+shader_parameter/scroll_direction = Vector3(0, 0.09, -0.2)
+shader_parameter/scroll_speed = 0.3
+shader_parameter/streak_density = 15.0
+shader_parameter/pattern_scale = 40.0
+shader_parameter/streak_sharpness = 0.92
+shader_parameter/streak_brightness = 1.5
+
+[resource]
+sky_material = SubResource("ShaderMaterial_8s0re")

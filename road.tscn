@@ -1,25 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://1xmjiayxw76g"]
+[gd_scene load_steps=7 format=3 uid="uid://1xmjiayxw76g"]
 
 [ext_resource type="PackedScene" uid="uid://bdqlu18v7gjx6" path="res://NotePicker.tscn" id="1_x0d2t"]
 [ext_resource type="Script" uid="uid://c6l7bnqqytrgw" path="res://road.gd" id="2_3veuu"]
+[ext_resource type="Material" uid="uid://bxt5qe85nbur5" path="res://road/road.tres" id="2_bpeel"]
+[ext_resource type="Material" uid="uid://d0sesagacppga" path="res://road/line.tres" id="2_twbfo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_twbfo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0d2t"]
-albedo_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
-emission = Color(0.819336, 0.839215, 0.562651, 1)
-emission_energy_multiplier = 1.81
-backlight_enabled = true
-backlight = Color(0.932614, 0.676727, 0.695527, 1)
 
 [node name="road" type="Node3D"]
 transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("2_3veuu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 50, 0, 0, 0)
+[node name="Line1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 1.996, -3.48939e-06, 0, 1.74496e-07, 39.914, -1.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2.009, -3.51291e-06, 0, 1.75632e-07, 40.183, -0.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2, -3.49691e-06, 0, 1.74846e-07, 40, 0.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2, -3.49691e-06, 0, 1.74846e-07, 40, 1.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="RoadNode" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.00606, 0, 0, 0, 2.00606, 0, 0, 0, 30.0908, 0, 0, 0)
 mesh = SubResource("PlaneMesh_g686u")
-surface_material_override/0 = SubResource("StandardMaterial3D_x0d2t")
+surface_material_override/0 = ExtResource("2_bpeel")
 
 [node name="NotePicker" parent="." instance=ExtResource("1_x0d2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 8)
@@ -37,3 +58,5 @@ line = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 8)
 
 [node name="BarsNode" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

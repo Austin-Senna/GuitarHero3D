@@ -4,9 +4,13 @@ extends Node
 var combo_streak = false
 var current_points = 0
 var combo_count = 0
+var combo_streak_count = 0
 var combo_multiplier = 1
 var combo_threshold = 4
 var high_score = 0
+var combo_multiplier_threshold = 8.0
+var combo_streak_count_threshold = 5.0 * combo_threshold
+var streak_multiplier = 2.0
 
 var audio_length = 0
 var current_time = 0
@@ -25,6 +29,8 @@ var points_per_missed_note = -50
 signal score_updated(new_score)
 signal combo_updated(new_combo)
 signal high_score_broken(new_high_score)
+signal streak_set()
+signal streak_fail()
 
 # File paths
 var score_file_path = "res://score_history.txt"  # Changed from user:// to res://
@@ -38,15 +44,24 @@ func _ready():
 	current_points = 0
 	combo_count = 0
 	combo_multiplier = 1
+	
 	high_score_broken_this_game = false
 	game_ended = false  # Reset the flag
 	load_high_score()
 
 func _process(delta):
-	if (combo_count>=1):
+	if (combo_streak_count >= combo_streak_count_threshold) and (combo_streak == false):
 		combo_streak = true
-	else:
-		combo_streak = false
+		streak_multiplier = 2.0
+		streak_set.emit()
+		
+	if (combo_streak):
+		combo_streak_count -= delta * 2
+		if (combo_streak_count	<= 0):
+			combo_streak = false
+			streak_multiplier = 1.0
+			streak_fail.emit()
+
 
 func load_high_score():
 	if FileAccess.file_exists(high_score_file_path):
@@ -97,21 +112,23 @@ func end_game():
 
 func add_points_short_note():
 	combo_count += 1
+	combo_streak_count = min(100, combo_streak_count +1)
 	update_combo_multiplier()
 	
-	var points_to_add = points_short_note * combo_multiplier
+	var points_to_add = points_short_note * combo_multiplier * streak_multiplier
 	current_points += points_to_add
 	
 	update_score()
 
 func add_points_long_note(duration_seconds: float):
 	combo_count += 1
+	combo_streak_count= min(100, combo_streak_count +1)
 	update_combo_multiplier()
 	
 	# Base points + duration bonus
 	var base_points = points_long_note_base
 	var duration_bonus = points_long_note_per_second * duration_seconds
-	var total_points = (base_points + duration_bonus) * combo_multiplier
+	var total_points = (base_points + duration_bonus) * combo_multiplier * streak_multiplier
 	
 	current_points += total_points
 	
@@ -119,13 +136,14 @@ func add_points_long_note(duration_seconds: float):
 
 func update_combo_multiplier():
 	if combo_count >= combo_threshold:
-		combo_multiplier = 1.0 + (float(combo_count) / float(combo_threshold)) * 0.1
+		combo_multiplier = min(1 + float(combo_count) / combo_threshold, combo_multiplier_threshold)
 	else:
 		combo_multiplier = 1.0
 
 func subtract_points():
 	# Reset combo on miss
 	combo_count = 0
+	combo_streak_count = max(0,combo_streak_count-2)
 	combo_multiplier = 1
 	
 	current_points += points_per_miss
@@ -135,6 +153,7 @@ func subtract_points():
 func subtract_points_missed_note():
 	# Reset combo on missed note
 	combo_count = 0
+	combo_streak_count = max(0,combo_streak_count-2)
 	combo_multiplier = 1
 	
 	current_points += points_per_missed_note

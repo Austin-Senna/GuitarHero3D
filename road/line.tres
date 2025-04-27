@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d0sesagacppga"]
+
+[ext_resource type="Texture2D" uid="uid://dspah8toeyd65" path="res://3D Models/139702_header_small.jpg" id="1_eatgq"]
+
+[resource]
+render_priority = -1
+albedo_color = Color(0.18359, 0.18359, 0.18359, 1)
+albedo_texture = ExtResource("1_eatgq")
