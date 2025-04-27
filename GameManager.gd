@@ -14,6 +14,8 @@ var current_time = 0
 var high_score_broken_this_game = false  # Track if high score was broken
 var game_ended = false
 
+var key_logger: Node
+
 # Point values for different actions
 var points_short_note = 100
 var points_long_note_base = 200  # Base points for starting a long note
@@ -41,6 +43,8 @@ func _ready():
 	high_score_broken_this_game = false
 	game_ended = false  # Reset the flag
 	load_high_score()
+	key_logger = load("res://KeyLogger.gd").new()
+	add_child(key_logger)
 
 func _process(delta):
 	if (combo_count>=1):
@@ -88,6 +92,9 @@ func end_game():
 	
 	# Save the score to history
 	save_score_to_history()
+	
+	# Show performance analysis
+	show_performance_analysis()
 	
 	# Check if high score was broken
 	if current_points > high_score:
@@ -159,3 +166,16 @@ func update_score():
 	# Emit signals for UI updates
 	score_updated.emit(current_points)
 	combo_updated.emit(combo_count)
+	
+# Add new function to start logging
+func start_game():
+	key_logger.start_logging()
+	# Reset other game variables as needed
+	
+func show_performance_analysis():
+	# Show the analysis UI
+	var analysis_scene = load("res://PerformanceAnalysis.tscn")
+	if analysis_scene:
+		var analysis_instance = analysis_scene.instantiate()
+		get_tree().current_scene.add_child(analysis_instance)
+		analysis_instance.show_analysis()

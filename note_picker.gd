@@ -104,12 +104,24 @@ func handle_key_press(pressed: bool):
 	is_pressed = pressed
 	is_collecting = pressed
 	
-	# Check for miss (pressed key without note to collect)
-	if pressed and not has_note_to_collect:
-		GameManager.subtract_points()
+	if pressed:
+		var key_name = ""
+		match line:
+			1: key_name = "Q"
+			2: key_name = "W"
+			3: key_name = "E"
+			4: key_name = "R"
+		
+		# Log the key press
+		GameManager.key_logger.log_key_press(key_name, has_note_to_collect)
+		
+		# Check for miss (pressed key without note to collect)
+		if not has_note_to_collect:
+			GameManager.subtract_points()
 
 func _process(_delta):
 	if is_pressed:
 		translate_trigger(Vector3(0,0.2,0))
 	else:
 		translate_trigger(Vector3(0,0,0))
+		
