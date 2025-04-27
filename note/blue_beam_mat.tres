@@ -12,6 +12,6 @@ blend_mode = 1
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission = Color(0.0235294, 0.0392157, 1, 1)
-emission_energy_multiplier = 3.5
+emission_energy_multiplier = 2.85
 emission_operator = 1
 emission_texture = SubResource("GradientTexture2D_fwqku")

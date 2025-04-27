@@ -1,0 +1,14 @@
+[gd_resource type="Environment" format=3 uid="uid://d18xmdwyauahb"]
+
+[resource]
+ambient_light_color = Color(0.23692, 0.0670958, 0.306489, 1)
+glow_enabled = true
+glow_intensity = 2.02
+glow_bloom = 0.1
+glow_hdr_threshold = 0.01
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.0835164, 0.0681266, 0.109857, 1)
+fog_density = 1.0
+fog_depth_curve = 0.574349
+fog_depth_begin = 8.0

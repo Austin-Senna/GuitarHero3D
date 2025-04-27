@@ -6,8 +6,19 @@ var green_mat
 var orange_mat
 var pink_mat
 var blue_mat
+
+var green_activated_mat
+var orange_activated_mat
+var pink_activated_mat
+var blue_activated_mat
+var base_position
+
 var is_collecting = false
 var has_note_to_collect = false  # New variable
+@onready var trigger = $EmblemPicker/TopPixelated
+@onready var emblem = $EmblemPicker/Autobots_001
+@onready var picker_cover = $EmblemPicker/BottomColor
+
 
 func _ready():
 	# Load materials
@@ -15,6 +26,11 @@ func _ready():
 	orange_mat = load("res://orange_picker_mat.tres")
 	pink_mat = load("res://pink_picker_mat.tres")
 	blue_mat = load("res://blue_picker_mat.tres")
+	green_activated_mat = load("res://note/green_note_mat.tres")
+	orange_activated_mat = load("res://note/orange_note_mat.tres")
+	pink_activated_mat = load("res://note/pink_note_mat.tres")
+	blue_activated_mat = load("res://note/blue_note_mat.tres")
+	base_position = picker_cover.position
 	
 	set_material()
 	set_process_input(true)
@@ -31,17 +47,38 @@ func _on_note_entered(area: Area3D) -> void:
 func _on_note_exited(area: Area3D) -> void:
 	if area.is_in_group("note"):
 		has_note_to_collect = false
+
+func set_picker(material):
+	picker_cover.material_override = material
+	emblem.material_override = material
 	
+func translate_trigger(vector):
+	var base_trigger = base_position + Vector3(0,-0.15,0)
+	var base_emblem = base_position + Vector3(0,-0.12,0)
+	emblem.position = vector + base_emblem
+	trigger.position = vector + base_trigger
+
+func set_material_activated():
+	match line:
+		1:
+			set_picker(green_activated_mat)
+		2:
+			set_picker(orange_activated_mat)
+		3:
+			set_picker(pink_activated_mat)
+		4:
+			set_picker(blue_activated_mat)
+			
 func set_material():
 	match line:
 		1:
-			$MeshInstance3D.material_override = green_mat
+			set_picker(green_mat)
 		2:
-			$MeshInstance3D.material_override = orange_mat
+			set_picker(orange_mat)
 		3:
-			$MeshInstance3D.material_override = pink_mat
+			set_picker(pink_mat)
 		4:
-			$MeshInstance3D.material_override = blue_mat
+			set_picker(blue_mat)
 
 func _input(event):
 	if event is InputEventKey:
@@ -73,6 +110,6 @@ func handle_key_press(pressed: bool):
 
 func _process(_delta):
 	if is_pressed:
-		self.scale = Vector3(0.9, 0.9, 0.9)
+		translate_trigger(Vector3(0,0.2,0))
 	else:
-		self.scale = Vector3(1, 1, 1)
+		translate_trigger(Vector3(0,0,0))

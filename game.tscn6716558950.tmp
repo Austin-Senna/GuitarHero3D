@@ -3,20 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1xmjiayxw76g" path="res://road.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dsv8lv6hvfwyf" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c0tyxxtnwlmwi" path="res://music.tscn" id="3_fc0e3"]
-
-[sub_resource type="Environment" id="Environment_feb5d"]
-ambient_light_color = Color(0.23692, 0.0670958, 0.306489, 1)
-tonemap_mode = 1
-glow_enabled = true
-glow_intensity = 0.0
-glow_bloom = 0.1
-glow_hdr_threshold = 0.01
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.22183, 0.19164, 0.273658, 1)
-fog_density = 1.0
-fog_depth_curve = 0.574349
-fog_depth_begin = 8.0
+[ext_resource type="Environment" uid="uid://dtdr08b8dxidg" path="res://world_environment/game.tres" id="4_fc0e3"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_feb5d")
@@ -39,8 +26,25 @@ far = 100.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelScore" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelCombo" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_feb5d")
+environment = ExtResource("4_fc0e3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.99943, -0.0102525, 0.0321675, -0.0317018, 0.0427387, 0.998583, -0.0116128, -0.999034, 0.0423893, 0.74284, 10.0725, -0.368028)

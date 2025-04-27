@@ -1,11 +1,15 @@
 extends Node
 
 # Score variables
+var combo_streak = false
 var current_points = 0
 var combo_count = 0
 var combo_multiplier = 1
 var combo_threshold = 4
 var high_score = 0
+
+var audio_length = 0
+var current_time = 0
 
 var high_score_broken_this_game = false  # Track if high score was broken
 var game_ended = false
@@ -15,7 +19,7 @@ var points_short_note = 100
 var points_long_note_base = 200  # Base points for starting a long note
 var points_long_note_per_second = 50  # Points per second of holding
 var points_per_miss = -50
-var points_per_missed_note = -10
+var points_per_missed_note = -50
 
 # Signals for UI updates
 signal score_updated(new_score)
@@ -37,6 +41,12 @@ func _ready():
 	high_score_broken_this_game = false
 	game_ended = false  # Reset the flag
 	load_high_score()
+
+func _process(delta):
+	if (combo_count>=1):
+		combo_streak = true
+	else:
+		combo_streak = false
 
 func load_high_score():
 	if FileAccess.file_exists(high_score_file_path):

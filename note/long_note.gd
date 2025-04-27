@@ -3,6 +3,7 @@ var curr_length_in_m
 var hold_started = false
 var hold_canceled = false
 var captured = false
+@onready var transformer_font = load("res://Intro_Title_Menu/Fonts/body.tres")
 var end_block  # Reference to the end block
 var hold_duration = 0.0  # Track how long the note was held
 
@@ -23,12 +24,13 @@ func on_ready():
 	
 	# Create the end block
 	create_end_block()
-	
+
 	# Add bonus label for visual feedback
 	bonus_label.position = Vector3(0, 1, 0)  # Above the note
 	bonus_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	bonus_label.text = ""
 	bonus_label.visible = false
+	bonus_label.font = transformer_font
 	add_child(bonus_label)
 
 func create_end_block():
@@ -37,10 +39,10 @@ func create_end_block():
 	end_block.name = "EndBlock"
 	
 	var end_mesh = MeshInstance3D.new()
-	end_mesh.mesh = $MeshInstance3D.mesh.duplicate()  # Copy the main note's mesh
+	end_mesh.mesh = $AutobotEmblem/AutobotEmblem.mesh.duplicate()  # Copy the main note's mesh
 	
 	# Match the original mesh scale (0.5, 0.5, 0.5)
-	end_mesh.scale = $MeshInstance3D.scale  # Copy the original scale
+	end_mesh.scale = Vector3(0.22,0.22,0.22)  # Copy the original scale
 	
 	# Create a lighter/emissive material for the end block
 	var mat = StandardMaterial3D.new()
@@ -90,6 +92,7 @@ func on_process(delta):
 			# Update bonus display (ADD THIS SECTION)
 			var current_bonus = GameManager.points_long_note_per_second * hold_duration
 			bonus_label.text = "+" + str(int(current_bonus))
+			bonus_label.font = transformer_font
 			bonus_label.visible = true
 			
 			curr_length_in_m -= speed.z * delta
