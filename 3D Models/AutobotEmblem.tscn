@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://bew0hwxu65kvl"]
 
-[ext_resource type="Material" uid="uid://cdm4y5h7vbxs" path="res://note/pink_note_mat.tres" id="2_ah2ao"]
+[ext_resource type="Material" uid="uid://gbl6yd87stt3" path="res://note/fire_note_mat.tres" id="2_ymqa6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5a7i"]
 resource_name = "sy_chrome_matte.004"
@@ -86,6 +86,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_di1qe")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1egx7"]
+emission_enabled = true
+emission_energy_multiplier = 1.26
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjyob"]
 resource_name = "Material.002"
@@ -175,10 +177,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1egx7")
 transform = Transform3D(1.88421, 0, 0, 0, 1.88421, 0, 0, 0, 1.88421, -0.0599136, -1.24778, 0.122103)
 mesh = SubResource("ArrayMesh_vpnvm")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_ah2ao")
+surface_material_override/0 = ExtResource("2_ymqa6")
 
 [node name="Shading" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.41619, 0, 0, 0, 2.41619, 0, 0, 0, 2.41619, 0.0816038, -2.21022, 0.281432)
 mesh = SubResource("ArrayMesh_ykpvg")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_ah2ao")
+surface_material_override/0 = ExtResource("2_ymqa6")

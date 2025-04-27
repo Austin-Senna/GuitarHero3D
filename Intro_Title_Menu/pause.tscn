@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://11uafqem00sv"]
 
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="1_f1f8m"]
+[ext_resource type="LabelSettings" uid="uid://bi3sdl3uw2lue" path="res://Intro_Title_Menu/Fonts/score.tres" id="3_ob6th"]
 [ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="4_ob6th"]
-[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="5_fhfdl"]
 [ext_resource type="Texture2D" uid="uid://cnrt7bkc0r6c1" path="res://Intro_Title_Menu/Images/bumblebee_rockstar_no_bg.png" id="6_o75bv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aub0r"]
@@ -83,7 +83,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_oeccf")
 [node name="Label" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 text = "PAUSED"
-label_settings = ExtResource("5_fhfdl")
+label_settings = ExtResource("3_ob6th")
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer/VBoxContainer"]

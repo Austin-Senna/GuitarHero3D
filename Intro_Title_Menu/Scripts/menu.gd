@@ -18,7 +18,7 @@ var audiofiles: Array[String] = [
 ]
 
 var mapfiles: Array[String] = [
-	"res://audiotracks/map.mboy",
+	"res://audiotracks/linkinpark.mboy",
 	"res://audiotracks/map.mboy",
 	"res://audiotracks/map.mboy"
 ]
