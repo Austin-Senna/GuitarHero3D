@@ -1,0 +1,58 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://bbd4mm0cgqxkj"]
+
+[sub_resource type="Gradient" id="Gradient_8bx5c"]
+offsets = PackedFloat32Array(0.149425, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lauj3"]
+gradient = SubResource("Gradient_8bx5c")
+fill_from = Vector2(0.025641, 0.277778)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rldnl"]
+texture = SubResource("GradientTexture2D_lauj3")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8bx5c"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lauj3"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// Input:3
+	vec4 n_out3p0 = COLOR;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// FloatOp:4
+	float n_out4p0 = n_out2p0.x * n_out3p0.x;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out4p0;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_rldnl")
+nodes/fragment/2/position = Vector2(-160, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_8bx5c")
+nodes/fragment/3/position = Vector2(-200, 440)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_lauj3")
+nodes/fragment/4/position = Vector2(144.072, 143.658)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 1, 3, 0, 0, 0, 4, 0, 0, 1)

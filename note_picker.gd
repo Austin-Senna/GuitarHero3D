@@ -1,5 +1,6 @@
 extends Node3D
 @export_range(1, 4) var line = 1
+
 var is_pressed = false
 # Declare the material variables
 var green_mat
@@ -18,7 +19,9 @@ var has_note_to_collect = false  # New variable
 @onready var trigger = $EmblemPicker/TopPixelated
 @onready var emblem = $EmblemPicker/Autobots_001
 @onready var picker_cover = $EmblemPicker/BottomColor
-
+@onready var fail_player = $FailSound
+@onready var hit_player = $HitSound
+@onready var vfx_scene = load("res://vfx_scene.tscn")
 
 func _ready():
 	# Load materials
@@ -104,24 +107,32 @@ func handle_key_press(pressed: bool):
 	is_pressed = pressed
 	is_collecting = pressed
 	
-	if pressed:
-		var key_name = ""
-		match line:
-			1: key_name = "Q"
-			2: key_name = "W"
-			3: key_name = "E"
-			4: key_name = "R"
+	if pressed and has_note_to_collect:
+		play_hit()
+	# Check for miss (pressed key without note to collect)
+	if pressed and not is_pressed and has_note_to_collect:
+		GameManager.subtract_points()
+		fail_player.play()
 		
-		# Log the key press
-		GameManager.key_logger.log_key_press(key_name, has_note_to_collect)
-		
-		# Check for miss (pressed key without note to collect)
-		if not has_note_to_collect:
-			GameManager.subtract_points()
-
+func play_hit():
+	hit_player.play()
+	var vfx_instance = vfx_scene.instantiate()
+	add_child(vfx_instance)
+	# Position the VFX slightly above the picker cover's base position
+	vfx_instance.position = base_position + Vector3(-0.05, 0, -0.15) # Adjust Y offset as needed
+	 
+	var timer = Timer.new()
+	timer.wait_time = 0.2 # Adjust time based on VFX duration
+	timer.one_shot = true
+	timer.timeout.connect(vfx_instance.queue_free)
+	add_child(timer)
+	timer.start()
+	
 func _process(_delta):
 	if is_pressed:
+		set_material_activated()
 		translate_trigger(Vector3(0,0.2,0))
 	else:
+		set_material()
 		translate_trigger(Vector3(0,0,0))
 		

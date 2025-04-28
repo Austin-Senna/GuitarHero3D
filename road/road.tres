@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bxt5qe85nbur5"]
+
+[ext_resource type="Shader" uid="uid://b6e6r760moui0" path="res://fire.gdshader" id="1_5pxa2"]
+[ext_resource type="Texture2D" uid="uid://b1iejrdea8c1a" path="res://road/RoyalCarpet.jpg" id="2_lajyc"]
+[ext_resource type="Texture2D" uid="uid://ru1conpogkpx" path="res://3D Models/FIRETEXTURE.jpg" id="3_lajyc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5pxa2")
+shader_parameter/base_track_texture = ExtResource("2_lajyc")
+shader_parameter/fire_noise_texture = ExtResource("3_lajyc")
+shader_parameter/activation_level = 0.0
+shader_parameter/fire_tint = Color(0.2, 0.5, 1, 1)
+shader_parameter/fire_highlight = Color(0.0241996, 0.15353, 0.60087, 1)
+shader_parameter/scroll_speed = -0.2
+shader_parameter/distortion_frequency = 5.0
+shader_parameter/distortion_strength = 0.02

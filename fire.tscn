@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://efk5agkkm8ts"]
+
+[ext_resource type="Shader" uid="uid://b6e6r760moui0" path="res://fire.gdshader" id="1_2pqqt"]
+[ext_resource type="Texture2D" uid="uid://ru1conpogkpx" path="res://3D Models/FIRETEXTURE.jpg" id="2_5ltu8"]
+[ext_resource type="Texture2D" uid="uid://b1iejrdea8c1a" path="res://road/RoyalCarpet.jpg" id="2_x6ecg"]
+[ext_resource type="Script" uid="uid://mgy2cdlk4ocr" path="res://fire_script.gd" id="4_icfi2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ufe0f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufe0f"]
+render_priority = 0
+shader = ExtResource("1_2pqqt")
+shader_parameter/base_track_texture = ExtResource("2_x6ecg")
+shader_parameter/fire_noise_texture = ExtResource("2_5ltu8")
+shader_parameter/activation_level = 0.225
+shader_parameter/fire_tint = Color(0.2, 0.5, 1, 1)
+shader_parameter/fire_highlight = Color(1, 0.8, 0.2, 1)
+shader_parameter/scroll_speed = 1.2
+shader_parameter/distortion_frequency = 5.0
+shader_parameter/distortion_strength = 0.02
+
+[node name="Fire" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ufe0f")
+surface_material_override/0 = SubResource("ShaderMaterial_ufe0f")
+script = ExtResource("4_icfi2")

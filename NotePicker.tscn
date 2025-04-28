@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdqlu18v7gjx6"]
+[gd_scene load_steps=8 format=3 uid="uid://bdqlu18v7gjx6"]
 
 [ext_resource type="Script" uid="uid://l0mgmj4rpbf7" path="res://note_picker.gd" id="1_qsfoh"]
 [ext_resource type="PackedScene" uid="uid://b80ty230qudmr" path="res://3D Models/AutobotEmblemPicker.tscn" id="2_1f43s"]
 [ext_resource type="Material" uid="uid://ckshuoemqokdb" path="res://note/blue_note_mat.tres" id="2_8d6fk"]
+[ext_resource type="AudioStream" uid="uid://dqtxnk8qg7duq" path="res://sound_effects/guitar_hit_tap.mp3" id="4_barah"]
+[ext_resource type="AudioStream" uid="uid://b3juxje8lnuld" path="res://sound_effects/guitar_fail.mp3" id="4_pjn0k"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3vs3x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d6fk"]
-size = Vector3(0.929138, 1.13428, 0.457329)
+size = Vector3(0.929138, 1.13428, 0.435696)
 
 [node name="NotePicker" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
@@ -26,5 +28,15 @@ surface_material_override/0 = ExtResource("2_8d6fk")
 [node name="Area3D" type="Area3D" parent="." groups=["picker"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0312713, 0.000293015, -0.0570098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.04858, -0.0312713, 0.000293015, -0.0348511)
 shape = SubResource("BoxShape3D_8d6fk")
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_barah")
+volume_db = -5.0
+pitch_scale = 0.5
+
+[node name="FailSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_pjn0k")
+volume_db = -20.0
+pitch_scale = 0.5

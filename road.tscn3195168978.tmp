@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://1xmjiayxw76g"]
+
+[ext_resource type="PackedScene" uid="uid://bdqlu18v7gjx6" path="res://NotePicker.tscn" id="1_x0d2t"]
+[ext_resource type="Script" uid="uid://c6l7bnqqytrgw" path="res://road.gd" id="2_3veuu"]
+[ext_resource type="Material" uid="uid://bxt5qe85nbur5" path="res://road/road.tres" id="2_bpeel"]
+[ext_resource type="Material" uid="uid://d0sesagacppga" path="res://road/line.tres" id="2_twbfo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_twbfo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
+
+[node name="road" type="Node3D"]
+transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+script = ExtResource("2_3veuu")
+
+[node name="Line1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 1.996, -3.48939e-06, 0, 1.74496e-07, 39.914, -1.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2.009, -3.51291e-06, 0, 1.75632e-07, 40.183, -0.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2, -3.49691e-06, 0, 1.74846e-07, 40, 0.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="Line4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 2, -3.49691e-06, 0, 1.74846e-07, 40, 1.5, 0.01, 0)
+mesh = SubResource("PlaneMesh_twbfo")
+skeleton = NodePath("../RoadNode")
+surface_material_override/0 = ExtResource("2_twbfo")
+
+[node name="RoadNode" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.00606, 0, 0, 0, 2.00606, 0, 0, 0, 30.0908, 0, 0, 0)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="NotePicker" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 8)
+line = 1
+
+[node name="NotePicker2" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 8)
+line = 2
+
+[node name="NotePicker3" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 8)
+line = 3
+
+[node name="NotePicker4" parent="." instance=ExtResource("1_x0d2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 8)
+
+[node name="BarsNode" type="Node3D" parent="."]

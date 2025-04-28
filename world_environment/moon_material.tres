@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cyk3i4bxh7r0n"]
+
+[ext_resource type="Texture2D" uid="uid://dspah8toeyd65" path="res://3D Models/139702_header_small.jpg" id="1_fhcfd"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.752941, 1, 1, 1)
+albedo_texture = ExtResource("1_fhcfd")
+emission_enabled = true
+emission = Color(0.294894, 0.375211, 0.662656, 1)
+emission_energy_multiplier = 0.5
+emission_texture = ExtResource("1_fhcfd")
