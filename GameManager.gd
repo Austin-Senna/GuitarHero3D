@@ -56,7 +56,7 @@ func _process(delta):
 		streak_set.emit()
 		
 	if (combo_streak):
-		combo_streak_count -= delta * 2
+		combo_streak_count -= delta * 2.5
 		if (combo_streak_count	<= 0):
 			combo_streak = false
 			streak_multiplier = 1.0

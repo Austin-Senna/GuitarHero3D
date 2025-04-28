@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3mm6fyv2wxlk"]
+[gd_scene load_steps=19 format=3 uid="uid://d3mm6fyv2wxlk"]
 
 [ext_resource type="Script" uid="uid://cw4fed0ciw72d" path="res://ScoreUI.gd" id="1_vs014"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="3_kkjwt"]
@@ -13,16 +13,21 @@
 [ext_resource type="Texture2D" uid="uid://boauxpacpohrr" path="res://UI/transformers_progress_bar_fill.png" id="9_lyrr8"]
 [ext_resource type="Texture2D" uid="uid://bohe3pcx1snxn" path="res://UI/transformers_progress_bar_bottom.png" id="12_1jjv1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jjv1"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk842"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyrr8"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fl84"]
+shader = ExtResource("9_hk842")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jjv1"]
+texture = ExtResource("12_1jjv1")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jjv1"]
 render_priority = 0
 shader = ExtResource("8_7fl84")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fl84"]
-shader = ExtResource("9_hk842")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -43,6 +48,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 94.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1jjv1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -142,87 +148,125 @@ theme_override_styles/background = ExtResource("6_hk842")
 theme_override_styles/fill = ExtResource("7_7fl84")
 show_percentage = false
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
+[node name="ProgressTexture2" type="PanelContainer" parent="."]
+modulate = Color(0, 0, 0, 0.818)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.80358
-anchor_right = 0.34
-anchor_bottom = 0.947531
+anchor_left = -0.00173611
+anchor_top = 0.396605
+anchor_right = 0.280382
+anchor_bottom = 0.658951
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lyrr8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Top" type="TextureRect" parent="ProgressTexture2"]
+material = SubResource("ShaderMaterial_7fl84")
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("8_lyrr8")
+expand_mode = 1
+
+[node name="ComboCounters2" type="PanelContainer" parent="."]
+modulate = Color(0.0646965, 0.0646965, 0.0646965, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00260417
+anchor_top = 0.650802
+anchor_right = 0.280382
+anchor_bottom = 0.766975
 offset_top = 3.27997
 offset_right = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="PanelContainer2"]
+[node name="Panel" type="Panel" parent="ComboCounters2"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1jjv1")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="ComboCounters2"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ComboCounters2/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="LabelCombo" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("8_6uj7k")
-theme_override_font_sizes/font_size = 40
-text = "COMBO:"
-horizontal_alignment = 1
-
-[node name="LabelComboCount" type="Label" parent="PanelContainer2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("8_6uj7k")
-theme_override_font_sizes/font_size = 40
-text = "combo count:"
-horizontal_alignment = 1
-
-[node name="PanelContainer3" type="PanelContainer" parent="."]
+[node name="ProgressTexture" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.464
-anchor_right = 0.337674
-anchor_bottom = 0.815
-offset_top = 0.231964
+anchor_top = 0.396605
+anchor_right = 0.273438
+anchor_bottom = 0.658951
 grow_horizontal = 2
-grow_vertical = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="ProgressTexture" type="PanelContainer" parent="PanelContainer3"]
-layout_mode = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lyrr8")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3/ProgressTexture"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 20
-
-[node name="ComboProgressBar" type="TextureProgressBar" parent="PanelContainer3/ProgressTexture/MarginContainer"]
+[node name="ComboProgressBar" type="TextureProgressBar" parent="ProgressTexture"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_1jjv1")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+max_value = 110.0
 value = 100.0
 fill_mode = 3
 texture_progress = ExtResource("9_lyrr8")
+tint_progress = Color(0.885153, 0.885244, 0.896291, 1)
 
-[node name="Top" type="TextureRect" parent="PanelContainer3/ProgressTexture/MarginContainer"]
+[node name="Top" type="TextureRect" parent="ProgressTexture"]
 material = SubResource("ShaderMaterial_7fl84")
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("8_lyrr8")
 expand_mode = 1
 
-[node name="Bottom" type="TextureRect" parent="PanelContainer3"]
-custom_minimum_size = Vector2(0, 20)
+[node name="ComboCounters" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.650802
+anchor_right = 0.273438
+anchor_bottom = 0.757716
+offset_top = 3.27997
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="ComboCounters"]
 layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("12_1jjv1")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_1jjv1")
+
+[node name="MarginContainer" type="MarginContainer" parent="ComboCounters"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ComboCounters/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LabelCombo" type="Label" parent="ComboCounters/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 32
+text = "COMBO:"
+horizontal_alignment = 1
+
+[node name="LabelComboCount" type="Label" parent="ComboCounters/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_6uj7k")
+theme_override_font_sizes/font_size = 26
+text = "combo count:"
+horizontal_alignment = 1

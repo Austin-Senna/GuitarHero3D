@@ -71,7 +71,7 @@ func animate_combo_progress_bar_increase():
 	# combo_progress_bar.pivot_offset = combo_progress_bar.size / 2.0
 	var scale_tween = create_tween()
 	# Scale up quickly
-	scale_tween.tween_property(combo_progress_bar, "scale", Vector2(1.05, 1.15), 0.1)\
+	scale_tween.tween_property(combo_progress_bar, "scale", Vector2(1.01, 1.2), 0.1)\
 			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT) # Slightly taller pop
 	# Scale back to normal
 	scale_tween.tween_property(combo_progress_bar, "scale", Vector2(1.0, 1.0), 0.1)\
@@ -79,17 +79,18 @@ func animate_combo_progress_bar_increase():
 
 	# --- Glow/Flash Animation (using modulate) ---
 	var color_tween = create_tween()
-	var original_modulate = combo_progress_bar.modulate
-	# Use a bright color for the flash, e.g., white or yellow
-	var flash_color = Color.WHITE
-	# Optional: Make flash brighter/yellower as the bar fills
-	# flash_color = Color(1.0, 1.0, 0.6 + (combo_progress_bar.value / 250.0))
+	# Store the original progress tint (usually white = no tint)
+	var original_tint = Color(0.8,0.8,0.8)
+	# Use a bright color for the flash tint. Yellow often works well.
+	var flash_tint_color = Color(1.0, 1.0, 1.0) # Bright Yellow
+	# Or try pure white for max brightness:
+	# var flash_tint_color = Color.WHITE
 
-	# Fade to flash color
-	color_tween.tween_property(combo_progress_bar, "modulate", flash_color, 0.1)\
+	# Fade to flash tint color
+	color_tween.tween_property(combo_progress_bar, "tint_progress", flash_tint_color, 0.1)\
 			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	# Fade back to original color
-	color_tween.tween_property(combo_progress_bar, "modulate", original_modulate, 0.1)\
+	# Fade back to original tint color
+	color_tween.tween_property(combo_progress_bar, "tint_progress", original_tint, 0.1)\
 			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 
@@ -104,7 +105,7 @@ func _on_streak_set():
 	celebration.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	
 	# Position it in the center of the screen
-	celebration.position = get_viewport_rect().size / 2 - Vector2(100, 50)
+	celebration.position = get_viewport_rect().size / 2 - Vector2(30, 50)
 	celebration.z_index = 100
 	add_child(celebration)
 	
