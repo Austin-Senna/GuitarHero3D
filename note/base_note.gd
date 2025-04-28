@@ -23,6 +23,17 @@ var is_collected = false
 func _ready():
 	on_ready()
 	
+	# Log this note as expected
+	var key_name = ""
+	match line:
+		1: key_name = "Q"
+		2: key_name = "W"
+		3: key_name = "E"
+		4: key_name = "R"
+	
+	var time_to_hit = startingPosition * length_scale / speed.z  # Calculate when note should be hit
+	GameManager.key_logger.log_expected_key(key_name, time_to_hit)
+	
 func on_ready():
 	set_material()
 	add_listeners()
@@ -82,6 +93,14 @@ func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("picker"):
 		# If we're exiting the picker area and haven't been collected, we missed the note
 		if not is_collected:
+			var key_name = ""
+			match line:
+				1: key_name = "Q"
+				2: key_name = "W"
+				3: key_name = "E"
+				4: key_name = "R"
+			
+			GameManager.key_logger.log_missed_key(key_name, Time.get_ticks_msec() / 1000.0)
 			GameManager.subtract_points_missed_note()
 		
 		is_colliding = false
