@@ -58,6 +58,12 @@ func _ready():
 	if music_node.has_signal("finished"):
 		music_node.finished.connect(_on_song_finished)
 	
+	GameManager.start_game()
+	
+	get_tree().root.set_process_shortcut_input(true)
+	
+	print("Game setup complete - will intercept quit attempts")
+	
 func calc_params():
 	tempo = int(map.tempo)
 	bar_length = 16
@@ -77,12 +83,17 @@ func _on_song_finished():
 	# Call this when the song ends
 	GameManager.end_game()
 	
+	# Create and show the performance analysis
+	var analysis_scene = load("res://PerformanceAnalysis.tscn")
+	if analysis_scene:
+		var analysis_instance = analysis_scene.instantiate()
+		add_child(analysis_instance)
+		analysis_instance.show_analysis()
+	
 # If you want to save score when quitting
 func _notification(what):
-	# Handle only the quit request once
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if not GameManager.game_ended:  # Check if already saved
-			GameManager.end_game()
+		# Just quit directly, don't show analysis
 		get_tree().quit()
 		
 # Also add this to handle in-game quit buttons if you have them
@@ -134,3 +145,8 @@ func is_tween_active():
 		if is_instance_valid(node) and node.is_running():
 			return true
 	return false
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_F1:  # Press F1 to open the data folder
+			GameManager.open_data_folder()
