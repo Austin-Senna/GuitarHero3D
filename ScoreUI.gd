@@ -8,6 +8,10 @@ extends Control
 @onready var game_progress_bar = $%GameProgressBar
 @onready var combo_progress_bar = $%ComboProgressBar
 var multiplier = 1.0
+# Keep track of the last known streak count for animation triggers
+var last_streak_count = -1
+# Store the tween for the progress bar value to manage it
+var progress_bar_value_tween : Tween
 
 func _ready():
 	# Set overall control size
@@ -31,7 +35,63 @@ func _ready():
 	
 func _process(delta):
 	game_progress_bar.value = GameManager.current_time/GameManager.audio_length * 100
-	combo_progress_bar.value = (GameManager.combo_streak_count)/ (GameManager.combo_streak_count_threshold) * 100
+	# --- Combo Progress Bar Update (Animated) ---
+	var current_streak_count = GameManager.combo_streak_count
+	var target_value = 0.0
+	if GameManager.combo_streak_count_threshold > 0: # Avoid division by zero
+		target_value = clampf(float(current_streak_count) / GameManager.combo_streak_count_threshold * 100.0, 0.0, 100.0)
+
+	# Smoothly tween the value if it's different from the target
+	if not is_equal_approx(combo_progress_bar.value, target_value):
+		# Kill existing tween if it's running to start a new one immediately
+		if progress_bar_value_tween and progress_bar_value_tween.is_valid():
+			progress_bar_value_tween.kill()
+
+		# Create a new tween for the value update
+		progress_bar_value_tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+		# Adjust duration (e.g., 0.2 seconds) for desired smoothness
+		progress_bar_value_tween.tween_property(combo_progress_bar, "value", target_value, 0.2)
+
+	# --- Check for Streak Increase to Trigger Animations ---
+	if current_streak_count > last_streak_count:
+		# Trigger pulse/glow animation only on increase
+		animate_combo_progress_bar_increase()
+
+	# Update last known streak count for the next frame
+	last_streak_count = current_streak_count
+
+# --- Animation Function for Combo Progress Bar ---
+func animate_combo_progress_bar_increase():
+	# Don't animate if the bar is full or if streak count is zero (e.g., after reset)
+	if GameManager.combo_streak_count <= 0 or is_equal_approx(combo_progress_bar.value, 100.0):
+		return
+
+	# --- Scale Pulse Animation ---
+	# Ensure pivot is set correctly before scaling (might be needed if size changes)
+	# combo_progress_bar.pivot_offset = combo_progress_bar.size / 2.0
+	var scale_tween = create_tween()
+	# Scale up quickly
+	scale_tween.tween_property(combo_progress_bar, "scale", Vector2(1.05, 1.15), 0.1)\
+			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT) # Slightly taller pop
+	# Scale back to normal
+	scale_tween.tween_property(combo_progress_bar, "scale", Vector2(1.0, 1.0), 0.1)\
+			   .set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT) # Slight bounce back
+
+	# --- Glow/Flash Animation (using modulate) ---
+	var color_tween = create_tween()
+	var original_modulate = combo_progress_bar.modulate
+	# Use a bright color for the flash, e.g., white or yellow
+	var flash_color = Color.WHITE
+	# Optional: Make flash brighter/yellower as the bar fills
+	# flash_color = Color(1.0, 1.0, 0.6 + (combo_progress_bar.value / 250.0))
+
+	# Fade to flash color
+	color_tween.tween_property(combo_progress_bar, "modulate", flash_color, 0.1)\
+			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# Fade back to original color
+	color_tween.tween_property(combo_progress_bar, "modulate", original_modulate, 0.1)\
+			   .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
 
 func _on_streak_set():
 	var celebration = Label.new()

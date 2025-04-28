@@ -107,7 +107,7 @@ func handle_key_press(pressed: bool):
 	is_pressed = pressed
 	is_collecting = pressed
 	
-	if pressed and not is_pressed and has_note_to_collect:
+	if pressed and has_note_to_collect:
 		play_hit()
 	# Check for miss (pressed key without note to collect)
 	if pressed and not is_pressed and has_note_to_collect:

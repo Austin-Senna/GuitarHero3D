@@ -112,7 +112,7 @@ func end_game():
 
 func add_points_short_note():
 	combo_count += 1
-	combo_streak_count = min(100, combo_streak_count +1)
+	combo_streak_count = min(combo_streak_count_threshold + 2, combo_streak_count +1)
 	update_combo_multiplier()
 	
 	var points_to_add = points_short_note * combo_multiplier * streak_multiplier
