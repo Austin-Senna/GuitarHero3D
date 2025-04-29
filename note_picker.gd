@@ -107,8 +107,8 @@ func handle_key_press(pressed: bool):
 	is_pressed = pressed
 	is_collecting = pressed
 	
-if pressed:
-		# Log the key press (from your Kaan branch)
+	if pressed:
+			# Log the key press (from your Kaan branch)
 		var key_name = ""
 		match line:
 			1: key_name = "Q"
