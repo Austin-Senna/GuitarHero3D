@@ -32,7 +32,7 @@ texture = ExtResource("12_1jjv1")
 render_priority = 0
 shader = ExtResource("8_7fl84")
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +93,7 @@ text = "SCORE:"
 label_settings = ExtResource("2_socno")
 
 [node name="EndGameButton" type="Button" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("3_6uj7k")
 

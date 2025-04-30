@@ -7,7 +7,15 @@ var gemini_api: Node
 @onready var scroll_container = $%ScrollContainer
 @onready var animPlayer = $genericAnimation
 @onready var scroll_holder = $%ScrollHolder
+@onready var score_value_label = $%ScoreValue
+@onready var notes_value_label = $%NotesValue
 var api_response_received = false
+
+var score_tween: Tween
+var buttons: Array[TextureButton] = []
+var focused_index: int = -1
+
+@export var scroll_speed: float = 50.0 # Pixels to scroll per key press
 
 func _ready():
 	animPlayer.show_blackBG()
@@ -15,6 +23,11 @@ func _ready():
 	animPlayer.play_victory()
 	animPlayer.play_menu_screen()
 	
+	buttons = [
+		$%PlayAgainButton
+	]
+	
+	load_picture()
 	setup_scrolling()
 	
 	# Initialize Gemini API
@@ -30,6 +43,67 @@ func _ready():
 	set_process_input(true)
 	
 	show_analysis()
+	show_score()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_down"):
+		focused_index = (focused_index + 1) % buttons.size()
+		buttons[focused_index].grab_focus()
+		animPlayer.play_select()
+		
+	elif Input.is_action_just_pressed("ui_up"):
+		focused_index = (focused_index - 1 + buttons.size()) % buttons.size()
+		buttons[focused_index].grab_focus()
+		animPlayer.play_select()
+
+func load_picture():
+	if (GameManager.audio_file == "res://audiotracks/linkinpark.ogg"):
+		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg")
+	else:
+		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
+
+func show_score():
+	# Stop any previous tween if it's still running
+	if score_tween and score_tween.is_valid():
+		score_tween.kill()
+
+	# Set initial text to 0 before starting the animation
+	score_value_label.text = "0"
+	notes_value_label.text = "0"
+
+	# Get final values (ensure they are floats for tweening)
+	var final_score = float(GameManager.current_points)
+	# Use round() first as in the original code, then cast to float
+	var final_notes = float(round(GameManager.total_notes_hit))
+
+	# Duration for each count-up animation in seconds
+	var score_duration = 1.0
+	var notes_duration = 0.8 # Can be different if desired
+
+	# Create a new tween
+	score_tween = create_tween()
+	# Ensure animations run one after the other
+	score_tween.set_parallel(false)
+	# Optional: Set easing for a smoother effect (e.g., slows down at the end)
+	score_tween.set_trans(Tween.TRANS_CUBIC)
+	score_tween.set_ease(Tween.EASE_OUT)
+
+	# --- Tween the score ---
+	# tween_method(callback_method, from_value, to_value, duration)
+	score_tween.tween_method(_update_score_display, 0.0, final_score, score_duration)
+
+	# --- Tween the notes hit ---
+	# This will start after the score tween finishes because set_parallel(false)
+	score_tween.tween_method(_update_notes_display, 0.0, final_notes, notes_duration)
+
+func _update_score_display(value: float):
+	# Update the score label's text with the current interpolated value
+	# Cast to int for display, as scores are usually whole numbers
+	score_value_label.text = str(int(value))
+
+func _update_notes_display(value: float):
+	# Update the notes label's text
+	notes_value_label.text = str(int(value))
 
 
 func setup_scrolling():
@@ -214,11 +288,10 @@ func generate_offline_analysis(data: Dictionary) -> String:
 	
 	return analysis
 
-func _on_play_again_pressed():
-	# Reset game state
-	GameManager.reset_game()
-	get_tree().change_scene_to_file("res://Intro_Title_Menu/title.tscn")
-
+#func _on_play_again_pressed():
+	## Reset game state
+	#GameManager.reset_game()
+	#get_tree().change_scene_to_file("res://Intro_Title_Menu/title.tscn")
 
 	
 func format_section(text: String, color_code: String) -> String:
@@ -230,13 +303,53 @@ func format_section(text: String, color_code: String) -> String:
 	
 	return result + "\n"
 
+# --- MODIFIED _input FUNCTION ---
 func _input(event):
+	# Check for mouse clicks on the play again button
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var play_rect = play_again_button.get_global_rect()
-		
-		if play_rect.has_point(event.position):
-			print("Play again button clicked via input handler")
-			_on_play_again_pressed()
+		# Ensure button exists and is visible before getting rect
+		if play_again_button and play_again_button.visible:
+			var play_rect = play_again_button.get_global_rect()
+			if play_rect.has_point(event.position):
+				print("Play again button clicked via input handler")
+				# Use call_deferred to avoid issues if called during physics process or similar
+				call_deferred("_on_play_again_pressed")
+				get_viewport().set_input_as_handled() # Stop event propagation
+				return # Don't process other input if button was clicked
+
+	# Check for keyboard presses for scrolling
+	if event is InputEventKey and event.pressed:
+		# Ensure scroll container is valid
+		if not scroll_container:
+			return
+
+		var scrolled = false
+		if event.keycode == KEY_W:
+			# Scroll Up
+			scroll_container.scroll_vertical -= scroll_speed
+			# ScrollContainer clamps automatically, but manual clamp is safer if needed:
+			# scroll_container.scroll_vertical = max(0, scroll_container.scroll_vertical - scroll_speed)
+			scrolled = true
+		elif event.keycode == KEY_E:
+			# Scroll Down
+			scroll_container.scroll_vertical += scroll_speed
+			# ScrollContainer clamps automatically, but manual clamp is safer if needed:
+			# var max_scroll = scroll_container.get_v_scroll_bar().max_value
+			# scroll_container.scroll_vertical = min(max_scroll, scroll_container.scroll_vertical + scroll_speed)
+			scrolled = true
+
+		# If we handled the scroll input, mark it as handled
+		if scrolled:
+			get_viewport().set_input_as_handled()
+# --- END MODIFIED _input FUNCTION ---
+
+#func _input(event):
+	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		#var play_rect = play_again_button.get_global_rect()
+		#
+		##if play_rect.has_point(event.position):
+			##print("Play again button clicked via input handler")
+			##_on_play_again_pressed()
 			
 func force_scroll_update():
 	await get_tree().process_frame
@@ -249,3 +362,11 @@ func force_scroll_update():
 			scroll_container.scroll_vertical = 0
 		elif scroll_container.has_method("set_v_scroll"):
 			scroll_container.set_v_scroll(0)
+
+
+func _on_play_again_button_pressed() -> void:
+	# Reset game state
+	GameManager.reset_game()
+	# Resume game if paused (ensure tree is unpaused before scene change)
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Intro_Title_Menu/title.tscn")

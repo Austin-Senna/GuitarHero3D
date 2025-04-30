@@ -58,3 +58,7 @@ func play_title_screen():
 func play_menu_screen():
 	bg_player.stream = audio_menu
 	bg_player.play()
+
+func play_current_song():
+	bg_player.stream = load(GameManager.audio_file)
+	bg_player.play()

@@ -301,7 +301,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-value = 70.0
+value = 85.0
 texture_progress = ExtResource("15_kbpck")
 
 [node name="Space2" type="Panel" parent="PanelContainer/HBoxContainer/Menu"]

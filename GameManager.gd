@@ -1,5 +1,8 @@
 extends Node
 
+#For debugging
+var show_end_game_button = true
+
 # Score variables
 var combo_streak = false
 var current_points = 0
@@ -11,8 +14,10 @@ var high_score = 0
 var combo_multiplier_threshold = 8.0
 var combo_streak_count_threshold = 5.0 * combo_threshold
 var streak_multiplier = 2.0
-var time_before_flash = 1.0
+var miss_count = 0
+var total_notes_hit = 0
 
+var time_before_flash = 1.0
 var audio_length = 0
 var current_time = 0
 
@@ -159,6 +164,7 @@ func end_game(quit_after: bool = false):
 
 func add_points_short_note():
 	combo_count += 1
+	total_notes_hit += 1
 	combo_streak_count = min(combo_streak_count_threshold + 2, combo_streak_count +1)
 	update_combo_multiplier()
 	
@@ -169,6 +175,7 @@ func add_points_short_note():
 
 func add_points_long_note(duration_seconds: float):
 	combo_count += 1
+	total_notes_hit += 1
 	combo_streak_count= min(100, combo_streak_count +1)
 	update_combo_multiplier()
 	
@@ -190,6 +197,7 @@ func update_combo_multiplier():
 func subtract_points():
 	# Reset combo on miss
 	combo_count = 0
+	miss_count += 1
 	combo_streak_count = max(0,combo_streak_count-2)
 	combo_multiplier = 1
 	
@@ -200,6 +208,7 @@ func subtract_points():
 func subtract_points_missed_note():
 	# Reset combo on missed note
 	combo_count = 0
+	miss_count += 1
 	combo_streak_count = max(0,combo_streak_count-2)
 	combo_multiplier = 1
 	

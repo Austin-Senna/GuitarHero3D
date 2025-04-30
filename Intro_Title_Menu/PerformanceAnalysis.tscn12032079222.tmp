@@ -1,40 +1,22 @@
-[gd_scene load_steps=23 format=3 uid="uid://d160v1cowinvo"]
+[gd_scene load_steps=21 format=3 uid="uid://d160v1cowinvo"]
 
 [ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
 [ext_resource type="Texture2D" uid="uid://cnrt7bkc0r6c1" path="res://Intro_Title_Menu/Images/bumblebee_rockstar_no_bg.png" id="3_3xvyr"]
-[ext_resource type="Texture2D" uid="uid://c04252ygqqrvs" path="res://Intro_Title_Menu/Images/shootingStars.png" id="4_64hda"]
+[ext_resource type="Shader" uid="uid://dseuoh400jif6" path="res://Intro_Title_Menu/infinitescroll.gdshader" id="3_84kny"]
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_a26kj"]
 [ext_resource type="Texture2D" uid="uid://ilre8r50rw6g" path="res://Intro_Title_Menu/performanceanalysis/image.png" id="4_s6tqy"]
 [ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
 [ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="6_5n23y"]
-[ext_resource type="StyleBox" uid="uid://bwk2k7by4575j" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="8_eqc8r"]
 [ext_resource type="Texture2D" uid="uid://cmb6xhxwjko5n" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_default.png" id="9_dy0vk"]
 [ext_resource type="Texture2D" uid="uid://cl167nequiuuh" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_pressed.png" id="10_eqc8r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n23y"]
 
-[sub_resource type="Shader" id="Shader_3emdp"]
-code = "// Type: Canvas Item Shader
-shader_type canvas_item;
-
-uniform float scroll_speed_x = 0.05; // Adjust speed as needed
-uniform float scroll_speed_y = 0.0;
-
-void fragment() {
-	// Calculate the offset based on time and speed
-	vec2 offset = vec2(scroll_speed_x, scroll_speed_y) * TIME;
-
-	// Sample the texture, offsetting the UV coordinates
-	// fract() wraps UV using the texture's repeat setting
-	// The TextureRect's \"Tile\" stretch mode handles filling the area.
-	COLOR = texture(TEXTURE, fract(UV + offset));
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6tqy"]
-shader = SubResource("Shader_3emdp")
+shader = ExtResource("3_84kny")
 shader_parameter/scroll_speed_x = 0.05
 shader_parameter/scroll_speed_y = 0.0
 
@@ -91,13 +73,6 @@ texture = ExtResource("2_a26kj")
 [node name="Panel" type="Panel" parent="Main"]
 layout_mode = 2
 
-[node name="Stars2" type="TextureRect" parent="Main"]
-material = SubResource("ShaderMaterial_s6tqy")
-layout_mode = 2
-texture = ExtResource("4_64hda")
-expand_mode = 1
-stretch_mode = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Main"]
 layout_mode = 2
 
@@ -140,18 +115,12 @@ size_flags_vertical = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-theme_override_styles/panel = ExtResource("8_3emdp")
-
-[node name="IconContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/PanelContainer"]
+[node name="IconContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="Icon" type="TextureRect" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/PanelContainer/IconContainer"]
+[node name="Icon" type="TextureRect" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/IconContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -162,7 +131,6 @@ stretch_mode = 5
 [node name="ScorePanel" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("8_3emdp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel"]
 layout_mode = 2
@@ -197,7 +165,6 @@ horizontal_alignment = 1
 [node name="NotesPanel" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("8_3emdp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel"]
 layout_mode = 2

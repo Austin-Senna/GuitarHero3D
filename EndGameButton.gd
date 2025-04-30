@@ -2,6 +2,9 @@ extends Button
 
 func _ready():
 	# Always set up the button from scratch
+	if GameManager.show_end_game_button:
+		self.show()
+	
 	print("EndGameButton: Initializing")
 	text = "END GAME"
 	custom_minimum_size = Vector2(120, 40)
