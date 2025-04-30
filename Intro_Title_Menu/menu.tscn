@@ -277,7 +277,7 @@ size_flags_vertical = 10
 
 [node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Song2/SongContainer/Text/Title"]
 layout_mode = 2
-text = "What IS LOVE"
+text = "What IS LOVE?"
 label_settings = ExtResource("9_emxnm")
 
 [node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Song2/SongContainer/Text/Title"]

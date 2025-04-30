@@ -47,7 +47,7 @@ func change_icon_and_title():
 		$%Singer.text = "~ Linkin Park"
 	else:
 		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
-		$%Title.text = "What Is Love"
+		$%Title.text = "What Is Love?"
 		$%Singer.text = "~ Twice"
 	
 	
