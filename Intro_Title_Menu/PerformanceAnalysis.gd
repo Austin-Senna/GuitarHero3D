@@ -362,7 +362,7 @@ func force_scroll_update():
 			scroll_container.scroll_vertical = 0
 		elif scroll_container.has_method("set_v_scroll"):
 			scroll_container.set_v_scroll(0)
-
+	
 
 func _on_play_again_button_pressed() -> void:
 	# Reset game state
