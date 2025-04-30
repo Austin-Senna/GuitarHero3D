@@ -112,6 +112,7 @@ grow_vertical = 2
 script = ExtResource("1_geloo")
 
 [node name="BlackBG" type="ColorRect" parent="."]
+visible = false
 z_index = -100
 layout_mode = 0
 offset_right = 1161.0

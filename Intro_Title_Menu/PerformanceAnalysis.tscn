@@ -1,0 +1,158 @@
+[gd_scene load_steps=14 format=3 uid="uid://d160v1cowinvo"]
+
+[ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
+[ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
+[ext_resource type="Texture2D" uid="uid://cnrt7bkc0r6c1" path="res://Intro_Title_Menu/Images/bumblebee_rockstar_no_bg.png" id="3_3xvyr"]
+[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_a26kj"]
+[ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="5_gdduw"]
+[ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
+[ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="6_5n23y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n23y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dy0vk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6tqy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdduw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqc8r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3emdp"]
+font = ExtResource("5_gdduw")
+font_size = 40
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.894118)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_q01ft")
+
+[node name="genericAnimation" parent="." instance=ExtResource("6_3xvyr")]
+layout_mode = 1
+
+[node name="Main" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5n23y")
+
+[node name="Fade" type="TextureRect" parent="Main"]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("2_a26kj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxTexture_dy0vk")
+
+[node name="TitleLabel" type="Label" parent="Main/VBoxContainer/Title"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Performance Analysis"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="Everything Else" type="HBoxContainer" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftSide" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="PanelContainer" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/LeftSide"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s6tqy")
+
+[node name="BumbleBee" type="TextureRect" parent="Main/VBoxContainer/Everything Else/LeftSide/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("3_3xvyr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Middle" type="MarginContainer" parent="Main/VBoxContainer/Everything Else"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollHolder" type="Control" parent="Main/VBoxContainer/Everything Else/Middle"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/VBoxContainer/Everything Else/Middle/ScrollHolder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnalysisLabel" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/ScrollHolder/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(580, 2000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+label_settings = ExtResource("6_5n23y")
+autowrap_mode = 2
+
+[node name="Right Side" type="PanelContainer" parent="Main/VBoxContainer/Everything Else"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Right Side"]
+layout_mode = 2
+
+[node name="Buttons" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gdduw")
+
+[node name="Menu" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResumeButton" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eqc8r")
+
+[node name="PlayAgainButton" type="TextureButton" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons/Menu/ResumeButton"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons/Menu/ResumeButton"]
+layout_mode = 2
+text = "CONTINUE"
+label_settings = SubResource("LabelSettings_3emdp")
+horizontal_alignment = 1

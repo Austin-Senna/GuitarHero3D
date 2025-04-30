@@ -48,6 +48,7 @@ func _ready():
 	
 	GameManager.streak_set.connect(_on_streak_set)
 	GameManager.streak_fail.connect(_on_streak_fail)
+	GameManager.song_finished.connect(_on_song_finished)
 	
 	# Create CanvasLayer for UI
 	var canvas_layer = CanvasLayer.new()
@@ -58,6 +59,7 @@ func _ready():
 	var score_scene = load("res://ScoreUI.tscn")
 	if score_scene:
 		var score_instance = score_scene.instantiate()
+		score_instance.anchors_preset = Control.PRESET_FULL_RECT
 		canvas_layer.add_child(score_instance)  # Add to canvas_layer, not to self
 	
 	# Connect to music finished signal if it exists
@@ -86,15 +88,7 @@ func load_map():
 	return json_result
 	
 func _on_song_finished():
-	# Call this when the song ends
 	GameManager.end_game()
-	
-	# Create and show the performance analysis
-	var analysis_scene = load("res://PerformanceAnalysis.tscn")
-	if analysis_scene:
-		var analysis_instance = analysis_scene.instantiate()
-		add_child(analysis_instance)
-		analysis_instance.show_analysis()
 	
 # If you want to save score when quitting
 func _notification(what):
@@ -104,11 +98,9 @@ func _notification(what):
 		
 # Also add this to handle in-game quit buttons if you have them
 func _on_quit_button_pressed():
-	GameManager.end_game()
-	get_tree().quit()
+	_on_song_finished()
 	
 func _process(delta) -> void:
-	
 	if (!paused):
 		GameManager.current_time += delta
 		
@@ -125,7 +117,6 @@ func _on_streak_set():
 	set_combo()
 
 func set_normal():
-	
 	if not is_tween_active():
 		var tween = create_tween()
 		var target_color = moon_base_color

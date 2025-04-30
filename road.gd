@@ -40,11 +40,12 @@ func add_bars():
 func _process(delta):
 	# Every delta, bars_node moves by speed
 	bars_node.translate(speed*delta)
-	
-	for bar in bars:
-		if bar.global_position.z > deletion_z_threshold:
-			remove_bar(bar)
-			add_bar()
+
+	if (GameManager.current_time<= GameManager.audio_length):
+		for bar in bars:
+			if bar.global_position.z > deletion_z_threshold:
+				remove_bar(bar)
+				add_bar()
 	
 	
 func _on_streak_set():
@@ -68,11 +69,12 @@ func add_bar():
 	var bar = bar_scn.instantiate()
 	bar.set_position(Vector3(curr_location.x, curr_location.y, curr_location.z))
 	bar.note_scale = note_scale
-	bar.bar_data = get_bar_data()
-	bar.speed = speed
-	bars.append(bar)
-	bars_node.add_child(bar)
-	curr_location += Vector3(0,0,-bar_length)
-	curr_bar_index += 1
+	if (curr_bar_index < len(tracks_data[0].bars)):
+		bar.bar_data = get_bar_data()
+		bar.speed = speed
+		bars.append(bar)
+		bars_node.add_child(bar)
+		curr_location += Vector3(0,0,-bar_length)
+		curr_bar_index += 1
 		
 	

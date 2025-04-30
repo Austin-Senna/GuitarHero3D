@@ -6,11 +6,12 @@ var current_points = 0
 var combo_count = 0
 var combo_streak_count = 0
 var combo_multiplier = 1
-var combo_threshold = 4
+var combo_threshold = 6
 var high_score = 0
 var combo_multiplier_threshold = 8.0
 var combo_streak_count_threshold = 5.0 * combo_threshold
 var streak_multiplier = 2.0
+var time_before_flash = 1.0
 
 var audio_length = 0
 var current_time = 0
@@ -37,20 +38,23 @@ signal combo_updated(new_combo)
 signal high_score_broken(new_high_score)
 signal streak_set()
 signal streak_fail()
+signal song_finished()
+signal pre_song_finished()
 
 # File paths
 var score_file_path = "res://score_history.txt"  # Changed from user:// to res://
 var high_score_file_path = "res://high_score.txt"  # Changed from user:// to res://
 
 # Audio file paths (keep existing references)
-var audio_file = "res://audiotracks/linkinpark.ogg"
-var map_file = "res://audiotracks/linkinpark.mboy"
+var audio_file = "res://audiotracks/twice/what_is_love.mp3"
+var map_file = "res://audiotracks/twice/TWICE.mboy"
 
 func reset_game():
 	print("GameManager: Reset game state")
 	current_points = 0
 	combo_count = 0
 	combo_multiplier = 1
+	current_time = 0
 	high_score_broken_this_game = false
 	game_ended = false          # Make sure this is reset
 	analysis_showing = false    # If you have this variable
@@ -87,6 +91,13 @@ func _process(delta):
 			combo_streak = false
 			streak_multiplier = 1.0
 			streak_fail.emit()
+			
+	if (current_time>=audio_length):
+		song_finished.emit()
+	
+	if (current_time>=audio_length - time_before_flash):
+		pre_song_finished.emit()
+	
 
 
 func load_high_score():
@@ -221,13 +232,14 @@ func start_game():
 	# Reset other game variables as needed
 	
 func show_performance_analysis():
-	var analysis_scene = load("res://PerformanceAnalysis.tscn")
-	if analysis_scene:
-		var analysis_instance = analysis_scene.instantiate()
-		get_tree().current_scene.add_child(analysis_instance)
-		analysis_instance.show_analysis()
-	else:
-		print("Failed to load PerformanceAnalysis scene")
+	get_tree().change_scene_to_file("res://Intro_Title_Menu/PerformanceAnalysis.tscn")
+	#var analysis_scene = load("res://PerformanceAnalysis.tscn")
+	#if analysis_scene:
+		#var analysis_instance = analysis_scene.instantiate()
+		#get_tree().current_scene.add_child(analysis_instance)
+		#analysis_instance.show_analysis()
+	#else:
+		#print("Failed to load PerformanceAnalysis scene")
 
 func open_data_folder():
 	OS.shell_open(get_user_data_directory())
@@ -238,7 +250,7 @@ func get_user_data_directory() -> String:
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("GameManager caught quit notification")
-		if not game_ended:
+		if not game_ended and (current_points != 0):
 			# Show analysis before quitting
 			end_game(true)
 			get_tree().set_auto_accept_quit(false)

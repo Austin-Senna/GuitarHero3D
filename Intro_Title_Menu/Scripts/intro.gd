@@ -4,6 +4,7 @@ extends Control
 var title = preload("res://Intro_Title_Menu/title.tscn")
 
 func _ready():
+	generic_anim_player.show_blackBG()
 	generic_anim_player.play_game_start()
 	generic_anim_player.play_fade_in()
 	get_tree().create_timer(2).timeout.connect(blackout)

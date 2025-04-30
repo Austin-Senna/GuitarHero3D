@@ -1,59 +1,19 @@
 extends Control
 
 var gemini_api: Node
-@onready var analysis_label = $VBoxContainer/ScrollHolder/ScrollContainer/AnalysisLabel
-@onready var close_button = $VBoxContainer/CloseButton
-@onready var play_again_button = $VBoxContainer/PlayAgainButton
-@onready var title_label = $VBoxContainer/TitleLabel
-@onready var scroll_container = $VBoxContainer/ScrollHolder/ScrollContainer
+@onready var analysis_label = $%AnalysisLabel
+@onready var play_again_button = $%PlayAgainButton
+@onready var title_label = $%TitleLabel
+@onready var scroll_container = $%ScrollContainer
+@onready var animPlayer = $genericAnimation
+@onready var scroll_holder = $%ScrollHolder
 var api_response_received = false
 
 func _ready():
-	# Make UI fullscreen
-	anchors_preset = Control.PRESET_FULL_RECT
-	visible = true
-	
-	# Set semi-transparent background
-	var background = $Background
-	background.color = Color(0.1, 0.1, 0.15, 0.85)  # Semi-transparent dark blue
-	
-	# Style the title
-	title_label.add_theme_font_size_override("font_size", 40)
-	title_label.add_theme_color_override("font_color", Color(1, 0.8, 0.2))  # Gold color
-	title_label.add_theme_constant_override("shadow_offset_x", 2)
-	title_label.add_theme_constant_override("shadow_offset_y", 2)
-	title_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.5))
-	
-	# Style analysis text
-	analysis_label.add_theme_font_size_override("font_size", 18)
-	analysis_label.add_theme_color_override("font_color", Color(1, 1, 1))
-	
-	# Style buttons
-	play_again_button.add_theme_font_size_override("font_size", 20)
-	close_button.add_theme_font_size_override("font_size", 20)
-	
-	var btn_style = StyleBoxFlat.new()
-	btn_style.bg_color = Color(0.2, 0.4, 0.6)
-	
-	# Set borders individually
-	btn_style.border_width_top = 2
-	btn_style.border_width_right = 2
-	btn_style.border_width_bottom = 2
-	btn_style.border_width_left = 2
-	btn_style.border_color = Color(0.3, 0.5, 0.8)
-
-	# Set corners individually
-	btn_style.corner_radius_top_left = 10
-	btn_style.corner_radius_top_right = 10
-	btn_style.corner_radius_bottom_left = 10
-	btn_style.corner_radius_bottom_right = 10
-	
-	play_again_button.add_theme_stylebox_override("normal", btn_style.duplicate())
-	
-	var exit_style = btn_style.duplicate()
-	exit_style.bg_color = Color(0.6, 0.2, 0.2)
-	exit_style.border_color = Color(0.8, 0.3, 0.3)
-	close_button.add_theme_stylebox_override("normal", exit_style)
+	animPlayer.show_blackBG()
+	animPlayer.play_white_fade_in()
+	animPlayer.play_victory()
+	animPlayer.play_menu_screen()
 	
 	setup_scrolling()
 	
@@ -64,19 +24,16 @@ func _ready():
 	gemini_api.error_occurred.connect(_on_analysis_error)
 	
 	
-	# Connect buttons using direct callable approach
-	close_button.connect("pressed", Callable(self, "_on_exit_pressed"))
 	play_again_button.connect("pressed", Callable(self, "_on_play_again_pressed"))
 
 	# Enable input processing for backup button handling
 	set_process_input(true)
+	
+	show_analysis()
 
 
 func setup_scrolling():
 	print("Setting up scrolling...")
-	
-	var scroll_container = $VBoxContainer/ScrollHolder/ScrollContainer
-	var analysis_label = $VBoxContainer/ScrollHolder/ScrollContainer/AnalysisLabel
 	
 	if not scroll_container or not analysis_label:
 		print("ERROR: Scroll structure not found!")
@@ -101,7 +58,6 @@ func setup_scrolling():
 	analysis_label.custom_minimum_size = Vector2(scroll_container.size.x, 2000)
 	
 	# Ensure the ScrollContainer has enough height
-	var scroll_holder = $VBoxContainer/ScrollHolder
 	scroll_holder.custom_minimum_size = Vector2(600, 400)
 	
 	# Try to find and configure the scrollbar (version-agnostic approach)
@@ -259,24 +215,11 @@ func generate_offline_analysis(data: Dictionary) -> String:
 	return analysis
 
 func _on_play_again_pressed():
-	# Unpause the game first
-	get_tree().paused = false
-	
 	# Reset game state
 	GameManager.reset_game()
-	
-	# Return to the game scene
-	get_tree().change_scene_to_file("res://game.tscn")
-	
-	# Remove analysis UI
-	queue_free()
+	get_tree().change_scene_to_file("res://Intro_Title_Menu/title.tscn")
 
-func _on_exit_pressed():
-	# Unpause before quitting
-	get_tree().paused = false
-	
-	# Quit when explicitly requested by user
-	get_tree().quit()
+
 	
 func format_section(text: String, color_code: String) -> String:
 	var lines = text.split("\n")
@@ -289,13 +232,9 @@ func format_section(text: String, color_code: String) -> String:
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var close_rect = close_button.get_global_rect()
 		var play_rect = play_again_button.get_global_rect()
 		
-		if close_rect.has_point(event.position):
-			print("Close button clicked via input handler")
-			_on_exit_pressed()
-		elif play_rect.has_point(event.position):
+		if play_rect.has_point(event.position):
 			print("Play again button clicked via input handler")
 			_on_play_again_pressed()
 			
