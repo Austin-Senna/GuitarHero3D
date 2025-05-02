@@ -324,13 +324,13 @@ func _input(event):
 			return
 
 		var scrolled = false
-		if event.keycode == KEY_W:
+		if event.keycode == KEY_UP:
 			# Scroll Up
 			scroll_container.scroll_vertical -= scroll_speed
 			# ScrollContainer clamps automatically, but manual clamp is safer if needed:
 			# scroll_container.scroll_vertical = max(0, scroll_container.scroll_vertical - scroll_speed)
 			scrolled = true
-		elif event.keycode == KEY_E:
+		elif event.keycode == KEY_DOWN:
 			# Scroll Down
 			scroll_container.scroll_vertical += scroll_speed
 			# ScrollContainer clamps automatically, but manual clamp is safer if needed:

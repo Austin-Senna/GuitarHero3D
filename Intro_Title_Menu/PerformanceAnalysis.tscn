@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d160v1cowinvo"]
+[gd_scene load_steps=23 format=3 uid="uid://3tspog8excun"]
 
 [ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
@@ -9,7 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
 [ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="6_5n23y"]
-[ext_resource type="StyleBox" uid="uid://bwk2k7by4575j" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
+[ext_resource type="StyleBox" uid="uid://xjdp8fc5ksaj" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="8_eqc8r"]
 [ext_resource type="Texture2D" uid="uid://cmb6xhxwjko5n" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_default.png" id="9_dy0vk"]
 [ext_resource type="Texture2D" uid="uid://cl167nequiuuh" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_pressed.png" id="10_eqc8r"]

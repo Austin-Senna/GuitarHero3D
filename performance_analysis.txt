@@ -1,43 +1,46 @@
-=== Performance Analysis - 30/04/2025 19:16:35 ===
-Total Notes: 83
-Correct Hits: 130
-Accuracy: 156.6%
-Wrong Keys: 36
-Missed Notes: 6
+=== Performance Analysis - 02/05/2025 09:49:56 ===
+Total Notes: 698
+Correct Hits: 734
+Accuracy: 105.2%
+Wrong Keys: 261
+Missed Notes: 152
 
 Waiting for AI analysis...
 
 === AI Coach Feedback ===
 **1. Critical Issues:**
 
-* **Inconsistent Accuracy Across Keys:**  Significant disparity in accuracy between keys (e.g., R key's 92.3% vs. Q key's -29.4% and E key's 14.3%) indicates a lack of consistent finger placement and timing across the fretboard.  The negative accuracy on the Q key suggests a more serious problem than simple inaccuracy.
-* **Significant Q Key Issues:** The -29.4% accuracy and high number of wrong notes on the Q key strongly suggest a fundamental problem with either finger placement, hand position, or muscle memory for that key. This needs immediate attention.
-* **Missed Notes (though fewer):** While fewer than wrong notes, missed notes still indicate timing issues that need to be addressed for improved overall score.
+1. **Inconsistent Accuracy Across Keys:**  Significant discrepancies in accuracy between keys (Q, W, E, R) indicate a lack of consistent finger placement, hand coordination, and muscle memory.  The low accuracy on W is particularly alarming.
+2. **High Number of Missed Notes (152):** This suggests problems with timing and rhythm, potentially stemming from inaccurate note reading speed or poor strumming consistency.
+3. **High Number of Wrong Keys (261):**  This directly reinforces the inconsistency issue, pointing towards difficulties with hand-eye coordination and quick, accurate fretting.
 
 
 **2. Practice Exercises:**
 
-* **Q Key Focus:**
-	* **Single Note Accuracy:** Play a sequence of only Q notes at varying tempos, focusing exclusively on perfect placement and timing. Gradually increase speed.
-	* **Q-based Patterns:** Practice short, simple patterns using only the Q key, slowly building complexity.
-	* **Hand Position Check:** Ensure correct hand position and posture to facilitate comfortable and accurate Q key presses.
-* **Key Consistency:**
-	* **Random Key Sequences:** Play random sequences of notes across all keys, focusing on maintaining consistent speed and accuracy.
-	* **Alternating Hand Exercises:** Focus on fast, accurate alternating between keys like Q-W-E-R and vice-versa.
-* **Timing Improvement:**
-	* **Rhythm Training:** Use Guitar Hero's training mode or external rhythm games to improve timing and rhythmic accuracy.  Focus on consistent strumming.
+* **Issue 1 (Inconsistent Accuracy):**
+	* **Key-Specific Drills:** Focus on individual keys with progressively faster sequences of notes (start slow, gradually increase speed).  Use Guitar Hero's practice mode to isolate specific sections with problematic keys.
+	* **Hand Coordination Exercises:** Practice scales and chords using only the problematic keys.  Focus on smooth transitions and precise finger placement.
+
+* **Issue 2 (Missed Notes):**
+	* **Metronome Practice:** Play along with a metronome at a comfortable speed, gradually increasing tempo as accuracy improves. Focus on maintaining consistent strumming rhythm.
+	* **Rhythm Games:**  Supplement with rhythm-based games or apps to improve timing and precision.
+
+* **Issue 3 (Wrong Keys):**
+	* **Visual Focus Exercises:**  Concentrate intensely on the note highway, slowing down initially if needed to improve visual tracking.
+	* **Reduced Note Density:** Practice songs with fewer notes initially to build confidence and accuracy.  Gradually increase difficulty.
+
 
 **3. Recommended Training Plan (Next Session):**
 
-1. **Warm-up (10 min):** Easy songs focusing on consistent strumming and rhythmic accuracy.
-2. **Q Key Remediation (20 min):**  Focus exclusively on Q key exercises.  Start slow and build speed gradually.
-3. **Key Consistency Training (20 min):** Practice random key sequences and alternating hand exercises.
-4. **Full Song Practice (20 min):** Play songs at a difficulty level that allows for roughly 80% accuracy.  Focus on maintaining consistency across keys.
-5. **Cool-down (10 min):** Easy songs to relax and avoid fatigue.
+1. **Warm-up (15 min):** Simple scales and chords using all four keys, focusing on consistent strumming.
+2. **Focused Practice (30 min):**  Address the weakest key (W) using key-specific drills and metronome practice.  Incorporate visual focus exercises.
+3. **Song Practice (30 min):** Play songs at a comfortable difficulty, focusing on consistent accuracy and rhythm.  Use practice mode to address specific sections.
+4. **Cool-down (15 min):** Easy songs to maintain a positive learning experience.
+
 
 **4. Encouragement:**
 
-Your R key performance is excellent! This demonstrates your potential for high accuracy with focused practice.  The high number of correct hits overall is also a great sign. With dedicated practice targeting the Q key and improving consistency, you will significantly improve your overall score.  Don't be discouraged by the negative accuracy on the Q key; it is fixable. Focus on proper technique and consistent practice, and you will see substantial improvement.
+Your overall accuracy of 105.2% is impressive and shows your potential! While there’s room for improvement, you've demonstrated excellent reflexes with your extra presses being 0.  Focus on improving consistency across keys through targeted practice, and you'll see significant progress.  Remember to prioritize accuracy over speed in the initial stages of practice.
 
 
 ==================================================

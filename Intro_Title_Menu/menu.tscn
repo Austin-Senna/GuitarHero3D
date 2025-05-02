@@ -154,6 +154,80 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 
+[node name="LinkinParkEasy" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonEasy" type="TextureButton" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("10_k8ayi")
+texture_pressed = ExtResource("11_k8ayi")
+texture_focused = ExtResource("10_kd2c0")
+stretch_mode = 0
+
+[node name="Song1" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="SongContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1"]
+layout_mode = 2
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/IconContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_2kg56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+
+[node name="Title" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text/Title"]
+layout_mode = 2
+text = "What I've Done"
+label_settings = ExtResource("9_emxnm")
+
+[node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(EASY) ~ Linkin Park"
+label_settings = ExtResource("7_emxnm")
+horizontal_alignment = 2
+
+[node name="Description" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Difficulty" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text/Description"]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = ExtResource("7_emxnm")
+
+[node name="Level" type="TextureProgressBar" parent="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/Song1/SongContainer/Text/Description"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 30.0
+texture_progress = ExtResource("15_kbpck")
+
 [node name="LinkinPark" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -309,5 +383,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k8ayi")
 
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/ButtonEasy" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinPark/Button1" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Button2" to="." method="_on_button_main_pressed"]

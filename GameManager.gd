@@ -1,7 +1,7 @@
 extends Node
 
 #For debugging
-var show_end_game_button = true
+var show_end_game_button = false
 
 # Score variables
 var combo_streak = false

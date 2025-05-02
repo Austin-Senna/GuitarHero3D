@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://11uafqem00sv"]
+[gd_scene load_steps=10 format=3 uid="uid://8d5mecoregfc"]
 
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="1_f1f8m"]
 [ext_resource type="LabelSettings" uid="uid://bi3sdl3uw2lue" path="res://Intro_Title_Menu/Fonts/score.tres" id="3_ob6th"]
