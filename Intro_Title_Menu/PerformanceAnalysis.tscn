@@ -1,0 +1,302 @@
+[gd_scene load_steps=24 format=3 uid="uid://3tspog8excun"]
+
+[ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
+[ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
+[ext_resource type="Texture2D" uid="uid://cnrt7bkc0r6c1" path="res://Intro_Title_Menu/Images/bumblebee_rockstar_no_bg.png" id="3_3xvyr"]
+[ext_resource type="Texture2D" uid="uid://c04252ygqqrvs" path="res://Intro_Title_Menu/Images/shootingStars.png" id="4_64hda"]
+[ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_a26kj"]
+[ext_resource type="Texture2D" uid="uid://ilre8r50rw6g" path="res://Intro_Title_Menu/performanceanalysis/image.png" id="4_s6tqy"]
+[ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
+[ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
+[ext_resource type="StyleBox" uid="uid://xjdp8fc5ksaj" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
+[ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="8_eqc8r"]
+[ext_resource type="Texture2D" uid="uid://cmb6xhxwjko5n" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_default.png" id="9_dy0vk"]
+[ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="10_3emdp"]
+[ext_resource type="Texture2D" uid="uid://cl167nequiuuh" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_pressed.png" id="10_eqc8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n23y"]
+
+[sub_resource type="Shader" id="Shader_3emdp"]
+code = "// Type: Canvas Item Shader
+shader_type canvas_item;
+
+uniform float scroll_speed_x = 0.05; // Adjust speed as needed
+uniform float scroll_speed_y = 0.0;
+
+void fragment() {
+	// Calculate the offset based on time and speed
+	vec2 offset = vec2(scroll_speed_x, scroll_speed_y) * TIME;
+
+	// Sample the texture, offsetting the UV coordinates
+	// fract() wraps UV using the texture's repeat setting
+	// The TextureRect's \"Tile\" stretch mode handles filling the area.
+	COLOR = texture(TEXTURE, fract(UV + offset));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6tqy"]
+shader = SubResource("Shader_3emdp")
+shader_parameter/scroll_speed_x = 0.05
+shader_parameter/scroll_speed_y = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6tqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdduw"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_64hda"]
+font = ExtResource("10_3emdp")
+font_size = 24
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.886275)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dy0vk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdduw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqc8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6tqy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_q01ft")
+
+[node name="genericAnimation" parent="." instance=ExtResource("6_3xvyr")]
+layout_mode = 1
+
+[node name="Main" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5n23y")
+
+[node name="Stars" type="TextureRect" parent="Main"]
+material = SubResource("ShaderMaterial_s6tqy")
+layout_mode = 2
+texture = ExtResource("4_s6tqy")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Fade" type="TextureRect" parent="Main"]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("2_a26kj")
+
+[node name="Panel" type="Panel" parent="Main"]
+layout_mode = 2
+
+[node name="Stars2" type="TextureRect" parent="Main"]
+material = SubResource("ShaderMaterial_s6tqy")
+layout_mode = 2
+texture = ExtResource("4_64hda")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tqy")
+
+[node name="TitleLabel" type="Label" parent="Main/VBoxContainer/Title"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Performance Analysis"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="Everything Else" type="HBoxContainer" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Middle" type="MarginContainer" parent="Main/VBoxContainer/Everything Else"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Middle" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Middle"]
+layout_mode = 2
+
+[node name="Scorebox" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = ExtResource("8_3emdp")
+
+[node name="IconContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Icon" type="TextureRect" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/PanelContainer/IconContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_eqc8r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScorePanel" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("8_3emdp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Score" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ScoreTitle" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel/MarginContainer/Score"]
+layout_mode = 2
+text = "SCORE:"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel/MarginContainer/Score"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gdduw")
+
+[node name="ScoreValue" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/ScorePanel/MarginContainer/Score"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="NotesPanel" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("8_3emdp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Total Notes" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="NotesTitle" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel/MarginContainer/Total Notes"]
+layout_mode = 2
+text = "notes hit:"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel/MarginContainer/Total Notes"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gdduw")
+
+[node name="NotesValue" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/Middle/Scorebox/HBoxContainer/NotesPanel/MarginContainer/Total Notes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("4_a26kj")
+horizontal_alignment = 1
+
+[node name="ScrollHolder" type="Control" parent="Main/VBoxContainer/Everything Else/Middle/Middle"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/VBoxContainer/Everything Else/Middle/Middle/ScrollHolder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("5_84kny")
+
+[node name="AnalysisLabel" type="Label" parent="Main/VBoxContainer/Everything Else/Middle/Middle/ScrollHolder/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(580, 2000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_64hda")
+autowrap_mode = 2
+
+[node name="Right Side" type="PanelContainer" parent="Main/VBoxContainer/Everything Else"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dy0vk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/VBoxContainer/Everything Else/Right Side"]
+layout_mode = 2
+
+[node name="Buttons" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gdduw")
+
+[node name="ResumeButton" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eqc8r")
+
+[node name="PlayAgainButton" type="TextureButton" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons/ResumeButton"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture_normal = ExtResource("9_dy0vk")
+texture_pressed = ExtResource("10_eqc8r")
+texture_hover = ExtResource("10_eqc8r")
+texture_focused = ExtResource("10_eqc8r")
+
+[node name="PanelContainer" type="PanelContainer" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s6tqy")
+
+[node name="BumbleBee" type="TextureRect" parent="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("3_3xvyr")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="Main/VBoxContainer/Everything Else/Right Side/VBoxContainer/Buttons/ResumeButton/PlayAgainButton" to="." method="_on_play_again_button_pressed"]

@@ -14,25 +14,26 @@ var focused_index: int = -1
 var audiofiles: Array[String] = [
 	"res://audiotracks/linkinpark.ogg",
 	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/entersandman.mp3"
+	"res://audiotracks/twice/what_is_love.mp3"
 ]
 
 var mapfiles: Array[String] = [
+	"res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
 	"res://audiotracks/linkinpark.mboy",
-	"res://audiotracks/map.mboy",
-	"res://audiotracks/map.mboy"
+	"res://audiotracks/twice/TWICE.mboy"
 ]
 
 
 func _ready() -> void:
+	animPlayer.show_blackBG()
 	animPlayer.play_white_fade_in()
 	animPlayer.play_menu_screen()
 	
 	
 	buttons = [
+		$%ButtonEasy,
 		$%Button1,
 		$%Button2,
-		$%Button3
 	]
 	
 	for i in range(buttons.size()):

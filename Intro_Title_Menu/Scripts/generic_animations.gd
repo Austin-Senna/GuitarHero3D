@@ -16,6 +16,9 @@ var audio_menu = preload("res://Intro_Title_Menu/Audio/menu_rock.mp3")
 
 func _ready():
 	self.z_index = 10;
+
+func show_blackBG():
+	$BlackBG.show()
 	
 func play_white_fade_out():
 	$WhiteBlinks.show()
@@ -45,8 +48,8 @@ func play_game_start():
 	bg_player.play()
 
 func play_victory():
-	bg_player.stream = audio_victory
-	bg_player.play()
+	audio_player.stream = audio_victory
+	audio_player.play()
 
 func play_title_screen():
 	bg_player.stream = audio_title
@@ -54,4 +57,8 @@ func play_title_screen():
 
 func play_menu_screen():
 	bg_player.stream = audio_menu
+	bg_player.play()
+
+func play_current_song():
+	bg_player.stream = load(GameManager.audio_file)
 	bg_player.play()

@@ -13,9 +13,10 @@ var active_tweens: Dictionary = {}
 
 
 func _ready() -> void:
+	animPlayer.show_blackBG()
 	animPlayer.play_fade_in()
 	animPlayer.play_victory()
-	get_tree().create_timer(1.25).timeout.connect(animPlayer.play_title_screen)
+	animPlayer.play_title_screen()
 
 	buttons = [
 		$%StartButton,

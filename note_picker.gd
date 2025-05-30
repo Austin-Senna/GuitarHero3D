@@ -107,12 +107,25 @@ func handle_key_press(pressed: bool):
 	is_pressed = pressed
 	is_collecting = pressed
 	
-	if pressed and has_note_to_collect:
-		play_hit()
-	# Check for miss (pressed key without note to collect)
-	if pressed and not is_pressed and has_note_to_collect:
-		GameManager.subtract_points()
-		fail_player.play()
+	if pressed:
+			# Log the key press (from your Kaan branch)
+		var key_name = ""
+		match line:
+			1: key_name = "Q"
+			2: key_name = "W"
+			3: key_name = "E"
+			4: key_name = "R"
+		
+		# Log the key press for analysis
+		GameManager.key_logger.log_key_press(key_name, has_note_to_collect)
+		
+		# Visual and sound effects for hits (from main branch)
+		if has_note_to_collect:
+			play_hit()
+		# Check for miss (pressed key without note to collect)
+		else:
+			GameManager.subtract_points()
+			fail_player.play()
 		
 func play_hit():
 	hit_player.play()
@@ -127,7 +140,7 @@ func play_hit():
 	timer.timeout.connect(vfx_instance.queue_free)
 	add_child(timer)
 	timer.start()
-	
+
 func _process(_delta):
 	if is_pressed:
 		set_material_activated()
@@ -135,3 +148,4 @@ func _process(_delta):
 	else:
 		set_material()
 		translate_trigger(Vector3(0,0,0))
+		

@@ -48,6 +48,7 @@ func _ready():
 	
 	GameManager.streak_set.connect(_on_streak_set)
 	GameManager.streak_fail.connect(_on_streak_fail)
+	GameManager.song_finished.connect(_on_song_finished)
 	
 	# Create CanvasLayer for UI
 	var canvas_layer = CanvasLayer.new()
@@ -58,11 +59,18 @@ func _ready():
 	var score_scene = load("res://ScoreUI.tscn")
 	if score_scene:
 		var score_instance = score_scene.instantiate()
+		score_instance.anchors_preset = Control.PRESET_FULL_RECT
 		canvas_layer.add_child(score_instance)  # Add to canvas_layer, not to self
 	
 	# Connect to music finished signal if it exists
 	if music_node.has_signal("finished"):
 		music_node.finished.connect(_on_song_finished)
+	
+	GameManager.start_game()
+	
+	get_tree().root.set_process_shortcut_input(true)
+	
+	print("Game setup complete - will intercept quit attempts")
 	
 func calc_params():
 	tempo = int(map.tempo)
@@ -80,24 +88,19 @@ func load_map():
 	return json_result
 	
 func _on_song_finished():
-	# Call this when the song ends
 	GameManager.end_game()
 	
 # If you want to save score when quitting
 func _notification(what):
-	# Handle only the quit request once
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if not GameManager.game_ended:  # Check if already saved
-			GameManager.end_game()
+		# Just quit directly, don't show analysis
 		get_tree().quit()
 		
 # Also add this to handle in-game quit buttons if you have them
 func _on_quit_button_pressed():
-	GameManager.end_game()
-	get_tree().quit()
+	_on_song_finished()
 	
 func _process(delta) -> void:
-	
 	if (!paused):
 		GameManager.current_time += delta
 		
@@ -114,7 +117,6 @@ func _on_streak_set():
 	set_combo()
 
 func set_normal():
-	
 	if not is_tween_active():
 		var tween = create_tween()
 		var target_color = moon_base_color
@@ -149,3 +151,8 @@ func is_tween_active():
 		if is_instance_valid(node) and node.is_running():
 			return true
 	return false
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_F1:  # Press F1 to open the data folder
+			GameManager.open_data_folder()

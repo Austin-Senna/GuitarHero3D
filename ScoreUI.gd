@@ -7,6 +7,9 @@ extends Control
 @onready var transformers_font = preload("res://Intro_Title_Menu/Fonts/Transformers Movie.ttf")
 @onready var game_progress_bar = $%GameProgressBar
 @onready var combo_progress_bar = $%ComboProgressBar
+@onready var animPlayer = $genericAnimation
+
+var selected_song
 var multiplier = 1.0
 # Keep track of the last known streak count for animation triggers
 var last_streak_count = -1
@@ -25,13 +28,28 @@ func _ready():
 	GameManager.score_updated.connect(_on_check_high_score)
 	GameManager.streak_set.connect(_on_streak_set)
 	GameManager.streak_fail.connect(_on_streak_fail)
-	
+	GameManager.pre_song_finished.connect(_pre_song_finished)
 	
 	# Initialize labels
 	score_label.text = "SCORE: 0"
 	combo_label.text = "x1.0"
 	combo_count_label.text = "(0)"
 	high_score_label.text = "HIGH SCORE: " + str(int(GameManager.high_score))
+	
+	animPlayer.play_white_fade_in()
+	change_icon_and_title()
+		
+	
+func change_icon_and_title():
+	if (GameManager.audio_file == "res://audiotracks/linkinpark.ogg"):
+		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg")
+		$%Title.text = "What I've Done"
+		$%Singer.text = "~ Linkin Park"
+	else:
+		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
+		$%Title.text = "What Is Love?"
+		$%Singer.text = "~ Twice"
+	
 	
 func _process(delta):
 	game_progress_bar.value = GameManager.current_time/GameManager.audio_length * 100
@@ -191,3 +209,7 @@ func _on_combo_updated(new_combo):
 func _on_check_high_score(current_score):
 	if current_score > GameManager.high_score:
 		high_score_label.text = "HIGH SCORE: " + str(int(current_score))
+
+func _pre_song_finished():
+	animPlayer.play_white_fade_out()
+	
