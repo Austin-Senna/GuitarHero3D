@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://3tspog8excun"]
+[gd_scene load_steps=24 format=3 uid="uid://3tspog8excun"]
 
 [ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://ilre8r50rw6g" path="res://Intro_Title_Menu/performanceanalysis/image.png" id="4_s6tqy"]
 [ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
-[ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="6_5n23y"]
 [ext_resource type="StyleBox" uid="uid://xjdp8fc5ksaj" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="8_eqc8r"]
 [ext_resource type="Texture2D" uid="uid://cmb6xhxwjko5n" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_default.png" id="9_dy0vk"]
+[ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="10_3emdp"]
 [ext_resource type="Texture2D" uid="uid://cl167nequiuuh" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_pressed.png" id="10_eqc8r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n23y"]
@@ -42,6 +42,12 @@ shader_parameter/scroll_speed_y = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdduw"]
 bg_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_64hda"]
+font = ExtResource("10_3emdp")
+font_size = 24
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.886275)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dy0vk"]
 
@@ -251,7 +257,7 @@ custom_minimum_size = Vector2(580, 2000)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-label_settings = ExtResource("6_5n23y")
+label_settings = SubResource("LabelSettings_64hda")
 autowrap_mode = 2
 
 [node name="Right Side" type="PanelContainer" parent="Main/VBoxContainer/Everything Else"]

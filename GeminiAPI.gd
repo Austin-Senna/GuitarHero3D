@@ -45,10 +45,10 @@ OVERALL PERFORMANCE:
 - Extra Presses: %d
 
 KEY-SPECIFIC PERFORMANCE:
-Q key: %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
-W key: %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
-E key: %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
-R key: %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
+Q key (small red button): %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
+W key (white button): %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
+E key (yellow button): %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
+R key (big red button): %d/%d correct (%.1f%% accuracy), %d missed, %d wrong
 
 Please provide:
 1. The top 2-3 most critical issues in their performance

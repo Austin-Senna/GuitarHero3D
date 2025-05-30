@@ -144,6 +144,8 @@ libraries = {
 
 [node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_e1a0d")
+volume_db = -5.0
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_e1a0d")
+volume_db = -5.0
