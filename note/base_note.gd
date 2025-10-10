@@ -82,8 +82,8 @@ func collect():
 	is_collected = true
 	GameManager.add_points_short_note()  # Update this line
 	if picker:
-		picker.is_collecting = false
 		to_hide_at = picker.global_position.z
+		picker.play_hit()
 	
 func process_hide_at():
 	if is_collected and visible and to_hide_at != null:

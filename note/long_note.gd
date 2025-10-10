@@ -91,7 +91,7 @@ func on_process(delta):
 					end_block.visible = true
 			elif hold_started:
 				hold_canceled = true
-				collect()
+				drop_note()
 
 		if hold_started and not hold_canceled and hold_at != null:
 			hold_duration += delta # Track how long we've been holding
@@ -123,13 +123,20 @@ func hide_with_beam():
 	if end_block:
 		end_block.visible = false
 	bonus_label.visible = false
+	
+func drop_note():
+	if end_block:
+		end_block.visible = false
+	bonus_label.visible = false
+	if picker:
+		picker.play_miss()
 
 func collect():
 	is_collected = true
 	# Award points based on how long the note was held
 	GameManager.add_points_long_note(hold_duration)
 	if picker:
-		picker.is_collecting = false
+		picker.play_hit()
 	hide_with_beam()
 
 # Override the _on_area_exited function to handle long notes
