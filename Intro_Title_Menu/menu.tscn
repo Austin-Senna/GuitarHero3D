@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://85250qst0lew"]
+[gd_scene load_steps=26 format=3 uid="uid://85250qst0lew"]
 
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="1_lh452"]
 [ext_resource type="Script" uid="uid://dlmitsymsj80q" path="res://Intro_Title_Menu/Scripts/menu.gd" id="1_mx1ny"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dpxhbdx00obl" path="res://Intro_Title_Menu/Fonts/menutexturefocused.tres" id="11_k8ayi"]
 [ext_resource type="Texture2D" uid="uid://c8nj4d88pqj5w" path="res://Intro_Title_Menu/Images for Menu/Gemini_Generated_Image_lk0shvlk0shvlk0s-removebg-preview.png" id="15_kbpck"]
 [ext_resource type="Texture2D" uid="uid://bgwpoiqkgh3od" path="res://Intro_Title_Menu/Images for Menu/twice.jpg" id="16_k8ayi"]
+[ext_resource type="Texture2D" uid="uid://cc3a1bc1e1vkr" path="res://Intro_Title_Menu/Images for Menu/nobodyone.png" id="17_kbpck"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3l3k"]
 
@@ -26,7 +27,7 @@ shader_parameter/scroll_speed_y = -0.7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_soguy"]
 shader = ExtResource("4_q3l3k")
-shader_parameter/scroll_speed_x = 1.0
+shader_parameter/scroll_speed_x = 0.5
 shader_parameter/scroll_speed_y = -0.5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emxnm"]
@@ -378,6 +379,80 @@ size_flags_vertical = 4
 value = 85.0
 texture_progress = ExtResource("15_kbpck")
 
+[node name="NobodyOne" type="PanelContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button3" type="TextureButton" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("10_k8ayi")
+texture_pressed = ExtResource("11_k8ayi")
+texture_focused = ExtResource("10_kd2c0")
+stretch_mode = 0
+
+[node name="Song3" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="SongContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3"]
+layout_mode = 2
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/IconContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("17_kbpck")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+
+[node name="Title" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Title" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text/Title"]
+layout_mode = 2
+text = "HERO IN"
+label_settings = ExtResource("9_emxnm")
+
+[node name="Singer" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "~ Nobody.ONE"
+label_settings = ExtResource("7_emxnm")
+horizontal_alignment = 2
+
+[node name="Description" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Difficulty" type="Label" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text/Description"]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = ExtResource("7_emxnm")
+
+[node name="Level" type="TextureProgressBar" parent="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Song3/SongContainer/Text/Description"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+texture_progress = ExtResource("15_kbpck")
+
 [node name="Space2" type="Panel" parent="PanelContainer/HBoxContainer/Menu"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -386,3 +461,4 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_k8ayi")
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkEasy/ButtonEasy" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinPark/Button1" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/LinkinParkH/Button2" to="." method="_on_button_main_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Menu/MainSelect/NobodyOne/Button3" to="." method="_on_button_main_pressed"]

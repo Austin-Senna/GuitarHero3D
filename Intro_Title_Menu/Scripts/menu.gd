@@ -14,13 +14,15 @@ var focused_index: int = -1
 var audiofiles: Array[String] = [
 	"res://audiotracks/linkinpark.ogg",
 	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/twice/what_is_love.mp3"
+	"res://audiotracks/twice/what_is_love.mp3",
+	"res://audiotracks/nobodyone/heroin/nobodyone-Heroin.mp3"
 ]
 
 var mapfiles: Array[String] = [
 	"res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
 	"res://audiotracks/linkinpark.mboy",
-	"res://audiotracks/twice/TWICE.mboy"
+	"res://audiotracks/twice/TWICE.mboy",
+	"res://audiotracks/nobodyone/heroin/nobodyone-Heroin_Multi.mboy"
 ]
 
 
@@ -34,6 +36,7 @@ func _ready() -> void:
 		$%ButtonEasy,
 		$%Button1,
 		$%Button2,
+		$%Button3
 	]
 	
 	for i in range(buttons.size()):

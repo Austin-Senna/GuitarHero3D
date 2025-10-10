@@ -9,7 +9,7 @@ uniform sampler2D fire_noise_texture : filter_linear_mipmap, repeat_enable; // A
 uniform float activation_level : hint_range(0.0, 1.0) = 0.0; // 0=off, 1=fully active
 uniform vec4 fire_tint : source_color = vec4(0.2, 0.5, 1.0, 1.0); // Bluish tint
 uniform vec4 fire_highlight : source_color = vec4(1.0, 0.8, 0.2, 1.0); // Orange/Yellow highlights
-uniform float scroll_speed = 1.5;
+uniform float scroll_speed = -1;
 uniform float distortion_frequency = 5.0; // How dense the distortion waves are
 uniform float distortion_strength = 0.02; // How much the UVs are distorted
 

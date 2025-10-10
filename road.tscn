@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://1xmjiayxw76g"]
 
 [ext_resource type="PackedScene" uid="uid://bdqlu18v7gjx6" path="res://NotePicker.tscn" id="1_x0d2t"]
-[ext_resource type="Script" path="res://road.gd" id="2_3veuu"]
+[ext_resource type="Script" uid="uid://c6l7bnqqytrgw" path="res://road.gd" id="2_3veuu"]
 [ext_resource type="Material" uid="uid://bxt5qe85nbur5" path="res://road/road.tres" id="2_bpeel"]
 [ext_resource type="Material" uid="uid://d0sesagacppga" path="res://road/line.tres" id="2_twbfo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_twbfo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g686u"]
+size = Vector2(4.2, 8)
 
 [node name="road" type="Node3D"]
 transform = Transform3D(1.8, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
@@ -38,7 +39,37 @@ skeleton = NodePath("../RoadNode")
 surface_material_override/0 = ExtResource("2_twbfo")
 
 [node name="RoadNode" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.00606, 0, 0, 0, 2.00606, 0, 0, 0, 30.0908, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.66667)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.33333)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.6667)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.6667)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24.6667)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.6667)
+mesh = SubResource("PlaneMesh_g686u")
+surface_material_override/0 = ExtResource("2_bpeel")
+
+[node name="RoadNode6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.6667)
 mesh = SubResource("PlaneMesh_g686u")
 surface_material_override/0 = ExtResource("2_bpeel")
 
