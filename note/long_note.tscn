@@ -20,4 +20,4 @@ transform = Transform3D(1.29188, 0, -0.0237035, 0, 1, 0, 0.0196631, 0, 1.55735, 
 shape = SubResource("BoxShape3D_hd31m")
 
 [node name="Beam" parent="." instance=ExtResource("3_hd31m")]
-transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00491298, 0.0718524, -0.264871)
+transform = Transform3D(0.15, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, 0.102, -0.265)

@@ -18,7 +18,8 @@ var songs_list: Array[Dictionary] = [
 		"map": "res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
 		"title": "What I've done",
-		"artist": "Linkin Park"
+		"artist": "Linkin Park",
+		"accelerate": 1
 	},
 	{
 		"id": "LP_normal",
@@ -26,7 +27,8 @@ var songs_list: Array[Dictionary] = [
 		"map": "res://audiotracks/linkinpark.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
 		"title": "What I've done",
-		"artist": "Linkin Park"
+		"artist": "Linkin Park",
+		"accelerate": 1
 	},
 	{
 		"id": "TWICE",
@@ -34,7 +36,8 @@ var songs_list: Array[Dictionary] = [
 		"map": "res://audiotracks/twice/TWICE.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg",
 		"title": "What is love?",
-		"artist": "Twice"
+		"artist": "Twice",
+		"accelerate": 1
 	},
 	{
 		"id": "NOBODYONE",
@@ -42,7 +45,8 @@ var songs_list: Array[Dictionary] = [
 		"map": "res://audiotracks/nobodyone/heroin/nobodyone-Heroin_Multi.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/nobodyone.png",
 		"title": "Hero In",
-		"artist": "Nobody.ONE"
+		"artist": "Nobody.ONE",
+		"accelerate": 1.8
 	}
 ]
 

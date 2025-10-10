@@ -3,6 +3,7 @@ extends Node3D
 var road_shader_material = preload("res://road/road.tres")
 var line_shader_material = preload("res://road/line.tres")
 @onready var road = $RoadNode
+@onready var note_picker = $NotePicker
 
 func _ready():
 	if road_shader_material.shader.code.length() > 0:
@@ -26,7 +27,7 @@ var tracks_data
 func setup(game):
 	speed = Vector3(0,0, game.speed)
 	bar_length = game.bar_length
-	curr_location = Vector3(0,0,-8)
+	curr_location = Vector3(0,0,-game.bar_length+note_picker.position.z)
 	deletion_z_threshold = 2.5 * bar_length
 	note_scale = game.note_scale
 	curr_bar_index = 0

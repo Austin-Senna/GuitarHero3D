@@ -1,9 +1,9 @@
 extends Node3D
 
-var green_mat = preload("res://note/green_beam_mat.tres")
-var orange_mat = preload("res://note/orange_beam_mat.tres")
-var pink_mat = preload("res://note/pink_beam_mat.tres")
-var blue_mat = preload("res://note/blue_beam_mat.tres")
+var green_mat = preload("res://note/green_note_mat.tres") # TODO: green_beam_mat.tres has a visual bug, use note material for now
+var orange_mat = preload("res://note/orange_note_mat.tres")
+var pink_mat = preload("res://note/pink_note_mat.tres")
+var blue_mat = preload("res://note/blue_note_mat.tres")
 	
 func set_material(line):
 	print("Setting beam material for line:", line)
