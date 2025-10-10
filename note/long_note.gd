@@ -116,7 +116,7 @@ func on_process(delta):
 				global_position.z = hold_at
 
 				# Update end block position to stay at the end of the beam
-				end_block.position = Vector3(0, 0, -curr_length_in_m+0.1)
+				end_block.position = Vector3(0, 0, -curr_length_in_m-0.2)
 
 func hide_with_beam():
 	visible = false
