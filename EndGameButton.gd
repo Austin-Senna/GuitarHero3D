@@ -6,8 +6,8 @@ func _ready():
 		self.show()
 	
 	print("EndGameButton: Initializing")
-	text = "END GAME"
-	custom_minimum_size = Vector2(120, 40)
+	text = "X"
+	custom_minimum_size = Vector2(40, 40)
 	
 	# Disconnect any existing connections to avoid duplicates
 	if is_connected("pressed", Callable(self, "_on_pressed")):

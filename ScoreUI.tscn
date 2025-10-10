@@ -93,8 +93,10 @@ text = "SCORE:"
 label_settings = ExtResource("2_socno")
 
 [node name="EndGameButton" type="Button" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "X"
 script = ExtResource("3_6uj7k")
 
 [node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
