@@ -3,6 +3,7 @@ var curr_length_in_m
 var hold_started = false
 var hold_canceled = false
 var captured = false
+var hold_at = null
 @onready var transformer_font = preload("res://Intro_Title_Menu/Fonts/Transformers Movie.ttf")
 
 var end_block # Reference to the end block
@@ -84,6 +85,7 @@ func on_process(delta):
 				if not hold_started:
 					hold_started = true
 					hold_duration = 0.0 # Reset hold duration
+					hold_at = picker.global_position.z
 				# Only make end block visible when holding starts
 				if end_block:
 					end_block.visible = true
@@ -91,7 +93,7 @@ func on_process(delta):
 				hold_canceled = true
 				collect()
 
-		if hold_started and not hold_canceled:
+		if hold_started and not hold_canceled and hold_at != null:
 			hold_duration += delta # Track how long we've been holding
 
 			# Update bonus display (ADD THIS SECTION)
@@ -103,14 +105,14 @@ func on_process(delta):
 			curr_length_in_m -= speed.z * delta
 
 			# Check if we've reached the end block
-			if curr_length_in_m <= 0.1: # Small threshold for reaching the end
+			if curr_length_in_m <= 0.2: # Small threshold for reaching the end
 				collect()
 			else:
 				# Update beam length
 				$Beam.scale.z = curr_length_in_m
 
-				# Move the main note
-				translate(Vector3(0, 0, -speed.z * delta))
+				# Hold the main note
+				global_position.z = hold_at
 
 				# Update end block position to stay at the end of the beam
 				end_block.position = Vector3(0, 0, -curr_length_in_m)
