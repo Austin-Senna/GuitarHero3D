@@ -40,16 +40,10 @@ func _ready():
 	change_icon_and_title()
 		
 	
-func change_icon_and_title():
-	if (GameManager.audio_file == "res://audiotracks/linkinpark.ogg"):
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg")
-		$%Title.text = "What I've Done"
-		$%Singer.text = "~ Linkin Park"
-	else:
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
-		$%Title.text = "What Is Love?"
-		$%Singer.text = "~ Twice"
-	
+func change_icon_and_title():	
+	$%Icon.texture = load(GameManager.current_song.cover)
+	$%Title.text = GameManager.current_song.title
+	$%Singer.text = GameManager.current_song.artist
 	
 func _process(delta):
 	game_progress_bar.value = GameManager.current_time/GameManager.audio_length * 100

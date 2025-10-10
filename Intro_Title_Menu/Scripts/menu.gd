@@ -11,26 +11,45 @@ var active_tweens: Dictionary = {}
 var buttons: Array[TextureButton] = []
 var focused_index: int = -1
 
-var audiofiles: Array[String] = [
-	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/twice/what_is_love.mp3",
-	"res://audiotracks/nobodyone/heroin/nobodyone-Heroin.mp3"
+var songs_list: Array[Dictionary] = [
+	{
+		"id": "LP_easy",
+		"audio": "res://audiotracks/linkinpark.ogg",
+		"map": "res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
+		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
+		"title": "What I've done",
+		"artist": "Linkin Park"
+	},
+	{
+		"id": "LP_normal",
+		"audio": "res://audiotracks/linkinpark.ogg",
+		"map": "res://audiotracks/linkinpark.mboy",
+		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
+		"title": "What I've done",
+		"artist": "Linkin Park"
+	},
+	{
+		"id": "TWICE",
+		"audio": "res://audiotracks/twice/what_is_love.mp3",
+		"map": "res://audiotracks/twice/TWICE.mboy",
+		"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg",
+		"title": "What is love?",
+		"artist": "Twice"
+	},
+	{
+		"id": "NOBODYONE",
+		"audio": "res://audiotracks/nobodyone/heroin/nobodyone-Heroin.mp3",
+		"map": "res://audiotracks/nobodyone/heroin/nobodyone-Heroin_Multi.mboy",
+		"cover": "res://Intro_Title_Menu/Images for Menu/nobodyone.png",
+		"title": "Hero In",
+		"artist": "Nobody.ONE"
+	}
 ]
-
-var mapfiles: Array[String] = [
-	"res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
-	"res://audiotracks/linkinpark.mboy",
-	"res://audiotracks/twice/TWICE.mboy",
-	"res://audiotracks/nobodyone/heroin/nobodyone-Heroin_Multi.mboy"
-]
-
 
 func _ready() -> void:
 	animPlayer.show_blackBG()
 	animPlayer.play_white_fade_in()
 	animPlayer.play_menu_screen()
-	
 	
 	buttons = [
 		$%ButtonEasy,
@@ -39,12 +58,13 @@ func _ready() -> void:
 		$%Button3
 	]
 	
+	$%Button3.grab_focus() # focus first song in the list
+	
 	for i in range(buttons.size()):
 		buttons[i].focus_entered.connect(_on_any_button_focus_entered.bind(buttons[i]))
 		buttons[i].focus_exited.connect(_on_any_button_focus_exited.bind(buttons[i]))
 		buttons[i].pressed.connect(on_any_button_pressed.bind(buttons[i]))
 	
-		
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):		
 		if Input.is_action_just_pressed("ui_down"):
@@ -81,8 +101,7 @@ func on_any_button_pressed(button) -> void:
 	animPlayer.play_white_fade_out()
 	animPlayer.play_press()
 	await get_tree().create_timer(0.5).timeout
-	GameManager.audio_file = audiofiles[focused_index]
-	GameManager.map_file = mapfiles[focused_index]
+	GameManager.current_song = songs_list[focused_index]
 	get_tree().change_scene_to_file("res://game.tscn")
 	
 	

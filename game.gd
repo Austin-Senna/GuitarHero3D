@@ -11,8 +11,8 @@ var moon_base_color
 
 var audio 
 var map
-var audio_file = GameManager.audio_file
-var map_file = GameManager.map_file
+var audio_file = GameManager.current_song.audio
+var map_file = GameManager.current_song.map
 var combo_lighting = load("res://world_environment/game_combo.tres")
 var combo_glow 
 var combo_color 

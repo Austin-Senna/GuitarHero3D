@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://bpnlcrei43b86"]
 
-[ext_resource type="Script" path="res://ScoreUI.gd" id="1_vs014"]
+[ext_resource type="Script" uid="uid://cw4fed0ciw72d" path="res://ScoreUI.gd" id="1_vs014"]
 [ext_resource type="LabelSettings" uid="uid://bi3sdl3uw2lue" path="res://Intro_Title_Menu/Fonts/score.tres" id="2_socno"]
-[ext_resource type="Script" path="res://EndGameButton.gd" id="3_6uj7k"]
+[ext_resource type="Script" uid="uid://dtemqo1i2w4iw" path="res://EndGameButton.gd" id="3_6uj7k"]
 [ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="3_kkjwt"]
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_6uj7k"]
 [ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="5_lyrr8"]

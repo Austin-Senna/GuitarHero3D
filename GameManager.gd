@@ -50,9 +50,13 @@ signal pre_song_finished()
 var score_file_path = "res://score_history.txt"  # Changed from user:// to res://
 var high_score_file_path = "res://high_score.txt"  # Changed from user:// to res://
 
-# Audio file paths (keep existing references)
-var audio_file = "res://audiotracks/twice/what_is_love.mp3"
-var map_file = "res://audiotracks/twice/TWICE.mboy"
+# Selected song to keep between scenes
+var current_song = {
+	"id": "TWICE",
+	"audio": "res://audiotracks/twice/what_is_love.mp3",
+	"map": "res://audiotracks/twice/TWICE.mboy",
+	"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg"
+}
 
 func reset_game():
 	print("GameManager: Reset game state")

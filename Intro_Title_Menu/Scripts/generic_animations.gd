@@ -60,5 +60,5 @@ func play_menu_screen():
 	bg_player.play()
 
 func play_current_song():
-	bg_player.stream = load(GameManager.audio_file)
+	bg_player.stream = load(GameManager.current_song.audio)
 	bg_player.play()
