@@ -30,7 +30,6 @@ var key_logger: Node
 var points_short_note = 100
 var points_long_note_base = 200  # Base points for starting a long note
 var points_long_note_per_second = 50  # Points per second of holding
-var points_per_miss = -50
 var points_per_missed_note = -50
 
 var quitting = false
@@ -55,7 +54,10 @@ var current_song = {
 	"id": "TWICE",
 	"audio": "res://audiotracks/twice/what_is_love.mp3",
 	"map": "res://audiotracks/twice/TWICE.mboy",
-	"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg"
+	"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg",
+	"title": "What is love?",
+	"artist": "Twice",
+	"accelerate": 1
 }
 
 func reset_game():
@@ -197,17 +199,6 @@ func update_combo_multiplier():
 		combo_multiplier = min(1 + float(combo_count) / combo_threshold, combo_multiplier_threshold)
 	else:
 		combo_multiplier = 1.0
-
-func subtract_points():
-	# Reset combo on miss
-	combo_count = 0
-	miss_count += 1
-	combo_streak_count = max(0,combo_streak_count-2)
-	combo_multiplier = 1
-	
-	current_points += points_per_miss
-	
-	update_score()
 	
 func subtract_points_missed_note():
 	# Reset combo on missed note

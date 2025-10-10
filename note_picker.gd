@@ -138,7 +138,6 @@ func play_hit():
 	is_collecting = false # don't allow to pick many notes on one press
 	
 func play_miss():
-	GameManager.subtract_points()
 	fail_player.play()
 	
 func _process(_delta):

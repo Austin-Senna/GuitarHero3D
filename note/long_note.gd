@@ -106,7 +106,10 @@ func on_process(delta):
 			curr_length_in_m -= speed.z * delta
 
 			# Check if we've reached the end block
-			if curr_length_in_m <= min(0.1, curr_length_in_m/4.0): # Small threshold for reaching the end
+			# curr_length_in_m = 100
+			# (hold_duration * speed.z) = x
+			
+			if curr_length_in_m <= speed.z * delta * 10.0: # Small threshold for reaching the end
 				collect()
 			else:
 				# Update beam length
@@ -129,8 +132,6 @@ func drop_note():
 	if end_block:
 		end_block.visible = false
 	bonus_label.visible = false
-	if picker:
-		picker.play_miss()
 
 func collect():
 	is_collected = true
@@ -144,8 +145,9 @@ func collect():
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("picker"):
 		# If we're exiting the picker area and haven't started holding, we missed the note
-		if not is_collected and not hold_started:
-			GameManager.subtract_points_missed_note()
-
 		is_colliding = false
 		picker = area.get_parent()
+		
+		if not is_collected:
+			GameManager.subtract_points_missed_note()
+			picker.play_miss()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdqlu18v7gjx6"]
+[gd_scene load_steps=10 format=3 uid="uid://bdqlu18v7gjx6"]
 
 [ext_resource type="Script" uid="uid://l0mgmj4rpbf7" path="res://note_picker.gd" id="1_qsfoh"]
 [ext_resource type="PackedScene" uid="uid://b80ty230qudmr" path="res://3D Models/AutobotEmblemPicker.tscn" id="2_1f43s"]
@@ -9,7 +9,11 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_3vs3x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d6fk"]
-size = Vector3(0.765732, 1.13428, 2.4999)
+size = Vector3(0.765732, 1.13428, 2.02506)
+
+[sub_resource type="BoxMesh" id="BoxMesh_barah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_barah"]
 
 [node name="NotePicker" type="Node3D"]
 script = ExtResource("1_qsfoh")
@@ -27,7 +31,7 @@ surface_material_override/0 = ExtResource("2_8d6fk")
 [node name="Area3D" type="Area3D" parent="." groups=["picker"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122391, 0.000293015, -0.0169592)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122391, 0.000293015, -0.254378)
 shape = SubResource("BoxShape3D_8d6fk")
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="."]
@@ -39,3 +43,14 @@ pitch_scale = 0.5
 stream = ExtResource("4_pjn0k")
 volume_db = -20.0
 pitch_scale = 0.5
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.06751)
+visible = false
+mesh = SubResource("BoxMesh_barah")
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37922)
+shape = SubResource("BoxShape3D_barah")

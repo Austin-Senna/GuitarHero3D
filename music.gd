@@ -39,6 +39,6 @@ func _process(delta):
 		audio_time = player.get_playback_position() + AudioServer.get_time_since_last_mix()
 		audio_time -= AudioServer.get_output_latency()
 		
-		print([video_time, " - ", audio_time])
+		#print([video_time, " - ", audio_time])
 	
 	
