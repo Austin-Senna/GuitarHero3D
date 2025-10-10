@@ -19,7 +19,6 @@ var speed
 var is_colliding = false
 var picker
 var is_collected = false
-var to_hide_at = null
 
 func _ready():
 	on_ready()
@@ -70,7 +69,7 @@ func _process(delta):
 	on_process(delta)
 
 func on_process(_delta):
-	process_hide_at()
+	pass
 
 func add_listeners():
 	$Area3D.add_to_group("note")
@@ -82,13 +81,8 @@ func collect():
 	is_collected = true
 	GameManager.add_points_short_note()  # Update this line
 	if picker:
-		to_hide_at = picker.global_position.z
+		hide()
 		picker.play_hit()
-	
-func process_hide_at():
-	if is_collected and visible and to_hide_at != null:
-		if global_position.z - to_hide_at >= 0:
-			hide()
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("picker"):

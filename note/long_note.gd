@@ -86,6 +86,7 @@ func on_process(delta):
 					hold_started = true
 					hold_duration = 0.0 # Reset hold duration
 					hold_at = picker.global_position.z
+					curr_length_in_m += hold_at - global_position.z
 				# Only make end block visible when holding starts
 				if end_block:
 					end_block.visible = true
@@ -105,7 +106,7 @@ func on_process(delta):
 			curr_length_in_m -= speed.z * delta
 
 			# Check if we've reached the end block
-			if curr_length_in_m <= 0.2: # Small threshold for reaching the end
+			if curr_length_in_m <= min(0.1, curr_length_in_m/4.0): # Small threshold for reaching the end
 				collect()
 			else:
 				# Update beam length
@@ -115,7 +116,7 @@ func on_process(delta):
 				global_position.z = hold_at
 
 				# Update end block position to stay at the end of the beam
-				end_block.position = Vector3(0, 0, -curr_length_in_m)
+				end_block.position = Vector3(0, 0, -curr_length_in_m+0.1)
 
 func hide_with_beam():
 	visible = false

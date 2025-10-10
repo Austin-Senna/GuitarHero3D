@@ -119,8 +119,10 @@ func handle_key_press(pressed: bool):
 		# Log the key press for analysis
 		GameManager.key_logger.log_key_press(key_name, has_note_to_collect)
 		
+		if !has_note_to_collect:
+			hit_player.play() # play this sound only for empty presses
+		
 func play_hit():
-	hit_player.play()
 	var vfx_instance = vfx_scene.instantiate()
 	add_child(vfx_instance)
 	# Position the VFX slightly above the picker cover's base position
