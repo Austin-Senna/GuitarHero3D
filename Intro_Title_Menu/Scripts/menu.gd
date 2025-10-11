@@ -24,11 +24,11 @@ var songs_list: Array[Dictionary] = [
 	{
 		"id": "LP_normal",
 		"audio": "res://audiotracks/linkinpark.ogg",
-		"map": "res://audiotracks/linkinpark.mboy",
+		"map": "res://audiotracks/linkinpark2.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
 		"title": "What I've done",
 		"artist": "Linkin Park",
-		"accelerate": 1
+		"accelerate": 2
 	},
 	{
 		"id": "TWICE",

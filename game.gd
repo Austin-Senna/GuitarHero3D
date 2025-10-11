@@ -79,7 +79,7 @@ func calc_params():
 	quarter_time = 60/float(tempo)
 	speed = bar_length/float(4*quarter_time)
 	note_scale = bar_length/float(4*400)
-	start_time = 0 #float(map.start_pos)/400 * quarter_time
+	start_time = (float(map.start_pos)/400.0) * quarter_time
 	
 func load_map():
 	var file = FileAccess.open(map_file, FileAccess.READ)
