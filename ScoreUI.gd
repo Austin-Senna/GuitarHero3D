@@ -142,7 +142,8 @@ func _on_score_updated(new_score):
 		
 		# Flash color
 		score_label.add_theme_color_override("font_color", Color(1, 1, 0.5))  # Golden
-		await get_tree().create_timer(0.1).timeout
+		#TODO: this raises an exception, back font_color animation later
+		#await get_tree().create_timer(0.1).timeout
 		score_label.add_theme_color_override("font_color", Color(1, 1, 1))
 
 func _on_high_score_broken(new_high_score):

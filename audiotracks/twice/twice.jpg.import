@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgwpoiqkgh3od"
-path="res://.godot/imported/twice.jpg-d1785e8cd02355d620f4c09e8278dd34.ctex"
+uid="uid://bw8eo4hen2p5m"
+path="res://.godot/imported/twice.jpg-302d365a862fe0c65f1cdf368d16f83d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Intro_Title_Menu/Images for Menu/twice.jpg"
-dest_files=["res://.godot/imported/twice.jpg-d1785e8cd02355d620f4c09e8278dd34.ctex"]
+source_file="res://audiotracks/twice/twice.jpg"
+dest_files=["res://.godot/imported/twice.jpg-302d365a862fe0c65f1cdf368d16f83d.ctex"]
 
 [params]
 

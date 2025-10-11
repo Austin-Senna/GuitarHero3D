@@ -7,8 +7,8 @@
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_a26kj"]
 [ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
+[ext_resource type="Texture2D" uid="uid://d3rql6yjvtqfk" path="res://audiotracks/linkinpark/LinkinPark.jpg" id="7_eqc8r"]
 [ext_resource type="StyleBox" uid="uid://xjdp8fc5ksaj" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
-[ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="8_eqc8r"]
 [ext_resource type="Texture2D" uid="uid://cmb6xhxwjko5n" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_default.png" id="9_dy0vk"]
 [ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="10_3emdp"]
 [ext_resource type="Texture2D" uid="uid://cl167nequiuuh" path="res://Intro_Title_Menu/performanceanalysis/bumblebee_pressed.png" id="10_eqc8r"]
@@ -159,7 +159,7 @@ size_flags_stretch_ratio = 0.5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("8_eqc8r")
+texture = ExtResource("7_eqc8r")
 expand_mode = 1
 stretch_mode = 5
 
