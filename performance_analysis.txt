@@ -1,8 +1,8 @@
-=== Performance Analysis - 11/10/2025 13:47:53 ===
-Total Notes: 0
-Correct Hits: 0
-Accuracy: 0.0%
-Wrong Keys: 0
-Missed Notes: 5
+=== Performance Analysis - 11/10/2025 14:34:46 ===
+Total Notes: 294
+Correct Hits: 324
+Accuracy: 110.2%
+Wrong Keys: 517
+Missed Notes: 4
 
 Waiting for AI analysis...

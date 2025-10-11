@@ -28,7 +28,7 @@ var songs_list: Array[Dictionary] = [
 		"cover": "res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg",
 		"title": "What I've done",
 		"artist": "Linkin Park",
-		"accelerate": 2
+		"accelerate": 1.5
 	},
 	{
 		"id": "TWICE",
