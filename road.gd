@@ -3,6 +3,7 @@ extends Node3D
 var road_shader_material = preload("res://road/road.tres")
 var line_shader_material = preload("res://road/line.tres")
 @onready var road = $RoadNode
+@onready var note_picker = $NotePicker
 
 func _ready():
 	if road_shader_material.shader.code.length() > 0:
@@ -22,16 +23,18 @@ var combo_environment = false
 var curr_bar_index
 var tracks_data
 
+
 func setup(game):
 	speed = Vector3(0,0, game.speed)
 	bar_length = game.bar_length
-	curr_location = Vector3(0,0,-bar_length)
+	curr_location = Vector3(0,0,-game.bar_length+note_picker.position.z)
 	deletion_z_threshold = 2.5 * bar_length
 	note_scale = game.note_scale
 	curr_bar_index = 0
 	tracks_data = game.map.tracks
 	add_bars()
 	
+	road_shader_material.set_shader_parameter("scroll_speed", -speed.z/8.0) # 8 is length in meters of this plane mesh
 
 func add_bars():
 	for i in range(5):
@@ -62,7 +65,13 @@ func get_bar_data():
 	var key1 = tracks_data[0].bars[curr_bar_index]
 	var key2 = tracks_data[1].bars[curr_bar_index]
 	var key3 = tracks_data[2].bars[curr_bar_index]
-	var key4 = tracks_data[1].bars[curr_bar_index]
+	
+	var key4 
+	if tracks_data.size() >= 4:
+		key4 = tracks_data[3].bars[curr_bar_index]
+	else:
+		key4 = tracks_data[1].bars[curr_bar_index]
+		
 	return [key1, key2, key3, key4]
 
 func add_bar():	 

@@ -56,11 +56,8 @@ func _process(_delta: float) -> void:
 		buttons[focused_index].grab_focus()
 		animPlayer.play_select()
 
-func load_picture():
-	if (GameManager.audio_file == "res://audiotracks/linkinpark.ogg"):
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg")
-	else:
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
+func load_picture():	
+	$%Icon.texture = load(GameManager.current_song.cover)
 
 func show_score():
 	# Stop any previous tween if it's still running

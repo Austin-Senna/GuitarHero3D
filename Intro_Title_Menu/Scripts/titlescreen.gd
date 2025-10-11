@@ -23,6 +23,8 @@ func _ready() -> void:
 		$%ExitButton
 	]
 	
+	$%StartButton.grab_focus()
+	
 	for i in range(buttons.size()):
 		buttons[i].focus_entered.connect(_on_any_button_focus_entered.bind(buttons[i]))
 		buttons[i].focus_exited.connect(_on_any_button_focus_exited.bind(buttons[i]))

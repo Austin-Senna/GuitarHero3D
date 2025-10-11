@@ -1,17 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpnlcrei43b86"]
+[gd_scene load_steps=23 format=3 uid="uid://bpnlcrei43b86"]
 
-[ext_resource type="Script" path="res://ScoreUI.gd" id="1_vs014"]
+[ext_resource type="Script" uid="uid://cw4fed0ciw72d" path="res://ScoreUI.gd" id="1_vs014"]
 [ext_resource type="LabelSettings" uid="uid://bi3sdl3uw2lue" path="res://Intro_Title_Menu/Fonts/score.tres" id="2_socno"]
-[ext_resource type="Script" path="res://EndGameButton.gd" id="3_6uj7k"]
-[ext_resource type="Texture2D" uid="uid://bnkrlhgpj6s84" path="res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg" id="3_kkjwt"]
+[ext_resource type="Script" uid="uid://dtemqo1i2w4iw" path="res://EndGameButton.gd" id="3_6uj7k"]
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_6uj7k"]
 [ext_resource type="LabelSettings" uid="uid://bler633lbne8y" path="res://Intro_Title_Menu/Fonts/body.tres" id="5_lyrr8"]
+[ext_resource type="Texture2D" uid="uid://d3rql6yjvtqfk" path="res://audiotracks/linkinpark/LinkinPark.jpg" id="6_fa1bt"]
 [ext_resource type="StyleBox" uid="uid://cce8lxiq0f1aj" path="res://Intro_Title_Menu/Fonts/progressbg.tres" id="6_hk842"]
 [ext_resource type="StyleBox" uid="uid://bwwlvrw7jjc1u" path="res://Intro_Title_Menu/Fonts/progressfill.tres" id="7_7fl84"]
 [ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="8_6uj7k"]
 [ext_resource type="Shader" uid="uid://deantds8ddmj5" path="res://road/road.gdshader" id="8_7fl84"]
 [ext_resource type="Texture2D" uid="uid://c7mkfd1hkw1ul" path="res://UI/transformers_progress_bar.png" id="8_lyrr8"]
-[ext_resource type="Shader" uid="uid://de5ill4jfdd8o" path="res://ScoreUI.gdshader" id="9_hk842"]
 [ext_resource type="Texture2D" uid="uid://boauxpacpohrr" path="res://UI/transformers_progress_bar_fill.png" id="9_lyrr8"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="10_n6ssf"]
 [ext_resource type="Texture2D" uid="uid://bohe3pcx1snxn" path="res://UI/transformers_progress_bar_bottom.png" id="12_1jjv1"]
@@ -20,10 +19,21 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk842"]
 
+[sub_resource type="Theme" id="Theme_fa1bt"]
+default_font = ExtResource("8_6uj7k")
+default_font_size = 40
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyrr8"]
 
+[sub_resource type="Shader" id="Shader_fa1bt"]
+code = "shader_type canvas_item;
+
+void fragment() {
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7fl84"]
-shader = ExtResource("9_hk842")
+shader = SubResource("Shader_fa1bt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jjv1"]
 texture = ExtResource("12_1jjv1")
@@ -93,8 +103,12 @@ text = "SCORE:"
 label_settings = ExtResource("2_socno")
 
 [node name="EndGameButton" type="Button" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_fa1bt")
+text = "X"
 script = ExtResource("3_6uj7k")
 
 [node name="Margin" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
@@ -118,7 +132,7 @@ theme_override_constants/margin_right = 20
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("3_kkjwt")
+texture = ExtResource("6_fa1bt")
 expand_mode = 1
 stretch_mode = 5
 

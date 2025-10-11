@@ -40,16 +40,10 @@ func _ready():
 	change_icon_and_title()
 		
 	
-func change_icon_and_title():
-	if (GameManager.audio_file == "res://audiotracks/linkinpark.ogg"):
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/LinkinPark.jpg")
-		$%Title.text = "What I've Done"
-		$%Singer.text = "~ Linkin Park"
-	else:
-		$%Icon.texture = load("res://Intro_Title_Menu/Images for Menu/twice.jpg")
-		$%Title.text = "What Is Love?"
-		$%Singer.text = "~ Twice"
-	
+func change_icon_and_title():	
+	$%Icon.texture = load(GameManager.current_song.cover)
+	$%Title.text = GameManager.current_song.title
+	$%Singer.text = GameManager.current_song.artist
 	
 func _process(delta):
 	game_progress_bar.value = GameManager.current_time/GameManager.audio_length * 100
@@ -148,7 +142,8 @@ func _on_score_updated(new_score):
 		
 		# Flash color
 		score_label.add_theme_color_override("font_color", Color(1, 1, 0.5))  # Golden
-		await get_tree().create_timer(0.1).timeout
+		#TODO: this raises an exception, back font_color animation later
+		#await get_tree().create_timer(0.1).timeout
 		score_label.add_theme_color_override("font_color", Color(1, 1, 1))
 
 func _on_high_score_broken(new_high_score):

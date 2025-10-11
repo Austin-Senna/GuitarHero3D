@@ -11,37 +11,55 @@ var active_tweens: Dictionary = {}
 var buttons: Array[TextureButton] = []
 var focused_index: int = -1
 
-var audiofiles: Array[String] = [
-	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/linkinpark.ogg",
-	"res://audiotracks/twice/what_is_love.mp3"
+var songs_list: Array[Dictionary] = [
+	{
+		"id": "LP",
+		"audio": "res://audiotracks/linkinpark/linkinpark.ogg",
+		"map": "res://audiotracks/linkinpark/linkinpark2.mboy",
+		"cover": "res://audiotracks/linkinpark/LinkinPark.jpg",
+		"title": "What I've done",
+		"artist": "Linkin Park",
+		"accelerate": 1.5
+	},
+	{
+		"id": "TWICE",
+		"audio": "res://audiotracks/twice/what_is_love.mp3",
+		"map": "res://audiotracks/twice/TWICE2.mboy",
+		"cover": "res://audiotracks/twice/twice.jpg",
+		"title": "What is love?",
+		"artist": "Twice",
+		"accelerate": 1.2
+	},
+	{
+		"id": "NOBODYONE",
+		"audio": "res://audiotracks/nobodyone/heroin/nobodyone-Heroin.mp3",
+		"map": "res://audiotracks/nobodyone/heroin/nobodyone-Heroin_Multi.mboy",
+		"cover": "res://audiotracks/nobodyone/heroin/cover.jpg",
+		"title": "Hero In",
+		"artist": "Nobody.ONE",
+		"accelerate": 1.8
+	}
 ]
-
-var mapfiles: Array[String] = [
-	"res://audiotracks/linkinparkeasy/linkinparkeasy.mboy",
-	"res://audiotracks/linkinpark.mboy",
-	"res://audiotracks/twice/TWICE.mboy"
-]
-
 
 func _ready() -> void:
 	animPlayer.show_blackBG()
 	animPlayer.play_white_fade_in()
 	animPlayer.play_menu_screen()
 	
-	
+	# array should follow the songs_list's order
 	buttons = [
-		$%ButtonEasy,
-		$%Button1,
-		$%Button2,
+		$%ButtonLP, 
+		$%ButtonTwice,
+		$%ButtonNobodyOne
 	]
+	
+	$%ButtonNobodyOne.grab_focus() # focus first song in the list
 	
 	for i in range(buttons.size()):
 		buttons[i].focus_entered.connect(_on_any_button_focus_entered.bind(buttons[i]))
 		buttons[i].focus_exited.connect(_on_any_button_focus_exited.bind(buttons[i]))
 		buttons[i].pressed.connect(on_any_button_pressed.bind(buttons[i]))
 	
-		
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):		
 		if Input.is_action_just_pressed("ui_down"):
@@ -78,8 +96,7 @@ func on_any_button_pressed(button) -> void:
 	animPlayer.play_white_fade_out()
 	animPlayer.play_press()
 	await get_tree().create_timer(0.5).timeout
-	GameManager.audio_file = audiofiles[focused_index]
-	GameManager.map_file = mapfiles[focused_index]
+	GameManager.current_song = songs_list[focused_index]
 	get_tree().change_scene_to_file("res://game.tscn")
 	
 	

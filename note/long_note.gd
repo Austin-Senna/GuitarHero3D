@@ -3,6 +3,7 @@ var curr_length_in_m
 var hold_started = false
 var hold_canceled = false
 var captured = false
+var hold_at = null
 @onready var transformer_font = preload("res://Intro_Title_Menu/Fonts/Transformers Movie.ttf")
 
 var end_block # Reference to the end block
@@ -84,14 +85,16 @@ func on_process(delta):
 				if not hold_started:
 					hold_started = true
 					hold_duration = 0.0 # Reset hold duration
+					hold_at = picker.global_position.z
+					curr_length_in_m += hold_at - global_position.z
 				# Only make end block visible when holding starts
 				if end_block:
 					end_block.visible = true
 			elif hold_started:
 				hold_canceled = true
-				collect()
+				drop_note()
 
-		if hold_started and not hold_canceled:
+		if hold_started and not hold_canceled and hold_at != null:
 			hold_duration += delta # Track how long we've been holding
 
 			# Update bonus display (ADD THIS SECTION)
@@ -103,21 +106,29 @@ func on_process(delta):
 			curr_length_in_m -= speed.z * delta
 
 			# Check if we've reached the end block
-			if curr_length_in_m <= 0.1: # Small threshold for reaching the end
+			# curr_length_in_m = 100
+			# (hold_duration * speed.z) = x
+			
+			if curr_length_in_m <= speed.z * delta * 10.0: # Small threshold for reaching the end
 				collect()
 			else:
 				# Update beam length
 				$Beam.scale.z = curr_length_in_m
 
-				# Move the main note
-				translate(Vector3(0, 0, -speed.z * delta))
+				# Hold the main note
+				global_position.z = hold_at
 
 				# Update end block position to stay at the end of the beam
-				end_block.position = Vector3(0, 0, -curr_length_in_m)
+				end_block.position = Vector3(0, 0, -curr_length_in_m-0.2)
 
 func hide_with_beam():
 	visible = false
 	$Beam.visible = false
+	if end_block:
+		end_block.visible = false
+	bonus_label.visible = false
+	
+func drop_note():
 	if end_block:
 		end_block.visible = false
 	bonus_label.visible = false
@@ -127,15 +138,16 @@ func collect():
 	# Award points based on how long the note was held
 	GameManager.add_points_long_note(hold_duration)
 	if picker:
-		picker.is_collecting = false
+		picker.play_hit()
 	hide_with_beam()
 
 # Override the _on_area_exited function to handle long notes
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("picker"):
 		# If we're exiting the picker area and haven't started holding, we missed the note
-		if not is_collected and not hold_started:
-			GameManager.subtract_points_missed_note()
-
 		is_colliding = false
 		picker = area.get_parent()
+		
+		if not is_collected:
+			GameManager.subtract_points_missed_note()
+			picker.play_miss()

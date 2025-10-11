@@ -11,8 +11,9 @@ var moon_base_color
 
 var audio 
 var map
-var audio_file = GameManager.audio_file
-var map_file = GameManager.map_file
+var audio_file = GameManager.current_song.audio
+var map_file = GameManager.current_song.map
+var accelerate = float(GameManager.current_song.accelerate)
 var combo_lighting = load("res://world_environment/game_combo.tres")
 var combo_glow 
 var combo_color 
@@ -74,11 +75,11 @@ func _ready():
 	
 func calc_params():
 	tempo = int(map.tempo)
-	bar_length = 16
+	bar_length = 16 * accelerate # 16 - size in godot meteres, accelerate - increases length of the bar, makes things move faster
 	quarter_time = 60/float(tempo)
 	speed = bar_length/float(4*quarter_time)
 	note_scale = bar_length/float(4*400)
-	start_time = 0 #float(map.start_pos)/400 * quarter_time
+	start_time = (float(map.start_pos)/400.0) * quarter_time
 	
 func load_map():
 	var file = FileAccess.open(map_file, FileAccess.READ)

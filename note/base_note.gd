@@ -78,11 +78,12 @@ func add_listeners():
 	$Area3D.area_exited.connect(_on_area_exited)
 	
 func collect():
+	if is_collected: return
 	is_collected = true
 	GameManager.add_points_short_note()  # Update this line
 	if picker:
-		picker.is_collecting = false
-	hide()
+		hide()
+		picker.play_hit()
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("picker"):
@@ -92,6 +93,9 @@ func _on_area_entered(area: Area3D) -> void:
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("picker"):
 		# If we're exiting the picker area and haven't been collected, we missed the note
+		is_colliding = false
+		picker = area.get_parent()
+		
 		if not is_collected:
 			var key_name = ""
 			match line:
@@ -102,6 +106,6 @@ func _on_area_exited(area: Area3D) -> void:
 			
 			GameManager.key_logger.log_missed_key(key_name, Time.get_ticks_msec() / 1000.0)
 			GameManager.subtract_points_missed_note()
+			
+			picker.play_miss()
 		
-		is_colliding = false
-		picker = area.get_parent()

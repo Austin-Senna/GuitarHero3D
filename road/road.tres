@@ -12,6 +12,6 @@ shader_parameter/fire_noise_texture = ExtResource("3_lajyc")
 shader_parameter/activation_level = 0.0
 shader_parameter/fire_tint = Color(0.2, 0.5, 1, 1)
 shader_parameter/fire_highlight = Color(0.0241996, 0.15353, 0.60087, 1)
-shader_parameter/scroll_speed = -0.2
+shader_parameter/scroll_speed = -1.0
 shader_parameter/distortion_frequency = 5.0
 shader_parameter/distortion_strength = 0.02

@@ -6,8 +6,8 @@ func _ready():
 		self.show()
 	
 	print("EndGameButton: Initializing")
-	text = "END GAME"
-	custom_minimum_size = Vector2(120, 40)
+	text = "< back"
+	custom_minimum_size = Vector2(40, 40)
 	
 	# Disconnect any existing connections to avoid duplicates
 	if is_connected("pressed", Callable(self, "_on_pressed")):
@@ -17,20 +17,20 @@ func _ready():
 	connect("pressed", Callable(self, "_on_pressed"))
 	
 	# Style the button
-	var style_normal = StyleBoxFlat.new()
-	style_normal.bg_color = Color(0.7, 0.1, 0.1, 0.8)
-	style_normal.border_width_top = 2
-	style_normal.border_width_right = 2
-	style_normal.border_width_bottom = 2
-	style_normal.border_width_left = 2
-	style_normal.border_color = Color(0.9, 0.2, 0.2)
-	style_normal.corner_radius_top_left = 5
-	style_normal.corner_radius_top_right = 5
-	style_normal.corner_radius_bottom_left = 5
-	style_normal.corner_radius_bottom_right = 5
-	
-	add_theme_stylebox_override("normal", style_normal)
-	add_theme_font_size_override("font_size", 18)
+	#var style_normal = StyleBoxFlat.new()
+	#style_normal.bg_color = Color(0.7, 0.1, 0.1, 0.8)
+	#style_normal.border_width_top = 2
+	#style_normal.border_width_right = 2
+	#style_normal.border_width_bottom = 2
+	#style_normal.border_width_left = 2
+	#style_normal.border_color = Color(0.9, 0.2, 0.2)
+	#style_normal.corner_radius_top_left = 5
+	#style_normal.corner_radius_top_right = 5
+	#style_normal.corner_radius_bottom_left = 5
+	#style_normal.corner_radius_bottom_right = 5
+	#
+	#add_theme_stylebox_override("normal", style_normal)
+	#add_theme_font_size_override("font_size", 18)
 	
 	print("EndGameButton: Initialization complete")
 

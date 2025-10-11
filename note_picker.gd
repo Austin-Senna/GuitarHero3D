@@ -119,20 +119,14 @@ func handle_key_press(pressed: bool):
 		# Log the key press for analysis
 		GameManager.key_logger.log_key_press(key_name, has_note_to_collect)
 		
-		# Visual and sound effects for hits (from main branch)
-		if has_note_to_collect:
-			play_hit()
-		# Check for miss (pressed key without note to collect)
-		else:
-			GameManager.subtract_points()
-			fail_player.play()
+		if !has_note_to_collect:
+			hit_player.play() # play this sound only for empty presses
 		
 func play_hit():
-	hit_player.play()
 	var vfx_instance = vfx_scene.instantiate()
 	add_child(vfx_instance)
 	# Position the VFX slightly above the picker cover's base position
-	vfx_instance.position = base_position + Vector3(-0.05, 0, -0.15) # Adjust Y offset as needed
+	vfx_instance.position = base_position + Vector3(-0.05, -0.1, -0.30) # Adjust Y offset as needed
 	 
 	var timer = Timer.new()
 	timer.wait_time = 0.2 # Adjust time based on VFX duration
@@ -140,7 +134,12 @@ func play_hit():
 	timer.timeout.connect(vfx_instance.queue_free)
 	add_child(timer)
 	timer.start()
-
+	
+	is_collecting = false # don't allow to pick many notes on one press
+	
+func play_miss():
+	fail_player.play()
+	
 func _process(_delta):
 	if is_pressed:
 		set_material_activated()
