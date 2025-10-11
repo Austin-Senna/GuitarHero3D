@@ -1,11 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://3tspog8excun"]
+[gd_scene load_steps=23 format=3 uid="uid://3tspog8excun"]
 
 [ext_resource type="Script" uid="uid://bbm07038jomk1" path="res://Intro_Title_Menu/PerformanceAnalysis.gd" id="1_q01ft"]
 [ext_resource type="Texture2D" uid="uid://dx707btb5g47v" path="res://Intro_Title_Menu/Images/fade effect.png" id="2_a26kj"]
 [ext_resource type="Texture2D" uid="uid://cnrt7bkc0r6c1" path="res://Intro_Title_Menu/Images/bumblebee_rockstar_no_bg.png" id="3_3xvyr"]
 [ext_resource type="Texture2D" uid="uid://c04252ygqqrvs" path="res://Intro_Title_Menu/Images/shootingStars.png" id="4_64hda"]
 [ext_resource type="LabelSettings" uid="uid://cwc446vx3drh5" path="res://Intro_Title_Menu/Fonts/title.tres" id="4_a26kj"]
-[ext_resource type="Texture2D" uid="uid://ilre8r50rw6g" path="res://Intro_Title_Menu/performanceanalysis/image.png" id="4_s6tqy"]
 [ext_resource type="StyleBox" uid="uid://b3dpq4304amna" path="res://Intro_Title_Menu/Fonts/PerformanceAnalysis.tres" id="5_84kny"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="6_3xvyr"]
 [ext_resource type="StyleBox" uid="uid://xjdp8fc5ksaj" path="res://Intro_Title_Menu/PerformanceAnalysisNoBorder.tres" id="8_3emdp"]
@@ -83,10 +82,9 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5n23y")
 
 [node name="Stars" type="TextureRect" parent="Main"]
+visible = false
 material = SubResource("ShaderMaterial_s6tqy")
 layout_mode = 2
-texture = ExtResource("4_s6tqy")
-expand_mode = 1
 stretch_mode = 1
 
 [node name="Fade" type="TextureRect" parent="Main"]
