@@ -33,11 +33,11 @@ var songs_list: Array[Dictionary] = [
 	{
 		"id": "TWICE",
 		"audio": "res://audiotracks/twice/what_is_love.mp3",
-		"map": "res://audiotracks/twice/TWICE.mboy",
+		"map": "res://audiotracks/twice/TWICE2.mboy",
 		"cover": "res://Intro_Title_Menu/Images for Menu/twice.jpg",
 		"title": "What is love?",
 		"artist": "Twice",
-		"accelerate": 1
+		"accelerate": 1.2
 	},
 	{
 		"id": "NOBODYONE",
