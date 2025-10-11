@@ -11,7 +11,6 @@
 [ext_resource type="FontFile" uid="uid://c3vxmtflba3ge" path="res://Intro_Title_Menu/Fonts/Transformers Movie.ttf" id="8_6uj7k"]
 [ext_resource type="Shader" uid="uid://deantds8ddmj5" path="res://road/road.gdshader" id="8_7fl84"]
 [ext_resource type="Texture2D" uid="uid://c7mkfd1hkw1ul" path="res://UI/transformers_progress_bar.png" id="8_lyrr8"]
-[ext_resource type="Shader" uid="uid://de5ill4jfdd8o" path="res://ScoreUI.gdshader" id="9_hk842"]
 [ext_resource type="Texture2D" uid="uid://boauxpacpohrr" path="res://UI/transformers_progress_bar_fill.png" id="9_lyrr8"]
 [ext_resource type="PackedScene" uid="uid://byflxvnbatogh" path="res://Intro_Title_Menu/generic_animations.tscn" id="10_n6ssf"]
 [ext_resource type="Texture2D" uid="uid://bohe3pcx1snxn" path="res://UI/transformers_progress_bar_bottom.png" id="12_1jjv1"]
@@ -22,8 +21,15 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyrr8"]
 
+[sub_resource type="Shader" id="Shader_fa1bt"]
+code = "shader_type canvas_item;
+
+void fragment() {
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7fl84"]
-shader = ExtResource("9_hk842")
+shader = SubResource("Shader_fa1bt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jjv1"]
 texture = ExtResource("12_1jjv1")
