@@ -2,7 +2,6 @@
 A Guitar Hero–style rhythm game built with Python (Godot) and Arduino, featuring Transformers-themed gameplay and an AI Coach powered by Gemini API to help players improve through performance feedback.
 
 🎥 Watch the Demo on YouTube → https://youtu.be/BODeCxEvZ2w
-🎮 Play here → https://austinsenna.itch.io/transformers-guitar-hero
 # 🚀 Overview
 
 Guitar Hero: Transformers is a rhythm-based game that brings the thrill of Guitar Hero into a Transformers-inspired universe.
